@@ -1,0 +1,148 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="huaban" content="nopin">
+    <meta name="csrf-token" content="">
+    <meta http-equiv="Content-Type" content="multipart/form-data; charset=utf-8" />
+    <link rel="shortcut icon " type="images/x-icon"  th:href="@{/static/image/logo.png}" >
+    <title>控制中心</title>
+    <link th:href="@{/static/bootstrap/css/bootstrap-min.css}"  rel="stylesheet">
+    <link th:href="@{/static/bootstrap/css/bootstrap-select.min.css}"  rel="stylesheet">
+    <link th:href="@{/static/web/css/console.css}"  rel="stylesheet">
+</head>
+<body id="app-layout">
+<div class="spark-screen relative">
+    <div class="">
+        <div  class="setting-header">
+            <div  class="setting-container clearfix">
+                <div  style="float: left;margin-top: 10px;margin-left: 40px;cursor: pointer;font-weight: 700;">胖哼智能</div>
+                <span  class="page-tag" style="margin-top: 10px;">控制中心</span>
+
+                <div  lxref="header-mini" style="cursor:pointer" class=" nav-personal right ">
+                    <a   th:href="@{/web/v1/index}" >
+                        <span  class="page-tag" >返回</span>
+                    </a>
+                </div>
+                <div  lxref="header-mini"  style="float: right;margin-right: 5px;margin-top: 11px;font-weight: 100;">
+                    <span  th:text="${session.sessionInfo.loginId}" ></span>
+                </div>
+            </div>
+        </div>
+        <div class="setting-container clearfix">
+            <div class="block-container sidebar">
+                <ul  class="menu">
+                    <li >
+                        <a  th:href="@{/web/kong/console_home}" class="router-link-exact-active router-link-active primary-item ">
+                            <span >
+                                <span  class="bg-sprites menu-icon home">
+                                </span>首页</span>
+                        </a>
+                    </li>
+                    <li >
+                        <div  class="primary-item" ONCLICK="$A.openfenxi('shebei','fen')">
+                            <span  id="fen" class="bg-sprites toggle-icon down"></span>
+                            <span ><span  class="bg-sprites menu-icon analyse">
+                            </span>设备管理
+                            </span>
+                        </div>
+                        <ul  id="shebei" class="secondary-list" style="display: none">
+                            <li >
+                                <a  th:href="@{/web/kong/lockXl}" class="secondary-item">
+                                    <span >设备系列设置</span>
+                                </a>
+                            </li>
+                            <li >
+                                <a th:href="@{/web/kong/lockType}" class="secondary-item ">
+                                    <span >设备类型设置</span>
+                                </a>
+                            </li>
+                            <li >
+                                <a  th:href="@{/web/kong/lockNum}" class="secondary-item active">
+                                    <span >设备编号统筹</span>
+                                </a>
+                            </li>
+                            <li >
+                                <a  th:href="@{/web/kong/yesAvtion}" class="secondary-item">
+                                    <span >已激活设备</span>
+                                </a>
+                            </li>
+                            <li >
+                                <a  th:href="@{/web/kong/notAvtion}" class="secondary-item">
+                                    <span >未激活设备</span>
+                                </a>
+                            </li>
+                        </ul>
+
+                    </li>
+                    <li >
+                        <div  class="primary-item" ONCLICK="$A.openfenxi('fenxi','fen')">
+                            <span  id="fen2" class="bg-sprites toggle-icon down"></span>
+                            <span ><span  class="bg-sprites menu-icon teams">
+                            </span>数据分析
+                            </span>
+                        </div>
+                        <ul  id="fenxi" class="secondary-list" >
+                            <li >
+                                <a  th:href="@{/web/kong/fenxi}" class="secondary-item active">
+                                    <span >企业用户分析</span>
+                                </a>
+                            </li>
+                            <li >
+                                <a  th:href="@{/pa/v1/toCountLock}" class="secondary-item">
+                                    <span >设备使用分析</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li >
+                        <div  class="primary-item" ONCLICK="$A.openfenxi('yichang','fen')">
+                            <span  id="fen3" class="bg-sprites toggle-icon down"></span>
+                            <span ><span  class="bg-sprites menu-icon contacts">
+                            </span>监控日志
+                            </span>
+                        </div>
+                        <ul  id="yichang" class="secondary-list" style="display: none">
+                            <li >
+                                <a  th:href="@{/pa/v1/toAllLog}" class="secondary-item">
+                                    <span >所有操作日志</span>
+                                </a>
+                            </li>
+                            <li >
+                                <a  th:href="@{/pa/v1/toLockListener}" class="secondary-item">
+                                    <span >设备实时状态</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="block-container main">
+                <div class="log_summary util_mt_large" style="width: 100%;">
+                    <div class="log_summary_card"><div class="log_summary_card_item">
+                        <span class="log_summary_card_item_name">服务企业</span>
+                        <span class="log_summary_card_item_num">2</span>
+                        </div>
+                        <div class="log_summary_card_item">
+                        <span class="log_summary_card_item_name">激活用户</span>
+                        <span class="log_summary_card_item_num">7</span>
+                       </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+</div>
+<script th:src="@{/static/web/js/jquery.min.js}"  ></script>
+<script th:src="@{/static/bootstrap/js/bootstrap.min.js}" ></script>
+<script th:src="@{/static/bootstrap/js/bootstrap-select.min.js}" ></script>
+<script  th:inline="javascript">
+
+</script>
+
+</body>
+</html>

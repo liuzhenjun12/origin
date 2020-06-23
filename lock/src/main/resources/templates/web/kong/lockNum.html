@@ -1,0 +1,353 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="huaban" content="nopin">
+    <meta name="csrf-token" content="">
+    <meta http-equiv="Content-Type" content="multipart/form-data; charset=utf-8" />
+    <link rel="shortcut icon " type="images/x-icon"  th:href="@{/static/image/logo.png}" >
+    <title>控制中心</title>
+    <link th:href="@{/static/bootstrap/css/bootstrap-min.css}"  rel="stylesheet">
+    <link th:href="@{/static/bootstrap/css/bootstrap-select.min.css}"  rel="stylesheet">
+    <link th:href="@{/static/bootstrap/css/bootstrap-table.min.css}" rel="stylesheet" />
+    <link th:href="@{/static/bootstrap/css/bootstrapValidator.css}"  rel="stylesheet">
+    <link th:href="@{/static/web/css/console.css}"  rel="stylesheet">
+</head>
+<body id="app-layout">
+<div class="spark-screen relative">
+    <div class="">
+        <div  class="setting-header">
+            <div  class="setting-container clearfix">
+                <div  style="float: left;margin-top: 10px;margin-left: 40px;cursor: pointer;font-weight: 700;">胖哼智能</div>
+                <span  class="page-tag" style="margin-top: 10px;">控制中心</span>
+
+                <div  lxref="header-mini" style="cursor:pointer" class=" nav-personal right ">
+                    <a   th:href="@{/web/v1/index}" >
+                        <span  class="page-tag" >返回</span>
+                    </a>
+                </div>
+                <div  lxref="header-mini"  style="float: right;margin-right: 5px;margin-top: 11px;font-weight: 100;">
+                    <span  th:text="${session.sessionInfo.loginId}" ></span>
+                </div>
+            </div>
+        </div>
+        <div class="setting-container clearfix">
+            <div class="block-container sidebar">
+                <ul  class="menu">
+                    <li >
+                        <a  th:href="@{/web/kong/console_home}" class="router-link-exact-active  primary-item ">
+                            <span >
+                                <span  class="bg-sprites menu-icon home">
+                                </span>首页</span>
+                        </a>
+                    </li>
+                    <li >
+                        <div  class=" primary-item active" ONCLICK="$A.openfenxi('shebei','fen')">
+                            <span  id="fen" class="bg-sprites toggle-icon down"></span>
+                            <span ><span  class="bg-sprites menu-icon analyse ">
+                            </span>设备管理
+                            </span>
+                        </div>
+                        <ul  id="shebei" class="secondary-list" >
+                            <li >
+                                <a  th:href="@{/web/kong/lockXl}" class="secondary-item">
+                                    <span >设备系列设置</span>
+                                </a>
+                            </li>
+                            <li >
+                                <a th:href="@{/web/kong/lockType}" class="secondary-item ">
+                                    <span >设备类型设置</span>
+                                </a>
+                            </li>
+                            <li >
+                                <a  th:href="@{/web/kong/lockNum}" class="secondary-item active">
+                                    <span >设备编号统筹</span>
+                                </a>
+                            </li>
+                            <li >
+                                <a  th:href="@{/web/kong/yesAvtion}" class="secondary-item">
+                                    <span >已激活设备</span>
+                                </a>
+                            </li>
+                            <li >
+                                <a  th:href="@{/web/kong/notAvtion}" class="secondary-item">
+                                    <span >未激活设备</span>
+                                </a>
+                            </li>
+                        </ul>
+
+                    </li>
+                    <li >
+                        <div  class="primary-item" ONCLICK="$A.openfenxi('jichu','fen')">
+                            <span  id="fen1" class="bg-sprites toggle-icon down"></span>
+                            <span ><span  class="bg-sprites menu-icon security">
+                            </span>企业管理
+                            </span>
+                        </div>
+                        <ul  id="jichu" class="secondary-list" style="display: none">
+                            <li >
+                                <a  th:href="@{/web/kong/corp}" class="secondary-item ">
+                                    <span >企业信息</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li >
+                        <div  class="primary-item" ONCLICK="$A.openfenxi('userfe','fen')">
+                            <span  id="usergl" class="bg-sprites toggle-icon down"></span>
+                            <span ><span  class="bg-sprites menu-icon contacts">
+                            </span>用户管理
+                            </span>
+                        </div>
+                        <ul  id="userfe" class="secondary-list" style="display: none">
+                            <li >
+                                <a  th:href="@{/web/kong/user}" class="secondary-item ">
+                                    <span >用户信息</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li >
+                        <div  class="primary-item" ONCLICK="$A.openfenxi('yichang','fen')">
+                            <span  id="fen3" class="bg-sprites toggle-icon down"></span>
+                            <span ><span  class="bg-sprites menu-icon teams">
+                            </span>日志管理
+                            </span>
+                        </div>
+                        <ul  id="yichang" class="secondary-list" style="display: none">
+                            <li >
+                                <a  th:href="@{/web/kong/log}" class="secondary-item">
+                                    <span >操作日志</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li >
+                        <div  class="primary-item" ONCLICK="$A.openfenxi('jiankong','fen')">
+                            <span  id="fen4" class="bg-sprites toggle-icon down"></span>
+                            <span ><span  class="bg-sprites menu-icon operate">
+                            </span>监控管理
+                            </span>
+                        </div>
+                        <ul  id="jiankong" class="secondary-list" style="display: none">
+                            <li >
+                                <a  th:href="@{/web/kong/jiankong}" class="secondary-item">
+                                    <span >设备监控</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="block-container main">
+                <div   class="setting-breadcrumb">
+                    <div  class="title"><span >设备维护</span>
+                    </div>
+                    <div  class="secondary">设备与企业微信后台设备关联，非技术人员不得操作</div>
+                </div>
+                <div >
+                    <div style="float: left">
+                        <a class="nav-link" href="#" data-toggle="modal" data-target="#addtype" >
+                            <button class="btn btn-primary mt-m mb-xl" style="height: 40px">添加设备Sn</button>
+                        </a>
+                    </div>
+
+                    <div class="input-group" style="width: 300px;float: right;margin-top: 5px">
+                        <input id="searchText" type="text" placeholder="模糊搜索设备编号" class="form-control">
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-primary " onclick="$A.sousuo()">
+                                <span class="glyphicon glyphicon-search" aria-hidden="true"></span> 搜索
+                                <span class="caret"></span>
+                            </button>
+                        </div><!-- /btn-group -->
+                    </div><!-- /input-group -->
+                </div>
+                <div style="margin-top: 70px;">
+                    <table id="table" ></table>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="addtype" role="dialog">
+            <div class="temp-custom-modal-wrap">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content temp-custom-modal-content" >
+                        <button type="button" class="close temp-custom-close-button" data-dismiss="modal">&times;</button>
+                        <div class="modal-body temp-custom-modal-body">
+                            <div class="temp-login-form-wrapper">
+                                <div class="row custom-row">
+                                    <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+                                        <p>添加设备类型</p>
+                                    </div>
+                                </div>
+                                <form id="defaultForm"   method="post" enctype="multipart/form-data" class="form-horizontal" >
+                                    <div id="addBookModal" class="modal-body">
+                                        <div class="form-horizontal">
+                                            <div class="form-group">
+                                                <label for="modelId" class="col-sm-2 control-label">设备型号:<span style="color: red">*</span></label>
+                                                <div class="col-sm-10">
+                                                    <select name="modelId" id="modelId" class="selectpicker">
+
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="deviceSn" class="col-sm-2 control-label">设备编号:<span style="color: red">*</span></label>
+                                                <div class="col-sm-10">
+                                                    <input class="form-control" name="deviceSn" placeholder="设备sn的长度在8~20之间的大写字母和数字" id="deviceSn" type="text">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="mac" class="col-sm-2 control-label">设备蓝牙:<span style="color: red">*</span></label>
+                                                <div class="col-sm-10">
+                                                    <input class="form-control" name="mac" placeholder="请输入正确的蓝牙格式" id="mac" type="text">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <div class="center-block">
+                                            <button id="cancelAdd" onclick="$A.rest()" type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                            <button id="addBooksInfo" type="button"   onclick="$A.addSn()" class="btn btn-success" >保存</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="typeXq" role="dialog">
+            <div class="temp-custom-modal-wrap">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content temp-custom-modal-content" >
+                        <button type="button" class="close temp-custom-close-button" data-dismiss="modal">&times;</button>
+                        <div class="modal-body temp-custom-modal-body">
+                            <div class="temp-login-form-wrapper">
+                                <div class="row custom-row">
+                                    <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+                                        <p>设备类型详情</p>
+                                    </div>
+                                </div>
+                                <div  class="modal-body">
+                                    <div class="form-horizontal">
+                                        <div class="form-group">
+                                            <label for="sbtype1" class="col-sm-2 control-label">设备型号:</label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control"  id="sbtype1" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                        <label for="deviceSn1" class="col-sm-2 control-label">设备sn:</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control"  id="deviceSn1" type="text">
+                                        </div>
+                                       </div>
+                                        <div class="form-group">
+                                            <label for="name" class="col-sm-2 control-label">设备名称:</label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control"  id="name" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="mac1" class="col-sm-2 control-label">设备蓝牙:</label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control"  id="mac1" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="secretNo" class="col-sm-2 control-label">secretNo:</label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control"  id="secretNo" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="deviceId" class="col-sm-2 control-label">deviceId:</label>
+                                            <div class="col-sm-10 ">
+                                                <input class="form-control"  id="deviceId" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="qrCode" class="col-sm-2 control-label">二维码:</label>
+                                            <div class="col-sm-10 ">
+                                                <input class="form-control"  id="qrCode" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="status" class="col-sm-2 control-label">是否激活:</label>
+                                            <div class="col-sm-10 ">
+                                                <input class="form-control"  id="status" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="createdatetime" class="col-sm-2 control-label">创建时间:</label>
+                                            <div class="col-sm-10 ">
+                                                <input class="form-control"  id="createdatetime" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="lastupdatetime" class="col-sm-2 control-label">激活时间:</label>
+                                            <div class="col-sm-10 ">
+                                                <input class="form-control"  id="lastupdatetime" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="loginid" class="col-sm-2 control-label">绑定用户:</label>
+                                            <div class="col-sm-10 ">
+                                                <input class="form-control"  id="loginid" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="corpname" class="col-sm-2 control-label">绑定企业:</label>
+                                            <div class="col-sm-10 ">
+                                                <input class="form-control"  id="corpname" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="battery" class="col-sm-2 control-label">电池电量:</label>
+                                            <div class="col-sm-10 ">
+                                                <input class="form-control"  id="battery" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="xstp" class="col-sm-2 control-label">产品图片:</label>
+                                            <div class="col-sm-10">
+                                                <div class="app_screenShot_list_item">
+                                                    <img src=""  class=\"app_screenShot_list_img\" onerror="javascript:this.src='/static/imgage/chaoshi.png';" id="xstp">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script th:src="@{/static/web/js/jquery.min.js}"  ></script>
+<script th:src="@{/static/bootstrap/js/bootstrap.min.js}" ></script>
+<script th:src="@{/static/bootstrap/js/bootstrap-select.min.js}" ></script>
+<script th:src="@{/static/bootstrap/js/bootstrapValidator.js}" ></script>
+<script th:src="@{/static/bootstrap/js/bootstrap-table.min.js}" ></script>
+<script th:src="@{/static/bootstrap/js/bootstrap-table-zh-CN.min.js}" ></script>
+<script th:src="@{/static/web/js/nmber.js}" ></script>
+<script  th:inline="javascript">
+    $A.userid=[[${session.sessionInfo.loginId}]];
+    var height=document.body.clientHeight;
+    $(".sidebar ").css("min-height",height-240);
+    $(".main ").css("min-height",height-240);
+    $(function () {
+        $A.init();
+    })
+</script>
+
+</body>
+</html>

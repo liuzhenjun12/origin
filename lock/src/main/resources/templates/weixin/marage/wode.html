@@ -1,0 +1,173 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>胖哼智能</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>我的信息</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!--阿里巴巴前端框架 -->
+    <link rel="stylesheet" th:href="@{/static/alibb/css/sm.min.css}">
+    <link rel="stylesheet" th:href="@{/static/alibb/css/sm-extend.min.css}" >
+    <!--jquery-->
+</head>
+
+<body >
+<div class="page page-current" id='routers-index'>
+<nav class="bar bar-tab">
+    <a class="tab-item external " th:href="@{/wx/v1/index}">
+        <span class="icon icon-home"></span>
+        <span class="tab-label">首页</span>
+    </a>
+    <a class="tab-item external " th:href="@{/wx/v1/page/admin}">
+        <span class="icon icon-app"></span>
+        <span class="tab-label">管理</span>
+    </a>
+    <a class="tab-item external " th:href="@{/wx/v1/page/log}">
+        <span class="icon icon-clock"></span>
+        <span class="tab-label">日志</span>
+    </a>
+    <a class="tab-item external active" th:href="@{/wx/v1/page/wode}">
+        <span class="icon icon-me"></span>
+        <span class="tab-label">我的</span>
+    </a>
+</nav>
+<div class="content" style="height: 100%">
+    <!-- 这里是页面内容区 -->
+    <div class="card facebook-card" style="height: 89%;">
+        <div class="card-header no-border">
+            <div style="text-align: center;">
+                <img  id="touxiang1"  onerror="javascript:this.src='/static/imgage/user.png'" style="margin-top: 15px;max-height: 100px;">
+            </div>
+        <div class="card-footer no-border">
+            <a href="#" class="link" id="userid1" ></a>
+            <a href="#" class="link" id="role1" ></a>
+        </div>
+    </div>
+    <div class="page-settings">
+        <div class="row text-center">
+            <div class="col-50">
+                <h4 id="sb">0</h4>
+                <div class="color-gray">设备数量</div>
+            </div>
+            <div class="col-50">
+                <h4 id="ks">0</h4>
+                <div class="color-gray">开锁次数</div>
+            </div>
+        </div>
+        <div class="list-block list" style="margin-top: 20px">
+            <ul>
+                <li class="item-content item-link">
+                    <div class="item-media"><i class="icon icon-me"></i></div>
+                    <div class="item-inner">
+                        <div class="item-title">
+                            <a href="#routers-index-inner-1" style="color: #222;">个人资料</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="item-content item-link">
+                    <div class="item-media"><i class="icon icon-message"></i></div>
+                    <div class="item-inner">
+                        <div class="item-title">消息通知</div>
+                    </div>
+                </li>
+                <li class="item-content item-link">
+                    <div class="item-media"><i class="icon icon-friends"></i></div>
+                    <div class="item-inner">
+                        <div class="item-title">帮助中心</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+</div>
+</div>
+<div class="page" id="routers-index-inner-1">
+    <header class="bar bar-nav">
+        <a class="icon icon-left pull-left"  href="#routers-index">上一页</a>
+    </header>
+    <div class="content">
+
+        <div class="card demo-card-header-pic" style="height: calc(100% - 22px);">
+            <div valign="bottom" class="card-header color-white no-border no-padding">
+                <img  id="touxiang2" style="width: 100px;height: 100px;margin-top: 20px;margin-left: auto;margin-right: auto;" onerror="javascript:this.src='/static/imgage/user.png'">
+            </div>
+            <div class="card-footer">
+                <div>企业名称</div>
+                <div id="corpname"></div>
+            </div>
+            <div class="card-footer">
+                <div>企业id</div>
+                <div id="corpid"></div>
+            </div>
+            <div class="card-footer">
+                <div>微信id</div>
+                <div id="loginid"></div>
+            </div>
+            <div class="card-footer">
+                <div>微信昵称</div>
+                <div id="name"></div>
+            </div>
+            <div class="card-footer">
+                <div>成员角色</div>
+                <div  id="role2"></div>
+            </div>
+            <div class="card-footer">
+                <div>手机号码</div>
+                <div  id="phone"></div>
+            </div>
+            <div class="card-footer">
+                <div>操作</div>
+                <a href="#" class="link">修改</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script th:src="@{/static/alibb/js/jquery.js}" ></script>
+<script th:src="@{/static/alibb/js/sm.js}" ></script>
+<script th:src="@{/static/alibb/js/sm-extend.js}"  ></script>
+<script th:src="@{/static/weixin/js/index.js}"></script>
+<script th:inline="javascript">
+        $N.corpid=$N.getCookie("CorpId");
+        $N.userid=$N.getCookie("LoginId");
+        $(function () {
+            var top=screen.height;
+            if(top<650){
+                $("#tupian").css("height","150px");
+                $(".facebook-card").css("height","88%");
+            }
+            if($N.corpid&&$N.userid){
+                $.post("/web/user/getByCorpUserid", {"corpid": $N.corpid, "userid": $N.userid}, function (data) {
+                    if (data.code == 200) {
+                       $("#touxiang1").attr("src",data.data.img);
+                       $("#userid1").html(data.data.loginId);
+                       $("#role1").html(data.data.roleId==2?'成员':'管理员');
+                       $("#sb").html(data.data.attr4);
+                       $("#ks").html(data.data.attr5);
+                        $("#touxiang2").attr("src",data.data.img);
+                        $("#corpname").html(data.data.corpname);
+                        $("#corpid").html(data.data.corpids);
+                        $("#loginid").html(data.data.loginId);
+                        $("#name").html(data.data.name);
+                        $("#role2").html(data.data.roleId==2?'成员':'管理员');
+                        $("#phone").html(data.data.phone);
+                    }
+                })
+            }else {
+                location.href="/wx/v1/index";
+            }
+        })
+
+
+    </script>
+
+</body>
+
+
+</html>

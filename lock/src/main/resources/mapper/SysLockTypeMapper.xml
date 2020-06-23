@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="weixin.mapper.SysLockTypeMapper">
+  <resultMap id="BaseResultMap" type="weixin.model.SysLockType">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="sbtype" jdbcType="VARCHAR" property="sbtype" />
+    <result column="sbjc" jdbcType="VARCHAR" property="sbjc" />
+    <result column="sbxlid" jdbcType="INTEGER" property="sbxlid" />
+    <result column="sbxlname" jdbcType="VARCHAR" property="sbxlname" />
+    <result column="createdate" jdbcType="TIMESTAMP" property="createdate" />
+    <result column="updatedate" jdbcType="TIMESTAMP" property="updatedate" />
+    <result column="createby" jdbcType="VARCHAR" property="createby" />
+    <result column="updateby" jdbcType="VARCHAR" property="updateby" />
+    <result column="img" jdbcType="VARCHAR" property="img" />
+  </resultMap>
+
+</mapper>

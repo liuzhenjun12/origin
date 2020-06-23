@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>金储智能</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <!--WEUI-->
+    <link rel="stylesheet" th:href="@{../weui/css/weui.css}" />
+    <link rel="stylesheet" th:href="@{../weui/css/weuix.css}" />
+</head>
+<body  ontouchstart>
+<div id="mylock" >
+    <div class="weui-cells">
+        <div class="weui-cell">
+            <div class="weui-cell__bd " id="sbfh" onclick="fhhuidao()">
+                <span class="icon icon-109" style="margin-left: -5px"></span><span >企业设备</span>
+            </div>
+            <div class="weui-cell__ft"></div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <p>设备类型</p>
+            </div>
+            <div class="weui-cell__ft"  th:text="${type}"></div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <p>设备数量</p>
+            </div>
+            <div class="weui-cell__ft"  th:text="${lockInfo.sum}"></div>
+        </div>
+    </div>
+</div>
+
+<div style="width: 100%;height: 10px;background-color: #EFEFF4"></div>
+<div th:if="${lockInfo.sum==0}" style="text-align: center;margin-top: 30%;width: 100%">
+    <img th:src="@{../imgage/anzhuan.png}"  style="width: 35%">
+    <div><a  href="javascript:;" onclick="lianxi()">安装中....</a></div>
+</div>
+</body>
+<!--jquery-->
+<script th:src="@{../js/jquery.min.js}"  ></script>
+<script th:src="@{../weui/js/zepto.weui.js}"></script>
+<script th:src="@{../weui/js/zepto.min.js}"></script>
+<!--基础样式-->
+<link th:href="@{../style/style.css}"  rel="stylesheet">
+<script th:src="@{../js/index.js}" ></script>
+<script th:inline="javascript">
+function fhhuidao() {
+    setCookie("num","2");
+    history.back(-1);
+}
+function lianxi() {
+
+}
+</script>
+</html>

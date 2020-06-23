@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>金储智能</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <!--WEUI-->
+    <link rel="stylesheet" th:href="@{../weui/css/weui.css}" />
+    <link rel="stylesheet" th:href="@{../weui/css/weuix.css}" />
+</head>
+<body  ontouchstart>
+<div>
+    <img src="../imgage/gy.jpg"  style="height: 120px;width: 100%">
+</div>
+<div class="weui-cells">
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <p>企业名称</p>
+        </div>
+        <div class="weui-cell__ft">深圳同心科技有限公司</div>
+    </div>
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <p>版本</p>
+        </div>
+        <div class="weui-cell__ft">2.1.3</div>
+    </div>
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <p>官网</p>
+        </div>
+        <div class="weui-cell__ft">www.jinchu.com.cn</div>
+    </div>
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <p>客户热线</p>
+        </div>
+        <div class="weui-cell__ft">400-0755-111</div>
+    </div>
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <p>微信公众号</p>
+        </div>
+        <div class="weui-cell__ft">金储之家</div>
+    </div>
+</div>
+<div id="bzleft" style="position: absolute;bottom: 10px;">
+    <a href="javascript:;" onclick=" history.back(-1)" >
+        <span class="icon icon-109 left10 f20" ></span><span class="f20">返回</span>
+    </a>
+</div>
+</body>
+<!--jquery-->
+<script th:src="@{../js/jquery.min.js}"  ></script>
+<script th:src="@{../js/locks.js}" ></script>
+<script>
+    $(function () {
+
+    })
+</script>
+</html>

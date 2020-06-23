@@ -1,0 +1,142 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>胖哼智能</title>
+    <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <!--jquery-->
+        <script th:src="@{/static/js/jquery.min.js}"  ></script>
+    <!--WEUI-->
+    <link rel="stylesheet" th:href="@{/static/weui/css/weui.css}" />
+    <link rel="stylesheet" th:href="@{/static/weui/css/weuix.css}" />
+    <!--    <link rel="stylesheet" th:href="@{../style/animate.min.css}" />-->
+    <script th:src="@{/static/weui/js/zepto.min.js}"></script>
+    <script th:src="@{/static/weui/js/zepto.weui.js}"></script>
+    <script th:src="@{/static/weui/js/sidebar.js}"></script>
+    <!--    <script th:src="@{../weui/js/vconsole.min.js}"></script>-->
+<!--    <script th:src="@{../js/index.js}" ></script>-->
+    <script th:src="@{/static/weixin/js/index.js}" ></script>
+    <script th:inline="javascript">
+        $N.corpid=[[${corpinfo.corpid}]];
+        $N.corpName=[[${corpinfo.corpName}]];
+        $N.userid=[[${userinfo.loginId}]];
+        $N.userName=[[${userinfo.name}]];
+        $(function () {
+            $N.init();
+        })
+    </script>
+</head>
+<body ontouchstart class="page-bg ">
+<div class="container has-bj">
+    <div style="height: 20px;padding: 10px 20px">
+        <div  style="float: left;"  >
+<!--            <span style="font-size: 20px;font-weight: bold;color: white" th:text="${corpName}"></span>-->
+<!--            <a href="javascript:;"  class="open-popup" data-target="#half">-->
+<!--                <span class="icon icon-93 f25 " style="color: white"></span>-->
+<!--            </a>-->
+        </div>
+        <div  style="float: right;color: white" class="icon icon-81 f30 iblock" navbar-toggle></div>
+    </div>
+    <div id="zhi">
+        <p class="page1_progress_3" ><img src="/static/imgage/progress_3.png"></p>
+    </div>
+    <div style="height: 80%;padding: 0 10px">
+        <div class="slide slide-m" id="slide3" style="color: white" >
+            <ul id="lockinfo" style="text-align: center">
+
+            </ul>
+        </div>
+    </div>
+    <div class="bottom4_2" style="width: 100%;">
+        <img src="/static/imgage/4_5bottom.png" style="width: 100%">
+    </div>
+    <script th:src="@{/static/weui/js/swipe.js}" ></script>
+</div>
+
+<div class="weui-navs" navbar>
+    <ul>
+        <li class="nav-item">
+            <div style="display: flex;padding: 10px 10px;border-bottom: 1px #ccc solid;">
+                <div>
+                    <span  class="image26 " ></span>
+                </div>
+                <div>
+                    <div style="max-width: 180px;padding: 15px 0px 3px 0px;color:orangered;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;"><span th:text="${corpinfo.corpName}"  ></span></div>
+                    <div style="color: #10AEFF"><span th:text="${userinfo.name}"  ></span><span th:text="${userinfo.roleId==1?'管理员':'成员'}" class="left10" ></span></div>
+                </div>
+
+            </div>
+
+        </li>
+        <li class="nav-item">
+            <a href="javascript:void(0);"><i class="icon nav-icon icon-85"></i><span>我的</span><i class="icon nav-more"></i></a>
+            <ul>
+                <li><a th:href="@{/wx/v1/userinfo(corpid=${userinfo.corpids},userid=${userinfo.loginId})}"><span>个人信息</span></a></li>
+                <li><a th:href="@{/wx/v1/wyshebei(corpid=${userinfo.corpids},userid=${userinfo.loginId})}"><span>设备信息</span></a></li>
+            </ul>
+        </li>
+        <li class="nav-item">
+            <a href="javascript:void(0);"><i class="icon nav-icon icon-49"></i><span>管理</span><i class="icon nav-more"></i></a>
+            <ul>
+                <li><a th:href="@{/wx/v1/shebei(corpid=${userinfo.corpids})}"><span>设备管理</span><span class="weui-badge" ></span></a></li>
+                <li><a th:href="@{/wx/v1/userAdmin(corpid=${userinfo.corpids})}"><span>用户管理</span><span class="weui-badge"  ></span></a></li>
+                <li><a href="javascript:void(0);"><span>任务审批</span></a></li>
+            </ul>
+        </li>
+        <li class="nav-item">
+            <a href="javascript:void(0);"><i class="icon nav-icon icon-67"></i><span>申请</span><i class="icon nav-more"></i></a>
+            <ul>
+                <li><a th:href="@{/wx/v1/shebei(corpid=${userinfo.corpids})}"><span>申请设备</span></a></li>
+            </ul>
+        </li>
+        <li class="nav-item">
+        <a href="javascript:void(0);"><i class="icon nav-icon icon-106"></i><span>日志</span><i class="icon nav-more"></i></a>
+        <ul>
+            <li><a th:href="@{/wx/v1/locklog(corpid=${userinfo.corpids},userid=${userinfo.loginId})}"><span>开锁日志</span><span  class="weui-badge" ></span></a></li>
+        </ul>
+    </li>
+        <li class="nav-item">
+            <a href="javascript:void(0);"><i class="icon nav-icon icon-82"></i><span>其他</span><i class="icon nav-more"></i></a>
+            <ul>
+                <li><a th:href="@{/wx/v1/option(corpid=${userinfo.corpids},userid=${userinfo.loginId})}"><span>模拟体验</span></a></li>
+                <li><a th:href="@{/wx/v1/help(corpid=${userinfo.corpids},userid=${userinfo.loginId})}"><span>帮助了解</span></a></li>
+                <li><a th:href="@{/wx/v1/guanyu(corpid=${userinfo.corpids},userid=${userinfo.loginId})}"><span>关于我们</span></a></li>
+            </ul>
+        </li>
+
+<!--        <li class="nav-item">-->
+<!--            <a th:href="@{/wx/v1/msgpage(corpid=${corpId},userid=${userinfo.loginId})}">-->
+<!--                <i class="icon nav-icon icon-110"></i><span>消息</span></a>-->
+<!--        </li>-->
+    </ul>
+</div>
+
+<script >
+    $(function(){
+
+        $('.nav-item>a').on('click', function () {
+            $(".weui-navs ul ul li").removeClass('active');
+            $('.nav-item').children('ul').hide();
+            if ($(this).next().css('display') == "none") {
+                //展开
+                $('.nav-item').children('ul').hide();
+                $(this).next('ul').show();
+                $(this).parent('li').addClass('nav-show').siblings('li').removeClass('nav-show');
+            } else {
+                //收缩
+                $(this).next('ul').hide();
+                $('.nav-item.nav-show').removeClass('nav-show');
+            }
+        });
+
+    })
+
+    var sidebarjs = new SidebarJS('navbar');
+</script>
+</body>
+<script th:src="@{/static/weui/js/jweixin.js}"></script>
+<!--<script src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>-->
+
+
+</html>

@@ -1,0 +1,156 @@
+
+
+.loading{position: fixed; top: -50%; left: -50%; width: 200%; height: 200%; background: #fff; z-index: 100; overflow: hidden;
+}
+.loadimg{position: absolute; top: 0; left: 0; right: 0; bottom: 0; margin: auto}
+.hometop{width: 100%;height: 150px;text-align: center}
+.hometexg{margin-top: 70px;font-size: 25px;font-weight: bold;color: white}
+.h-height{height:130px;width:100%;background: no-repeat url("../imgage/pages.jpg") left top;position: relative
+}
+.h-height-home{width:100%;height: 150px;background: no-repeat url("../imgage/pages.jpg")   ;position: relative
+}
+.wyde{width:100%;position: absolute;text-align: center;
+}
+.xiao-xi{width:100%;height: 13rem;position: fixed;
+}
+.h-height-guan{width:100%;height: 150px;position: relative
+}
+.lockqu{width: 30%;margin-left: 35%;
+}
+.h-wode{margin-top: 4%;color: white;font-size: 20px;float: left;margin-left: 10px;font-weight: bold;
+}
+.h-shebei{margin-left: 76px;margin-top: -3px;color:white;font-size: 12px;
+}
+.h-userinfo{margin-top: -40px;color: white;float: right;
+}
+.h-userbtn{position:relative;margin: -55px auto 0;padding: 10px 10px 20px;border-radius: 10px 10px 0 0;
+    background: #FFF;box-shadow: 5px 9px 17px rgba(102,102,102,0.75);width: 80%;color: #FFF;
+    margin-top: -40px;text-align: center
+}
+.h-userapp{margin-top: 30%;width: 100%;color: white;position: absolute;
+}
+.h-font-app{color: #333;font: 15px/20px 'ds-digitalbold';font-weight: bold;
+}
+.left10{margin-left: 10px;
+}
+.h-alert{color: #FFF;text-align: center
+}
+.h-corp{color:#ccc;font:15px/25px 'ds-digitalbold';margin-left: 5px;margin-top: 5px;display: inline-flex;text-align: center
+}
+.h-span{color:white;font:12px/20px 'ds-digitalbold';
+}
+.titly{width: 100%;
+}
+.touxiang{margin-top: 10%;width: 100%;
+}
+.myxiang{margin-top: 8%;position: absolute;margin-left: 40%;text-align: center;
+}
+.tou{width: 60px;height: 60px;border-radius: 50px
+}
+.tou1{width: 70px;height: 70px;border-radius: 50px
+}
+.left-agin{float: left;
+}
+.right-agin{float: right;
+}
+.right10{margin-right: 10px;
+}
+.top5{margin-top: 5px;
+}
+.top10{margin-top: 10px;
+}
+ .door-box {height: 280px;margin: -50px 0 0px;font-family: STHeiTi, SimHei;overflow: hidden;position: relative;z-index: 1;
+ }
+.door-box.open {
+    /*animation: flyIntoRoom 1s 1.5s both;*/
+}
+.door-box div {position: absolute;
+}
+.wall {left: 0; top: 0; right: 0; bottom: 0;margin: 0 auto;max-height: calc(1.8 * (100vw - 80px));
+}
+.door-border {top: 60px; left: 100px; right: 100px; bottom: 0;max-width: 400px;border-radius: 2px 2px 0 0;
+    border-bottom: 0;background-color: #8D4B11;margin: auto;
+}
+.door-frame {top: 10px; left: 9px; right: 9px; bottom: 0;border: 3px solid #421A00;border-radius: 2px 2px 0 0;
+    border-bottom: 0;background-color: #fff;-webkit-perspective: 1200px;perspective: 1200px;
+}
+.door {width: 50%;top: 0; bottom: 0;-webkit-transform-style: preserve-3d;transform-style: preserve-3d;
+    transform: rotateY(0deg);transition: transform 1.5s;-webkit-backface-visibility: hidden;backface-visibility: hidden;
+}
+.door-left {transform-origin: left;left: 0;
+}
+.door-right {transform-origin: right;right: 0;
+}
+.open .door-left {transform: rotateY(-90deg);
+}
+.open .door-right {transform: rotateY(90deg);
+}
+/* 门环 */
+.door::before {content: '';position: absolute;width: 40px; height: 50px;top: 0; bottom: 0;
+    border-radius: 2px;margin: auto;z-index: 1;
+}
+.door-left::before {right: 3px;
+}
+.door::after {content: '';position: absolute;width: 3px; height: 26px;border: 5px solid #735835;
+    top: 0; bottom: 0;filter: drop-shadow(1px 1px 2px rgba(0,0,0,1));transform: translateY(5px);margin: auto;z-index: 1;
+}
+.door-left::after {right: 5px;
+}
+.door-right::after {left: 2px;
+}
+.door-face-1, .door-face-0 {left: -3px; top: -3px; right: -3px; bottom: -3px;border: 2px solid #1a0a00;
+}
+.door-face-0 {transform: translateZ(-12px);
+}
+.door-face-1 {transform: translateZ(0);
+}
+.door-face-2 {height: 6px;left: -3px; right: -3px; top: 0;border: 3px solid #1a0a00;border-radius: 2px;
+    background-color: #2B1201;transform: translate3D(0, -7.5px, -6px) rotateX(90deg);
+}
+.door-face-3 {width: 6px; top: -3px; right: 0; bottom: -3px;border: 3px solid #1a0a00;border-radius: 2px;
+    background-color: #2B1201;transform: translate3D(7.5px, 0, -6px) rotateY(90deg);
+}
+/*按钮*/
+.door-btn {left: 0; right: 0;text-align: center;margin-top: 320px;font-size: 24px;line-height: 36px;
+}
+.door-in {display: inline-block;width: 104px; height: 40px;border-radius: 40px;border: 2px solid;
+    line-height: 40px;background-color: #eacc86;font-size: 24px;color: inherit;
+}
+.door-in:hover {text-decoration: none;
+}
+/* 动画 */
+@keyframes flyIntoRoom {
+    from {transform: scale(1) translateZ(0);opacity: 1;
+    }
+    to {transform: scale(2) translateZ(100px);opacity: 0;
+    }
+}
+.room-img {position: absolute;width: 375px; height: 533px;max-width: calc(100vw - 80px);
+    max-height: calc(1.4 * (100vw - 80px));left: 0; right: 0; top: 44px;margin: auto;
+}
+.datext{border: 1px #b8b8b8  solid;width: 81.5%;margin-left: auto;margin-right: auto;
+}
+.tupian {
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    background-image: url("../imgage/2.png");
+}
+#image1 {
+    background-position: 0 0;
+}
+#image2 {
+    background-position: -40px 0;
+}
+#image3 {
+    background-position: -80px 0;
+}
+#image4 {
+    background-position: -116px 0;
+}
+#image5 {
+    background-position: -150px 0;
+}
+#image6 {
+    background-position: -192px 0;
+}

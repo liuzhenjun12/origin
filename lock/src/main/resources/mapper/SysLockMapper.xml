@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="weixin.mapper.SysLockMapper">
+  <resultMap id="BaseResultMap" type="weixin.model.SysLock">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="model_id" jdbcType="VARCHAR" property="modelId" />
+    <result column="device_sn" jdbcType="VARCHAR" property="deviceSn" />
+    <result column="secret_no" jdbcType="VARCHAR" property="secretNo" />
+    <result column="device_id" jdbcType="VARCHAR" property="deviceId" />
+    <result column="mac" jdbcType="VARCHAR" property="mac" />
+    <result column="qr_code" jdbcType="VARCHAR" property="qrCode" />
+    <result column="status" jdbcType="BIT" property="status" />
+    <result column="createdatetime" jdbcType="TIMESTAMP" property="createdatetime" />
+    <result column="lastupdatetime" jdbcType="TIMESTAMP" property="lastupdatetime" />
+    <result column="loginId" jdbcType="VARCHAR" property="loginid" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="icon" jdbcType="VARCHAR" property="icon" />
+    <result column="Battery" jdbcType="VARCHAR" property="battery" />
+    <result column="root_pwd" jdbcType="VARCHAR" property="rootPwd" />
+    <result column="corpid" jdbcType="VARCHAR" property="corpid" />
+    <result column="corpName" jdbcType="VARCHAR" property="corpname" />
+    <result column="connect_wx" jdbcType="BIT" property="connectWx" />
+    <result column="connect_ht" jdbcType="BIT" property="connectHt" />
+    <result column="attr1" jdbcType="VARCHAR" property="attr1" />
+    <result column="attr2" jdbcType="VARCHAR" property="attr2" />
+    <result column="attr3" jdbcType="VARCHAR" property="attr3" />
+    <result column="attr4" jdbcType="INTEGER" property="attr4" />
+    <result column="attr5" jdbcType="INTEGER" property="attr5" />
+    <result column="attr6" jdbcType="BIT" property="attr6" />
+    <result column="attr7" jdbcType="BIT" property="attr7" />
+  </resultMap>
+
+  <select id="checkMac" parameterType="java.lang.String" resultType="java.lang.Integer">
+    select count(1) from sys_lock where mac=#{mac}
+  </select>
+
+</mapper>

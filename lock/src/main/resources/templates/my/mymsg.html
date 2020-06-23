@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>金储智能</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <!--WEUI-->
+    <link rel="stylesheet" th:href="@{../weui/css/weui.css}" />
+    <link rel="stylesheet" th:href="@{../weui/css/weuix.css}" />
+
+</head>
+<body  ontouchstart>
+<div id="bzleft" style="margin-top: 10px;margin-left: 0px;height: 5%">
+    <a href="javascript:;" onclick=" history.back(-1)" >
+        <span class="icon icon-109 left10 f20" ></span><span class="f20">返回</span>
+    </a>
+</div>
+<div id="wyxx" >
+
+</div>
+<div class="weui-panel__ft" id="delmo">
+    <a href="javascript:void(0);" class="weui-cell weui-cell_access weui-cell_link" style="float: left">
+        <div class="weui-cell__bd" id="getmore">查看更多<i id="loading" class="weui-loading"></i></div>
+    </a>
+    <a href="javascript:void(0);" id="qudel" class="weui-cell weui-cell_access weui-cell_link" style="float: right">
+        <i class="icon icon-26 f18 "></i>
+        <span>全部删除</span>
+    </a>
+</div>
+
+</body>
+<!--jquery-->
+<script th:src="@{../js/jquery.min.js}"  ></script>
+<script th:src="@{../weui/js/zepto.weui.js}"></script>
+<script th:src="@{../js/locks.js}" ></script>
+<script th:inline="javascript">
+    var pagesize=10;//每页数据条数
+    $('#more').hide();
+    $(function(){
+        var page = 2;
+        var maxpage;
+        $('#getmore').on('click', function() {
+            maxpage = sessionStorage['maxpage'];
+            if(page<=maxpage) {
+                $S.getMsgs([[${corpid}]],[[${userid}]],page,pagesize);
+                page++;
+            }
+        });
+        $S.getMsgs([[${corpid}]],[[${userid}]],1,pagesize);
+        $("#qudel").on('click', function() {
+            $S.deleteAll([[${corpid}]],[[${userid}]]);
+        });
+    })
+
+</script>
+
+</html>

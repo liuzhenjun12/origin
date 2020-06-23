@@ -1,0 +1,221 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="huaban" content="nopin">
+    <meta name="csrf-token" content="">
+    <link rel="shortcut icon " type="images/x-icon"  th:href="@{/static/image/logo.png}" >
+    <meta name="description" content="">
+    <title>金储门控</title>
+    <link th:href="@{/static/bootstrap/css/bootstrap-min.css}"  rel="stylesheet">
+    <link th:href="@{/static/web/css/index.css}"  rel="stylesheet">
+    <script th:src="@{/static/web/js/jquery.min.js}"  ></script>
+
+    <script>
+        $(window).load(function(){
+            $("#loading").fadeOut();
+        });
+    </script>
+</head>
+<body id="app-layout">
+<div id="loading"
+     style="position: fixed; top: -50%; left: -50%; width: 200%; height: 200%; background: #fff; z-index: 100; overflow: hidden;">
+    <img  th:src="@{/static/imgage/ajax-loader.gif}" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; margin: auto;" />
+</div>
+<div class="spark-screen relative">
+    <div class="header-vue-component"><!---->
+        <nav class="header-general-container">
+            <div class="container">
+                <ul class="nav-tab"><li class="active">
+                    <a   th:href="@{/web/v1/login}">首页</a></li>
+                    <li >
+                        <a   href="/web/v1/pang">帮助</a>
+                    </li>
+                    <li >
+                        <a th:href="@{/web/customer/shou}" >管理</a>
+                    </li>
+                    <li th:if="${userInfo.roleId}==3" >
+                        <a  th:href="@{/web/kong/console_home}" >控制中心</a>
+                    </li>
+                </ul>
+                <div><div lxref="header-mini" class="dropdown toggle nav-personal right">
+                    <a href="javascript:void(0);" onclick="document.getElementById('doc').click()">
+                        <img id="img" th:src="${userInfo.img}" th:title="点击修改头像"  onerror="javascript:this.src='/static/imgage/user.png';" class="avatar-sm">
+                    </a>
+                    <form id="userEditForm"  action="/web/user/updateTx" method="post" enctype="multipart/form-data" onsubmit="return $I.saveTx()">
+                        <input type="text" name="loginId" id="loginId" th:value="${userInfo.loginId}" style="display:none;"/>
+                        <input type="text" name="loginId" id="corpids" th:value="${userInfo.corpids}" style="display:none;"/>
+                        <input type="file" name="imgpath" id="doc" onchange="$I.showImg(this.value)"  multiple  style="display:none;"/>
+                        <input type="submit" id="shang" style="display:none;"/>
+                    </form>
+                    <ul class="dropdown-menu">
+                        <li class="border"><a th:href="@{/web/v1/logout}">退出</a></li>
+                    </ul>
+
+                </div>
+
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <div id="app-vue" class="container min-height"><div>
+        <div class="col-xs-8 left-main block-container">
+            <div  class="carousels-wrapper" style="background-color: #000;">
+                <ul  tag="ul" class="carousel-list" style="height: 261px;margin-top: 26px;">
+                    <li  class="carousel-item" style="transform: translateX(0px); animation: bottom4_1 2s infinite alternate;">
+                        <img   th:src="@{/static/imgage/4_5bottom.png}"  class="carousel-picture pointer">
+                    </li>
+                </ul>
+            </div>
+
+            <div style="position: absolute;top: 80px;left: 32%;-webkit-animation-delay:1s;">
+                <span  class=" icon-pang bg-visitor-sprites ani  bounceInLeft animated"    style="color:white;font-size:30px;visibility: visible;animation-duration:0.5s;font-size:25px;-webkit-animation-duration:0.5s;animation-delay:1s;-webkit-animation-delay:1s;"></span>
+            </div>
+            <div style="position: absolute;top: 180px;left: 63%;-webkit-animation-delay:1.5s;">
+                <span  class=" icon-qywx bg-visitor-sprites ani  bounceInRight animated"    style="color:white;font-size:30px;visibility: visible;animation-duration:0.5s;font-size:25px;-webkit-animation-duration:0.5s;animation-delay:1s;-webkit-animation-delay:1.5s;"></span>
+            </div>
+            <div class="left-section latest-thread">
+                <div class="block-header">
+                    <div class="title">最新动态</div>
+                    <a th:href="@{/web/v1/userInfo(user_from=${session.sessionInfo.loginId})}" target="_blank" class="more">更多</a>
+                </div>
+                <div class="content">
+                    <ul th:each="log:${logList}" class="bulleted-list">
+                        <li  class="gallery-list clearfix js-comment-data">
+                            <a  class="left mr-m" style="padding: 0px 10px 0px 0px;">
+                                <img th:src="@{/static/imgage/logo.png}"  class="avatar-md">
+                            </a>
+                            <div class="overflow-hidden" style="line-height:25px">
+                                <div class="mt-s" >
+                                    <span th:text="${log.methodjc}" ></span>
+                                    <span th:text="${log.result}" class="secondary"></span>
+                                </div>
+                                <div class="long-break mt-s"></div>
+                                <div>
+                                    <div class="action" style="float:left;">
+                                        <span th:text="${log.createdate}"></span>
+                                    </div>
+                                    <div style="float: right;font-size: 12px;">
+                                        <a href="javascript:void(0);" th:onclick="'javascript:$I.delmsgById(\''+${log.id}+'\');'"  class="more">
+                                            <span>删除</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-xs-4 right-sidebar block-container"><div class="right-section bulletin">
+            <div class="block-header"><div class="title">公告栏</div>
+                <!--                <a   class="more">更多</a>-->
+            </div>
+            <div class="content">
+                <div class="long-break title mb-m">【公告】胖哼智能企业微信版上线的通知</div>
+                <div class="long-break overflow-hidden">
+                    <p>胖哼智能企业微信版全新上线啦！不用登陆OA，只需打开胖哼工作台就可以随时访问。</p>
+                    <p>胖哼智能企业微信版将会为我们提供一个开放的办公空间，更有效的打开效率的大门。</p>
+                    <p>来玩转我们的胖哼吧！</p>
+                </div>
+            </div>
+        </div>
+            <!---->
+            <div class="right-section active-staff">
+                <div class="block-header">
+                    <div class="title">我的公司信息</div>
+                </div>
+                <div class="content">
+                    <ul  >
+                        <li >
+                            <div class="overflow-hidden">
+                                <div style="float: left;">
+                                    <span  >企业名称:</span>
+                                </div>
+                                <div style="float: right">
+                                        <span  style="color: #008dfc" th:text="${userInfo.corpname}"></span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!---->
+            <div class="right-section active-staff">
+                <div class="block-header">
+                    <div class="title">我的个人信息</div>
+                </div>
+                <div class="content">
+                    <ul  >
+                        <li >
+                            <div class="overflow-hidden">
+                                <div style="float: left;">
+                                    <span  >账号:</span>
+                                </div>
+                                <div style="float: right">
+                                    <span  style="color: #008dfc" th:text="${userInfo.loginId}"></span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    </div>
+    <div class="footer-side-bar">
+        <a href="javascript:void(0);" class="icon-footer-operation icon-back-to-top bg-sprites js-back-to-top ">回到顶部</a>
+        <a href="#" data-toggle="modal" data-target="#feedback-modal" class="nav-link icon-footer-edit icon-edit bg-sprites   relative">建议反馈</a>
+        <a href="javascript:void(0);" class="icon-footer-operation icon-customer-service bg-sprites relative">
+            在线客服
+            <div id="customer-service-modal">
+                <img src="/static/imgage/liuzhenjunQRCode.png">
+                <div>请用微信或企业微信扫描二维码</div>
+                <div>添加金储智能在线客服为联系人</div>
+            </div>
+        </a>
+    </div>
+    <div id="feedback-modal" class="modal feedback-modal fade" tabindex="-1">
+        <div class="temp-custom-modal-wrap">
+            <div class="modal-dialog" style="width: 562px;">
+                <div class="modal-content temp-custom-modal-content">
+                    <button type="button" class="close temp-custom-close-button" data-dismiss="modal">&times;</button>
+                    <div class="modal-header">
+                        <h4 class="modal-title">
+                            <span id="show-feedback-submit" onclick="$I.toggleIframe()" class="pointer col-sm-5 center">我要反馈</span>
+                            <span id="show-feedback-result" onclick="$I.toggleIframe()" class="pointer col-sm-5 center secondary">反馈历史</span>
+                        </h4>
+                    </div>
+                    <div class="feed-suggestion">请反馈您对胖哼平台的问题或建议,其他问题请联系公司管理员</div>
+                    <div class="modal-body clearfix no-padding">
+                        <iframe id="aisee-submit-iframe" src="" width="560" height="400" frameborder="0" scrolling="no"></iframe>
+                        <iframe id="aisee-result-iframe" class="hide" src="" width="560" height="400" frameborder="0" scrolling="no"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script th:src="@{/static/web/js/index.js}" ></script>
+<script th:src="@{/static/bootstrap/js/bootstrap.min.js}" ></script>
+<script th:src="@{/static/web/js/jquery.form.js}" ></script>
+<script th:inline="javascript">
+    $I.id=[[${userInfo.loginId}]];
+    $I.name=[[${userInfo.name}]];
+    $(function () {
+        $(".js-back-to-top").click(function(){
+            $('body,html').animate({
+                scrollTop:0
+            },700);
+            return false; //防止冒泡
+        });
+    })
+</script>
+</body>
+</html>

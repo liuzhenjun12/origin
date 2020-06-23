@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="weixin.mapper.SysCorpMapper">
+  <resultMap id="BaseResultMap" type="weixin.model.SysCorp">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="corpid" jdbcType="VARCHAR" property="corpid" />
+    <result column="corp_name" jdbcType="VARCHAR" property="corpName" />
+    <result column="corp_square_logo_url" jdbcType="VARCHAR" property="corpSquareLogoUrl" />
+    <result column="corp_full_name" jdbcType="VARCHAR" property="corpFullName" />
+    <result column="corp_wxqrcode" jdbcType="VARCHAR" property="corpWxqrcode" />
+    <result column="corp_scale" jdbcType="VARCHAR" property="corpScale" />
+    <result column="corp_industry" jdbcType="VARCHAR" property="corpIndustry" />
+    <result column="location" jdbcType="VARCHAR" property="location" />
+    <result column="agentid" jdbcType="INTEGER" property="agentid" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+
+</mapper>

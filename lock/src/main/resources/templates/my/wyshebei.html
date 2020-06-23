@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>金储智能</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <!--WEUI-->
+    <link rel="stylesheet" th:href="@{../weui/css/weui.css}" />
+    <link rel="stylesheet" th:href="@{../weui/css/weuix.css}" />
+</head>
+<body  ontouchstart>
+<div class="weui-panel__hd" style="text-align: center">
+    <a  href="javascript:;" onclick=" history.back(-1)">
+        <span class="icon icon-109 " style="font-size: 18px"></span>我的设备</a>
+</div>
+<div class="weui-panel__bd" th:if="${locklist.size()>0}" th:each="lock:${locklist}">
+    <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+        <div class="weui-media-box__hd">
+            <img class="weui-media-box__thumb" th:src="${lock.lockImg}" alt="">
+        </div>
+        <div class="weui-media-box__bd">
+            <h4 class="weui-media-box__title" th:text="${'设备名称：'+lock.lockname}"></h4>
+            <p class="weui-media-box__desc" th:text="${'使用功能：'+lock.subLocation}"></p>
+            <p class="weui-media-box__desc" th:text="'使用时效：'+${lock.expires_type==1?'无期限':lock.expires_satrt+'~'+lock.expires_end}"></p>
+        </div>
+    </a>
+</div>
+<div style="text-align: center;padding: 150px" th:if="${locklist.size()==0}">
+    <img  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEYAAABGCAYAAABxLuKEAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ppVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTQyIDc5LjE2MDkyNCwgMjAxNy8wNy8xMy0wMTowNjozOSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo5M0E1QjlGRkRBMzIxMUU3ODkwRERCMUVERUJBQ0JFQyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDo1MTgzOTZBNEVFMjQxMUU4QUM2RUI3QzRBODFDMTUyNSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo1MTgzOTZBM0VFMjQxMUU4QUM2RUI3QzRBODFDMTUyNSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgMjAxNyAoV2luZG93cykiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpFMEI0MDJBNEVERjgxMUU4QUFFQUI4NDQzMzQ0REIwMCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpFMEI0MDJBNUVERjgxMUU4QUFFQUI4NDQzMzQ0REIwMCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PgyZnjAAAAMdSURBVHja7JoxTxRBFMdnFS1ItOCiwWiChZZXXEOjNAKJDYkQDNxyX4NP4ccwh5AQQ4E2njSExoQggYaEAoNGo2IMhSESXN9w/4nreejOzuzuzPpe8s9egBz/99vZmfdmNoiiSLgQe28/nRq5eeNK4IKfoBsYMlmEF2UkdzB0M/742TnB0TUYDINhMAyGwTgMpkZqkSqe5lmB/5ptMI9Iw6QXHsKpwPcw8rAKZpr0GsR9gqOg1OB/2jaYz6QRz+B0QhlBHtYn3wOP4HSDcpDlquQDHGMoaZfrrOAEFhpIK1BM6hgFZwMmFhwZLQvws2ECxbTAk/90lPSSNOsImFn4GTWBcjp8HdqPKSx4P4Z7JQbDYHwDUxXtTWwXVS0STOjwTQ+LAiOr1Do+D8Uq16I1BE91k0raBMwd0gDpDWnNoZGyBk8DMUi5gmng+kT8OixzISJ4kjGTN5iLpIf4POfg/NLEdRJecwNzn9RH2iRtOQhmG911H7zmBibsuDMuxpzJ6pQGzCXSGOkHad5hMPPwOAbPmYN5QOolrZL2HQazD4/S63geYBqWJt2kFayNx6mRNZh+0T6f+U5a9KDlWYTXe/CeGZgp0nnSc9IXQ9NJK1mTkB6fwfNUlmB8WI2srE46YG6RBkmHpGWPwCzD8yBysA5GEX9KOvIIzBE8a03COmBsrUZFPk4ztsHIYXib9IG04iGYFXhX04E1MGGskz7xEMxJrOMObYGJL3VN4W80O0oOYzCqONohrXsMZh059CMnYzChx5Nu6hbhX2BkAzZRQjDjyC01GNmyXya9Iu2WAMwuclFbJ6nBqMfosShPNJOsTn9720FuC74HvOukjyUBc5X0TrQ3sa7JRlP3bQe1kdwqERSBXFrIbTLNo1Sm1Uh7dToLjDqs+kZaKiGYJeR2F7kmBlPH73rRsuseqOcdXzX9HSK3+DFzIjCh+H+ia649Z/yxeoVCd2uxqKNaVazJCfVY02/VdD/G5biA67GtL+Q3qhiMXvRk9L0RjxgeMYkiKAsYHjEMhsEwGAbDYBgMgylrgRfxiOH4LX4KMAA8Q+9jt+kKiAAAAABJRU5ErkJggg==" alt="Empty List">
+    <div  style="font-size: 15px;color: #C8C8CD">没有设备</div>
+</div>
+
+</body>
+<!--jquery-->
+<script th:src="@{../js/jquery.min.js}"  ></script>
+<script th:src="@{../weui/js/zepto.weui.js}"></script>
+<script th:src="@{../js/locks.js}" ></script>
+<script th:inline="javascript">
+    $(function () {
+        $S.getlocks([[${corpid}]],[[${userid}]]);
+    })
+    function shenqin() {
+        $S.sheng([[${corpid}]]);
+    }
+
+
+</script>
+</html>

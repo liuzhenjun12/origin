@@ -1,0 +1,378 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>胖哼智能</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>分配成员</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!--阿里巴巴前端框架 -->
+    <link rel="stylesheet" th:href="@{/static/alibb/css/sm.min.css}">
+    <link rel="stylesheet" th:href="@{/static/alibb/css/sm-extend.min.css}" >
+    <!--jquery-->
+</head>
+
+<body >
+<div class="page" id="routers-index-inner-1">
+    <header class="bar bar-nav">
+        <a class="icon icon-left pull-left" href="/wx/v1/page/admin"></a>
+        <a class="icon icon-refresh pull-right" onclick="location.reload()"></a>
+        <h1 class="title">成员列表</h1>
+    </header>
+    <div class="content">
+        <div class="content-block-title">点击分配设备给成员</div>
+        <div class="list-block">
+            <ul th:each="user:${userLock}">
+                <li>
+                    <div class="item-content">
+                        <div class="item-media"><i class="icon icon-form-name"></i></div>
+                        <div class="item-inner">
+                            <div class="item-title label" th:text="${user.userid}"></div>
+                            <div class="item-input" style="text-align: right">
+                                <label class="label-switch">
+                                    <input type="checkbox" th:checked="${user.has}" >
+                                    <div class="checkbox"  th:onclick="fen([[${user.userid}]],[[${user.has}]],this)" ></div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+<div class="page" id="routers-index-inner-2">
+    <header class="bar bar-nav">
+        <a class="icon icon-left pull-left" id="tuichu" onclick="tiao(this)" ></a>
+        <h1 class="title">配置细节</h1>
+    </header>
+    <div class="content">
+        <div class="content">
+            <div class="list-block">
+                <ul>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-media"><i class="icon icon-form-name"></i></div>
+                            <div class="item-inner">
+                                <div class="item-title label">设备编号</div>
+                                <div class="item-input">
+                                    <input type="text" id="sbid" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-media"><i class="icon icon-form-name"></i></div>
+                            <div class="item-inner">
+                                <div class="item-title label">用户id</div>
+                                <div class="item-input">
+                                    <input type="text" id="userid" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-media"><i class="icon icon-form-name"></i></div>
+                            <div class="item-inner">
+                                <div class="item-title label">远程开锁</div>
+                                <div class="item-input" style="text-align: right">
+                                    <label class="label-switch">
+                                        <input type="checkbox" id="openType">
+                                        <div class="checkbox"  th:onclick="" ></div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-media"><i class="icon icon-form-name"></i></div>
+                            <div class="item-inner">
+                                <div class="item-title label">临时开锁</div>
+                                <div class="item-input" style="text-align: right">
+                                    <label class="label-switch">
+                                        <input type="checkbox" id="todoType" checked>
+                                        <div class="checkbox"  th:onclick="setchang()" ></div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li id="li1">
+                        <div class="item-content">
+                            <div class="item-media"><i class="icon icon-form-name"></i></div>
+                            <div class="item-inner" >
+                                <div class="item-title label">开始时间</div>
+                                <div class="item-input" style="text-align: right">
+                                    <input type="text" id="start" readonly placeholder="请选择开始时间">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li  id="li2">
+                        <div class="item-content">
+                            <div class="item-media"><i class="icon icon-form-name"></i></div>
+                            <div class="item-inner">
+                                <div class="item-title label">结束时间</div>
+                                <div class="item-input" style="text-align: right">
+                                    <input type="text" id="end" readonly placeholder="请选择结束时间">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="content-block">
+                <div class="row">
+                    <div class="col-50"><a onclick="tiao(this)" class="button button-big button-fill button-danger">取消</a></div>
+                    <div class="col-50"><a onclick="addTodo()" class="button button-big button-fill button-success">提交</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="page" id="routers-index-inner-3">
+    <header class="bar bar-nav">
+        <a class="icon icon-left pull-left" id="tuichu1" onclick="tiao(this)" ></a>
+        <h1 class="title">配置细节</h1>
+    </header>
+    <div class="content">
+        <div class="content">
+            <div class="list-block">
+                <ul>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-media"><i class="icon icon-form-name"></i></div>
+                            <div class="item-inner">
+                                <div class="item-title label">设备编号</div>
+                                <div class="item-input">
+                                    <input type="text" id="sbid1" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-media"><i class="icon icon-form-name"></i></div>
+                            <div class="item-inner">
+                                <div class="item-title label">用户id</div>
+                                <div class="item-input">
+                                    <input type="text" id="userid1" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-media"><i class="icon icon-form-name"></i></div>
+                            <div class="item-inner">
+                                <div class="item-title label">远程开锁</div>
+                                <div class="item-input" style="text-align: right">
+                                    <label class="label-switch">
+                                        <input type="checkbox" id="openType1">
+                                        <div class="checkbox"  th:onclick="" ></div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-media"><i class="icon icon-form-name"></i></div>
+                            <div class="item-inner">
+                                <div class="item-title label">临时开锁</div>
+                                <div class="item-input" style="text-align: right">
+                                    <label class="label-switch">
+                                        <input type="checkbox" id="todoType1" checked>
+                                        <div class="checkbox"  th:onclick="setchang()" ></div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li id="li3">
+                        <div class="item-content">
+                            <div class="item-media"><i class="icon icon-form-name"></i></div>
+                            <div class="item-inner" >
+                                <div class="item-title label">开始时间</div>
+                                <div class="item-input" style="text-align: right">
+                                    <input type="text" id="start1" readonly placeholder="请选择开始时间">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li  id="li4">
+                        <div class="item-content">
+                            <div class="item-media"><i class="icon icon-form-name"></i></div>
+                            <div class="item-inner">
+                                <div class="item-title label">结束时间</div>
+                                <div class="item-input" style="text-align: right">
+                                    <input type="text" id="end1" readonly placeholder="请选择结束时间">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="content-block">
+                <div class="row">
+                    <div class="col-50"><a onclick="tiao(this)" class="button button-big button-fill button-danger">取消</a></div>
+                    <div class="col-50"><a onclick="addTodo()" class="button button-big button-fill button-success">提交</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script th:src="@{/static/alibb/js/jquery.js}" ></script>
+<script th:src="@{/static/alibb/js/sm.js}" ></script>
+<script th:src="@{/static/alibb/js/sm-extend.js}"  ></script>
+<script th:src="@{/static/weixin/js/index.js}"></script>
+<script th:inline="javascript">
+    $N.corpid=$N.getCookie("CorpId");
+    $N.userid=$N.getCookie("LoginId");
+    if($N.corpid==''||$N.userid==''){
+        location.href="/wx/v1/index";
+    }
+    $N.Lockid=[[${lockinfo.deviceSn}]];
+    var maizhu=[[${lockinfo.loginid}]];
+    var sta=getDate(false);
+    var jie=getDate(true);
+    $(function () {
+    })
+    function fen(id,has,obj) {
+        console.log($(obj).siblings("input").is(":checked"))
+       if(id==maizhu&&$(obj).siblings("input").is(":checked")){
+           $.toast("设备负责人不能关闭开锁功能");
+           $(obj).siblings("input").click();
+           return false;
+       }else {
+           if($(obj).siblings("input").is(":checked")){
+               $("#sbid1").val($N.Lockid);
+               $("#userid1").val(id);
+               $.router.load("#routers-index-inner-3");
+               $("#start").datetimePicker({
+                   value: sta
+               });
+               $("#end").datetimePicker({
+                   value: jie
+               });
+           }else {
+               $("#sbid").val($N.Lockid);
+               $("#userid").val(id);
+               $.router.load("#routers-index-inner-2");
+               $("#start").val(getDate(false));
+               $("#end").val(getDate(true));
+               $("#start").datetimePicker({
+                   value: sta
+               });
+               $("#end").datetimePicker({
+                   value: jie
+               });
+           }
+       }
+    }
+    function tiao(obj) {
+        $("#start").val('');
+        $("#end").val('');
+        $(obj).attr("href","#routers-index-inner-1");
+    }
+   function getDate(is) {
+       var str=[];
+       var day1 = new Date();
+       var month=day1.getMonth()+1;
+       if(month<10){
+           month="0"+month;
+       }
+       var day=day1.getDate();
+       if(day<10){
+           day="0"+day;
+       }
+       var hours =day1.getHours();
+       if(hours<10){
+           hours="0"+hours;
+       }
+       var  minutes=day1.getMinutes();
+       if(minutes<10){
+           minutes="0"+minutes;
+       }
+       str.push(day1.getFullYear().toString());
+       str.push(month);
+       if(!is){
+       str.push(day.toString());
+       str.push(hours.toString());
+       str.push(minutes.toString());
+       }else {
+           day1.setDate(day1.getDate()+1);
+           var day2=day1.getDate();
+           if(day2<10){
+               day2="0"+day2;
+           }
+           str.push(day2.toString());
+           str.push(hours.toString());
+           str.push(minutes.toString());
+       }
+      return str;
+   }
+
+   function setchang() {
+       if(!$("#todoType").is(":checked")){
+           $("#li1").show();
+           $("#li2").show();
+       }else {
+           $("#li1").hide();
+           $("#li2").hide();
+       }
+   }
+   function addTodo() {
+       var openType=$("#openType").is(":checked")?1:2;
+       var todoType=$("#todoType").is(":checked")?2:1;
+       var start="";
+       var end="";
+       if(todoType==2){
+           start=$("#start").val();
+           end=$("#end").val();
+           if(!start){
+               $.toast("请设置开始时间");
+               return false;
+           }
+           if(!end){
+               $.toast("请设置结束时间");
+               return false;
+           }
+       }
+       $.post("/web/todo/add", {
+           "deviceSn":$N.Lockid,
+           "corpId": $N.corpid,
+           "openType":openType,
+           "todoType":todoType,
+           "createby":maizhu,
+           "icon":[[${lockinfo.icon}]],
+           "userId":$("#userid").val(),
+           "start":start,
+           "end":end
+       }, function (data) {
+           if(data.code==200) {
+               $.toast(data.message);
+               $("#start").val('');
+               $("#end").val('');
+               $("#tuichu").click();
+               setTimeout(function () {
+                   location.reload();
+               },500)
+           }else {
+               $.toast(data.message);
+           }
+       })
+   }
+</script>
+
+</body>
+
+
+</html>

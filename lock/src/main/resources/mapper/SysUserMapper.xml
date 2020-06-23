@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="weixin.mapper.SysUserMapper">
+  <resultMap id="BaseResultMap" type="weixin.model.SysUser">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="login_id" jdbcType="VARCHAR" property="loginId" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="createdatetime" jdbcType="TIMESTAMP" property="createdatetime" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="lastupdatetime" jdbcType="TIMESTAMP" property="lastupdatetime" />
+    <result column="status" jdbcType="BIT" property="status" />
+    <result column="role_id" jdbcType="INTEGER" property="roleId" />
+    <result column="corpids" jdbcType="VARCHAR" property="corpids" />
+    <result column="img" jdbcType="VARCHAR" property="img" />
+    <result column="department" jdbcType="INTEGER" property="department" />
+    <result column="main_department" jdbcType="INTEGER" property="mainDepartment" />
+    <result column="corpname" jdbcType="VARCHAR" property="corpname" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="attr1" jdbcType="VARCHAR" property="attr1" />
+    <result column="attr2" jdbcType="VARCHAR" property="attr2" />
+    <result column="attr3" jdbcType="VARCHAR" property="attr3" />
+    <result column="attr4" jdbcType="INTEGER" property="attr4" />
+    <result column="attr5" jdbcType="INTEGER" property="attr5" />
+    <result column="attr6" jdbcType="BIT" property="attr6" />
+    <result column="attr7" jdbcType="BIT" property="attr7" />
+  </resultMap>
+
+</mapper>

@@ -1,0 +1,116 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:Lang="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="huaban" content="nopin">
+    <meta name="csrf-token" content="">
+    <link rel="shortcut icon " type="images/x-icon"  th:href="@{../img/logo.png}" >
+    <title Lang:text="common.pangheng.bzzx"></title>
+    <link th:href="@{../css/bootstrap/css/bootstrap-min.css}"  rel="stylesheet">
+    <link th:href="@{../css/common/common.css}"  rel="stylesheet">
+    <link th:href="@{../css/admin/admin.css}"  rel="stylesheet">
+    <link th:href="@{../css/common/animate.min.css}"  rel="stylesheet">
+</head>
+<body id="app-layout">
+<div class="spark-screen relative">
+    <div class="js-vars hide" data-confirm_type data-confirm_route data-confirm_code data-confirm_action></div>
+    <div class="min-height-sm">
+        <div  class="setting-header">
+            <div  class="setting-container clearfix">
+                <div  style="float: left;margin-top: 10px;margin-left: 40px;cursor: pointer;font-weight: 700;" Lang:text="common.pangheng"></div>
+                <span  class="page-tag" style="margin-top: 10px;"  Lang:text="common.pangheng.bzzx"></span>
+                <div style="margin-left: -30px" class=" dropdown toggle right">
+                    <div lxref="header-mini" style="margin-left: 28px;margin-top: 11px;margin-right: 70px" class="biaoti page-tag" Lang:text="common.language"></div>
+                    <div class="dropdown-menu" style="margin-left: 15px">
+                        <div class="arrow-up">
+                            <em>◆</em>
+                            <span>◆</span>
+                        </div>
+                        <div style="text-align: center"><a  style="cursor: pointer" onclick="$L.setLang('zh-cn')"><span Lang:text="common.chinese" style="margin-top: 10px;display: block;font-weight: 100"></span></a></div>
+                        <div style="text-align: center"><a  style="cursor: pointer" onclick="$L.setLang('en')"><span Lang:text="common.english" style="margin-top: 5px;margin-bottom:10px;display: block;font-weight: 100"></span></a></div>
+                    </div>
+                </div>
+                <div  lxref="header-mini" class=" nav-personal right" style="margin-right: 70px">
+                    <a href="/pa/v1/toLogin" ><span  class="page-tag"  Lang:text="common.login"></span></a>
+                </div>
+                <div  lxref="header-mini" class=" nav-personal right">
+                    <a href="/pa/v1/toRegister" ><span  class="page-tag" Lang:text="common.register"></span></a>
+                </div>
+                <div  lxref="header-mini" class=" nav-personal right">
+                    <a href="/pa/v1/login" style="font-weight: 100" Lang:text="common.home"></span></a>
+                </div>
+            </div>
+        </div>
+        <div class="setting-container clearfix">
+            <div class="block-container sidebar">
+                <ul  class="menu">
+                    <li >
+                        <a   th:href="@{/pa/v1/toPang}" class="router-link-exact-active router-link-active primary-item ">
+                            <span >
+                                <span  class="bg-sprites menu-icon home">
+                                </span ><span Lang:text="common.pangheng.cpjs"></span></span>
+                        </a>
+                    </li>
+                    <li >
+                        <a   th:href="@{/pa/v1/toMai}"  class="router-link-exact-active router-link-active primary-item ">
+                            <span >
+                                <span  class="bg-sprites menu-icon operate">
+                                </span><span Lang:text="common.pangheng.rhgm"></span></span>
+                        </a>
+                    </li>
+                    <li >
+                        <a  th:href="@{/pa/v1/toUse}" class="router-link-exact-active router-link-active primary-item active">
+                            <span >
+                                <span  class="bg-sprites menu-icon analyse">
+                                </span><span Lang:text="common.pangheng.rhsy"></span></span>
+                        </a>
+                    </li>
+                    <li >
+                        <a  th:href="@{/pa/v1/toNew}" class="router-link-exact-active router-link-active primary-item ">
+                            <span >
+                                <span  class="bg-sprites menu-icon apps">
+                                </span><span Lang:text="common.pangheng.xrbd"></span></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="block-container main">
+                <div >
+                    <div  class="section">
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="footer-side-bar">
+            <a href="javascript:void(0);" class="icon-footer-operation icon-back-to-top bg-sprites js-scroll-to " id="back-to-top" Lang:text="common.pangheng.top"></a>
+            <a href="javascript:void(0);" class="icon-footer-operation icon-customer-service bg-sprites relative " id="customer-service">
+                <span Lang:text="common.pangheng.kefu"></span>
+                <div id="customer-service-modal">
+                    <img src="../img/liuzhenjunQRCode.png">
+                    <div Lang:text="common.pangheng.qingshiyong"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+<script>
+    function  openfenxi(id,obj) {
+        if($("#"+id+"").css("display")=="none"){
+            $("#"+id+"").show();
+            $("#"+obj+"").removeClass().addClass("bg-sprites toggle-icon up");
+        }else {
+            $("#"+id+"").hide();
+            $("#"+obj+"").removeClass().addClass("bg-sprites toggle-icon down");
+        }
+    }
+</script>
+
+<script th:src="@{../js/common/jquery.min.js}" ></script>
+<script th:src="@{../js/bootstrap/bootstrap.min.js}" ></script>
+<script th:src="@{../js/login/login.js}" ></script>
+</body>
+</html>

@@ -1,0 +1,365 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="huaban" content="nopin">
+    <meta name="csrf-token" content="">
+    <link rel="shortcut icon " type="images/x-icon"  th:href="@{/static/image/logo.png}" >
+    <title>控制中心</title>
+    <link th:href="@{/static/bootstrap/css/bootstrap-min.css}"  rel="stylesheet">
+    <link th:href="@{/static/bootstrap/css/bootstrap-select.min.css}"  rel="stylesheet">
+    <link th:href="@{/static/bootstrap/css/bootstrapValidator.css}"  rel="stylesheet">
+    <link th:href="@{/static/web/css/console.css}"  rel="stylesheet">
+</head>
+<body id="app-layout">
+<div class="spark-screen relative">
+    <div class="">
+        <div  class="setting-header">
+            <div  class="setting-container clearfix">
+                <div  style="float: left;margin-top: 10px;margin-left: 40px;cursor: pointer;font-weight: 700;">胖哼智能</div>
+                <span  class="page-tag" style="margin-top: 10px;">控制中心</span>
+
+                <div  lxref="header-mini" style="cursor:pointer" class=" nav-personal right ">
+                    <a   th:href="@{/web/v1/index}">
+                        <span  class="page-tag" >返回</span>
+                    </a>
+                </div>
+                <div  lxref="header-mini"  style="float: right;margin-right: 5px;margin-top: 11px;font-weight: 100;">
+                    <span  th:text="${session.sessionInfo.loginId}" ></span>
+                </div>
+            </div>
+        </div>
+        <div class="setting-container clearfix">
+            <div class="block-container sidebar">
+                <ul  class="menu">
+                    <li >
+                        <a  th:href="@{/web/kong/console_home}" class="router-link-exact-active  primary-item ">
+                            <span >
+                                <span  class="bg-sprites menu-icon home">
+                                </span>首页</span>
+                        </a>
+                    </li>
+                    <li >
+                        <div  class="primary-item active" ONCLICK="$XL.openfenxi('shebei','fen')">
+                            <span  id="fen" class="bg-sprites toggle-icon down"></span>
+                            <span ><span  class="bg-sprites menu-icon analyse">
+                            </span>设备管理
+                            </span>
+                        </div>
+                        <ul  id="shebei" class="secondary-list" >
+                            <li >
+                                <a  th:href="@{/web/kong/lockXl}" class="secondary-item active">
+                                    <span >设备系列设置</span>
+                                </a>
+                            </li>
+                            <li >
+                                <a  th:href="@{/web/kong/lockType}" class="secondary-item ">
+                                    <span >设备类型设置</span>
+                                </a>
+                            </li>
+                            <li >
+                                <a  th:href="@{/web/kong/lockNum}" class="secondary-item">
+                                    <span >设备编号统筹</span>
+                                </a>
+                            </li>
+                            <li >
+                                <a  th:href="@{/web/kong/yesAvtion}" class="secondary-item">
+                                    <span >已激活设备</span>
+                                </a>
+                            </li>
+                            <li >
+                                <a  th:href="@{/web/kong/notAvtion}" class="secondary-item">
+                                    <span >未激活设备</span>
+                                </a>
+                            </li>
+                        </ul>
+
+                    </li>
+                    <li >
+                        <div  class="primary-item" ONCLICK="$XL.openfenxi('jichu','fen')">
+                            <span  id="fen1" class="bg-sprites toggle-icon down"></span>
+                            <span ><span  class="bg-sprites menu-icon security">
+                            </span>企业管理
+                            </span>
+                        </div>
+                        <ul  id="jichu" class="secondary-list" style="display: none">
+                            <li >
+                                <a  th:href="@{/web/kong/corp}" class="secondary-item ">
+                                    <span >企业信息</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li >
+                        <div  class="primary-item" ONCLICK="$XL.openfenxi('userfe','fen')">
+                            <span  id="usergl" class="bg-sprites toggle-icon down"></span>
+                            <span ><span  class="bg-sprites menu-icon contacts">
+                            </span>用户管理
+                            </span>
+                        </div>
+                        <ul  id="userfe" class="secondary-list" style="display: none">
+                            <li >
+                                <a  th:href="@{/web/kong/user}" class="secondary-item ">
+                                    <span >用户信息</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li >
+                        <div  class="primary-item" ONCLICK="$XL.openfenxi('yichang','fen')">
+                            <span  id="fen3" class="bg-sprites toggle-icon down"></span>
+                            <span ><span  class="bg-sprites menu-icon teams">
+                            </span>日志管理
+                            </span>
+                        </div>
+                        <ul  id="yichang" class="secondary-list" style="display: none">
+                            <li >
+                                <a   th:href="@{/web/kong/log}" class="secondary-item">
+                                    <span >操作日志</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li >
+                        <div  class="primary-item" ONCLICK="$XL.openfenxi('jiankong','fen')">
+                            <span  id="fen4" class="bg-sprites toggle-icon down"></span>
+                            <span ><span  class="bg-sprites menu-icon operate">
+                            </span>监控管理
+                            </span>
+                        </div>
+                        <ul  id="jiankong" class="secondary-list" style="display: none">
+                            <li >
+                                <a  th:href="@{/web/kong/jiankong}" class="secondary-item">
+                                    <span >设备监控</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="block-container main">
+                <div >
+                    <div   class="setting-breadcrumb">
+                        <div  class="title"><span >设备系列设置</span>
+                        </div>
+                        <div  class="secondary">用于添加新的设备系列，并配置相关功能选项</div>
+                    </div>
+                    <div class="bulletins-container">
+                        <a class="nav-link" href="#" data-toggle="modal" data-target="#addtype" >
+                            <button class="btn btn-primary mt-m mb-xl">添加设备系列</button>
+                        </a>
+                        <table  class="list">
+                            <thead  class="">
+                            <tr >
+                                <th  style="width: inherit;text-align: center">
+                                    <span  >系列名称</span>
+                                </th>
+
+                                <th  style="width: inherit;text-align: center">
+                                    <span  >系列描述</span>
+                                </th>
+                                <th  style="width: inherit;text-align: center">
+                                    <span  >操作</span>
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody id="boy"  class="" style="height: auto; max-height: none;">
+
+                            </tbody>
+                        </table>
+                        <div  class="table-content" id="zhanwu" style="display: none">
+                            <div  class="emtpy-content">
+                                <img  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEYAAABGCAYAAABxLuKEAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ppVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTQyIDc5LjE2MDkyNCwgMjAxNy8wNy8xMy0wMTowNjozOSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo5M0E1QjlGRkRBMzIxMUU3ODkwRERCMUVERUJBQ0JFQyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDo1MTgzOTZBNEVFMjQxMUU4QUM2RUI3QzRBODFDMTUyNSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo1MTgzOTZBM0VFMjQxMUU4QUM2RUI3QzRBODFDMTUyNSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgMjAxNyAoV2luZG93cykiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpFMEI0MDJBNEVERjgxMUU4QUFFQUI4NDQzMzQ0REIwMCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpFMEI0MDJBNUVERjgxMUU4QUFFQUI4NDQzMzQ0REIwMCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PgyZnjAAAAMdSURBVHja7JoxTxRBFMdnFS1ItOCiwWiChZZXXEOjNAKJDYkQDNxyX4NP4ccwh5AQQ4E2njSExoQggYaEAoNGo2IMhSESXN9w/4nreejOzuzuzPpe8s9egBz/99vZmfdmNoiiSLgQe28/nRq5eeNK4IKfoBsYMlmEF2UkdzB0M/742TnB0TUYDINhMAyGwTgMpkZqkSqe5lmB/5ptMI9Iw6QXHsKpwPcw8rAKZpr0GsR9gqOg1OB/2jaYz6QRz+B0QhlBHtYn3wOP4HSDcpDlquQDHGMoaZfrrOAEFhpIK1BM6hgFZwMmFhwZLQvws2ECxbTAk/90lPSSNOsImFn4GTWBcjp8HdqPKSx4P4Z7JQbDYHwDUxXtTWwXVS0STOjwTQ+LAiOr1Do+D8Uq16I1BE91k0raBMwd0gDpDWnNoZGyBk8DMUi5gmng+kT8OixzISJ4kjGTN5iLpIf4POfg/NLEdRJecwNzn9RH2iRtOQhmG911H7zmBibsuDMuxpzJ6pQGzCXSGOkHad5hMPPwOAbPmYN5QOolrZL2HQazD4/S63geYBqWJt2kFayNx6mRNZh+0T6f+U5a9KDlWYTXe/CeGZgp0nnSc9IXQ9NJK1mTkB6fwfNUlmB8WI2srE46YG6RBkmHpGWPwCzD8yBysA5GEX9KOvIIzBE8a03COmBsrUZFPk4ztsHIYXib9IG04iGYFXhX04E1MGGskz7xEMxJrOMObYGJL3VN4W80O0oOYzCqONohrXsMZh059CMnYzChx5Nu6hbhX2BkAzZRQjDjyC01GNmyXya9Iu2WAMwuclFbJ6nBqMfosShPNJOsTn9720FuC74HvOukjyUBc5X0TrQ3sa7JRlP3bQe1kdwqERSBXFrIbTLNo1Sm1Uh7dToLjDqs+kZaKiGYJeR2F7kmBlPH73rRsuseqOcdXzX9HSK3+DFzIjCh+H+ia649Z/yxeoVCd2uxqKNaVazJCfVY02/VdD/G5biA67GtL+Q3qhiMXvRk9L0RjxgeMYkiKAsYHjEMhsEwGAbDYBgMgylrgRfxiOH4LX4KMAA8Q+9jt+kKiAAAAABJRU5ErkJggg==" alt="Empty List">
+                                <div  class="mt-l font-m">暂无内容</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="addtype" role="dialog">
+            <div class="temp-custom-modal-wrap">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content temp-custom-modal-content" >
+                        <button type="button" class="close temp-custom-close-button" data-dismiss="modal">&times;</button>
+                        <div class="modal-body temp-custom-modal-body">
+                            <div class="temp-login-form-wrapper">
+                                <div class="row custom-row" >
+                                    <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12" >
+                                        <p>添加设备系列</p>
+                                    </div>
+                                </div>
+                                <form id="defaultForm"   method="post" enctype="multipart/form-data" class="form-horizontal" >
+                                    <div id="addBookModal" class="modal-body">
+                                        <div class="form-horizontal">
+                                            <div class="form-group">
+                                                <label for="xl_zh" class="col-sm-2 control-label">系列名称:<span style="color: red">*</span></label>
+                                                <div class="col-sm-10">
+                                                    <input class="form-control" name="xl_zh" placeholder="系列名称的长度在1~20之间" id="xl_zh" type="text">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="miao_zh" class="col-sm-2 control-label">系列描述:<span style="color: red">*</span></label>
+                                                <div class="col-sm-10">
+                                                    <input class="form-control" name="miao_zh" placeholder="系列描述的长度在4~20之间" id="miao_zh" type="text">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <div class="center-block">
+                                            <button id="cancelAdd" onclick="$XL.rest(1)" type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                            <button id="addBooksInfo" type="button"   onclick="$XL.addLockXl()" class="btn btn-success" >保存</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="edittype" role="dialog">
+            <div class="temp-custom-modal-wrap">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content temp-custom-modal-content" >
+                        <button type="button" class="close temp-custom-close-button" data-dismiss="modal">&times;</button>
+                        <div class="modal-body temp-custom-modal-body">
+                            <div class="temp-login-form-wrapper">
+                                <div class="row custom-row">
+                                    <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+                                        <p>修改设备系列</p>
+                                    </div>
+                                </div>
+                                <form id="updateForm"  class="form-horizontal" >
+                                    <div id="" class="modal-body">
+                                        <div class="form-horizontal">
+                                            <div class="form-group">
+                                                <label for="xl_zh1" class="col-sm-2 control-label">系列名称:<span style="color: red">*</span></label>
+                                                <div class="col-sm-10">
+                                                    <input class="form-control" name="xl_zh1" placeholder="系列名称的长度在1~20之间" id="xl_zh1" type="text">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="miao_zh1" class="col-sm-2 control-label">系列描述:<span style="color: red">*</span></label>
+                                                <div class="col-sm-10">
+                                                    <input class="form-control" name="miao_zh1" placeholder="系列名称的长度在4~20之间" id="miao_zh1" type="text">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                <div class="modal-footer">
+                                    <div class="center-block">
+                                        <button   type="button" onclick="$XL.guanbidingdan(2)" class="btn btn-default" data-dismiss="modal">取消</button>
+                                        <button  type="button" onclick="$XL.editLockXl()" class="btn btn-success" >保存</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="typeXq" role="dialog">
+            <div class="temp-custom-modal-wrap">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content temp-custom-modal-content" >
+                        <button type="button" class="close temp-custom-close-button" data-dismiss="modal">&times;</button>
+                        <div class="modal-body temp-custom-modal-body">
+                            <div class="temp-login-form-wrapper">
+                                <div class="row custom-row">
+                                    <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+                                        <p>设备系列详情</p>
+                                    </div>
+                                </div>
+                                <div  class="modal-body">
+                                    <div class="form-horizontal">
+                                        <div class="form-group">
+                                            <label for="xl_zh2" class="col-sm-2 control-label">系列名称:<span style="color: red">*</span></label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control" name="xl_zh2" placeholder="系列名称的长度在4~20之间" id="xl_zh2" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="miao_zh2" class="col-sm-2 control-label">系列描述:<span style="color: red">*</span></label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control" name="miao_zh2" placeholder="系列名称的长度在4~20之间" id="miao_zh2" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="cjr" class="col-sm-2 control-label">创建人:</label>
+                                            <div class="col-sm-10 ">
+                                                <input class="form-control"  id="cjr" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="cjrq" class="col-sm-2 control-label">创建日期:</label>
+                                            <div class="col-sm-10 ">
+                                                <input class="form-control"  id="cjrq" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="xgr" class="col-sm-2 control-label">修改人:</label>
+                                            <div class="col-sm-10 ">
+                                                <input class="form-control"  id="xgr" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="xgrq" class="col-sm-2 control-label">修改日期:</label>
+                                            <div class="col-sm-10 ">
+                                                <input class="form-control"  id="xgrq" type="text">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="com-alert" class="modal" style="z-index:9999;display: none;" >
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                        <h5 class="modal-title"><i class="fa fa-exclamation-circle"></i> [Title]</h5>
+                    </div>
+                    <div class="modal-body small">
+                        <p>[Message]</p>
+                    </div>
+                    <div class="modal-footer" >
+                        <button type="button" class="btn btn-primary ok" data-dismiss="modal">[BtnOk]</button>
+                        <button type="button" class="btn btn-default cancel" data-dismiss="modal">[BtnCancel]</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script th:src="@{/static/web/js/jquery.min.js}"  ></script>
+<script th:src="@{/static/bootstrap/js/bootstrap.min.js}" ></script>
+<script th:src="@{/static/bootstrap/js/bootstrap-select.min.js}" ></script>
+<script th:src="@{/static/bootstrap/js/bootstrapValidator.js}" ></script>
+<script th:src="@{/static/web/js/lockXl.js}" ></script>
+<script  th:inline="javascript">
+    $XL.userid=[[${session.sessionInfo.loginId}]];
+    $XL.roleId=[[${session.sessionInfo.roleid}]];
+    var height=document.body.clientHeight;
+    $(".setting-container .block-container ").css("min-height",height-240);
+    $(".spark-screen ").css("min-height",height-240);
+    $(".main").css("height",height-240);
+    $(function () {
+        $XL.init();
+    })
+</script>
+
+</body>
+</html>

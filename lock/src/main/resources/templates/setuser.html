@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>金储智能</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <!--WEUI-->
+    <link rel="stylesheet" th:href="@{../weui/css/weui.css}" />
+    <link rel="stylesheet" th:href="@{../weui/css/weuix.css}" />
+</head>
+<body  ontouchstart>
+<div class="weui-cells" >
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <p>名称</p>
+        </div>
+        <div class="weui-cell__ft" th:text="${userinfo.name}"></div>
+    </div>
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <p>性别</p>
+        </div>
+        <div class="weui-cell__ft" th:text="${userinfo.gender=='1'?'男':'女'}"></div>
+    </div>
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <p>家乡</p>
+        </div>
+        <div class="weui-cell__ft" th:text="${userinfo.address!=''?userinfo.address:'- -'}"></div>
+    </div>
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <p>电话</p>
+        </div>
+        <div class="weui-cell__ft" th:text="${userinfo.mobile!=''?userinfo.mobile:'- -'}"></div>
+    </div>
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <p>角色</p>
+        </div>
+        <div class="weui-cell__ft" th:text="${userinfo.admin==true?'管理员':'用户'}"></div>
+    </div>
+</div>
+
+<div class="go" onclick="fan()">
+    <span  class="image31 "></span>
+</div>
+</body>
+<!--jquery-->
+<script th:src="@{../js/jquery.min.js}"  ></script>
+<script th:src="@{../weui/js/zepto.weui.js}"></script>
+<script th:src="@{../js/locks.js}" ></script>
+<script th:inline="javascript">
+    $(function () {
+    })
+    function fan() {
+        var url="/wx/v1/userAdmin?corpid="+[[${corpid}]];
+        location.href=url;
+    }
+</script>
+</html>

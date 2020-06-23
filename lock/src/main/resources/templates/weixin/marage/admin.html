@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>胖哼智能</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>设备管理</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!--阿里巴巴前端框架 -->
+    <link rel="stylesheet" th:href="@{/static/alibb/css/sm.min.css}">
+    <link rel="stylesheet" th:href="@{/static/alibb/css/sm-extend.min.css}" >
+    <!--jquery-->
+</head>
+
+<body >
+<div class="page page-current" id='routers-1'>
+<nav class="bar bar-tab">
+    <a class="tab-item external " th:href="@{/wx/v1/index}">
+        <span class="icon icon-home"></span>
+        <span class="tab-label">首页</span>
+    </a>
+    <a class="tab-item external active" th:href="@{/wx/v1/page/admin}">
+        <span class="icon icon-app"></span>
+        <span class="tab-label">管理</span>
+    </a>
+    <a class="tab-item external " th:href="@{/wx/v1/page/log}">
+        <span class="icon icon-clock"></span>
+        <span class="tab-label">日志</span>
+    </a>
+    <a class="tab-item external" th:href="@{/wx/v1/page/wode}">
+        <span class="icon icon-me"></span>
+        <span class="tab-label">我的</span>
+    </a>
+</nav>
+<div class="content  infinite-scroll" id='goods-page'>
+    <header class="bar bar-nav">
+        <a class="icon icon-refresh pull-right" onclick="location.reload()"></a>
+        <h1 class="title">设备管理</h1>
+    </header>
+    <div id="sbgl" style="margin-top: 60px"></div>
+</div>
+</div>
+
+<script th:src="@{/static/alibb/js/jquery.js}" ></script>
+<script th:src="@{/static/alibb/js/sm.js}" ></script>
+<script th:src="@{/static/alibb/js/sm-extend.js}"  ></script>
+<script th:src="@{/static/weixin/js/index.js}"></script>
+<script th:inline="javascript">
+    $N.corpid=$N.getCookie("CorpId");
+    $N.userid=$N.getCookie("LoginId");
+    $(function () {
+        if($N.corpid){
+            $.post("/web/lock/getByCorp", {"corpid": $N.corpid}, function (data) {
+                $("#sbgl").empty();
+                if(data.code==200) {
+                    var str="";
+                    $.each(data.data, function (index, items) {
+                        var name="";
+                        if(items.name==null||items.name==''){
+                            name='未设置';
+                        }else {
+                            name=items.name;
+                        }
+                        str+="<div class=\"card demo-card-header-pic\" style='margin:1.5rem'><div valign=\"bottom\" class=\"card-header color-white no-border no-padding\">";
+                        str+="<img  style='margin-left: auto;margin-right: auto;' src="+items.icon+" alt=\"\" onerror=\"javascript:this.src='/static/imgage/mkq.png'\"> </div>";
+                        str+="<div class=\"card-content\"> <div class=\"card-content-inner\">";
+                        str+=" <p>设备名称："+name+"</p><p>设备编号："+items.deviceSn+"</p><p>使用人数："+items.attr4+"</p><p>联网状态："+(items.connectWx?'连接中':'未连接')+"</p><p>添加日期：<span>"+items.lastupdatetime+"</span></p></div></div><div class=\"card-footer\">";
+                        str+="<a href=\"/wx/v1/page/getlock?lockid="+items.id+"\" class=\"link\">修改信息</a><a href=\"/wx/v1/page/fenpei?lockid="+items.id+"&corpid="+items.corpid+"\" class=\"link\">分配成员</a></div></div>";
+                    });
+                    $("#sbgl").html(str);
+                }else {
+                    var str="";
+                    str+="<div class=\"card demo-card-header-pic\" style='margin:1.5rem'><div valign=\"bottom\" style='text-align: center;padding: 10px'>";
+                    str+="<img src='/static/imgage/meiyou.png' > </div>";
+                    str+="<div class=\"card-footer\">";
+                    str+="<p>没有设备</p><a href=\"/wx/v1/page/anzhuang\" class=\"link\">如何安装</a></div></div>";
+                    $("#sbgl").html(str);
+                }
+            })
+        }else {
+            location.href="/wx/v1/index";
+        }
+    })
+
+
+</script>
+
+</body>
+
+
+</html>

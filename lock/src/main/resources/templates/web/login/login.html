@@ -1,0 +1,138 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" >
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="huaban" content="nopin">
+    <meta name="csrf-token" content="">
+    <link rel="shortcut icon " type="images/x-icon"  th:href="@{/static/image/logo.png}" >
+    <meta name="description" content="金储门控">
+    <title >金储门控</title>
+
+    <link th:href="@{/static/bootstrap/css/bootstrap-min.css}"  rel="stylesheet">
+    <link th:href="@{/static/web/css/login1.css}" rel="stylesheet" type="text/css" >
+</head>
+
+<body id="app-layout">
+<div class="spark-screen relative">
+    <div class="welcome-container">
+        <nav class="nav-simple clearfix guding" >
+            <div style="width: 100%;height: 60px;">
+                <!--                <a href="#" class="icon-official bg-sprites-bp left" style="margin-left: 80px"></a>-->
+                <div  class="pangheng-titly" >
+                    <img th:src="@{/static/imgage/biaoti.png}">
+                </div>
+                <!--                <span  Lang:text="common.pangheng" class="page-tag" style="font-size: 20px;font-weight: bold;line-height: 60px;color: #777;" ></span>-->
+
+                <div style="margin-left: -30px" class="icon-resit bg-visitor-sprites dropdown toggle right">
+                    <a href="/web/v1/auth" style="margin-left: 35px;line-height: 42px;font-weight: bold;color: #333333" >注册</a>
+                </div>
+                <div style="margin-left: -13px" class="icon-login bg-visitor-sprites dropdown toggle right">
+                    <a  th:href="@{/web/v1/qrConnect}" style="margin-left: 35px;line-height: 40px;font-weight: bold;color: #333333" >登录</a>
+<!--                    <a  th:href="@{/web/v1/test}" style="margin-left: 35px;line-height: 40px;font-weight: bold;color: #333333" >登录</a>-->
+                </div>
+                <div class="icon-help bg-visitor-sprites dropdown toggle right">
+                    <a  href="/web/v1/pang" style="margin-left: 27px;line-height: 27px;font-weight: bold;color: #333333" >帮助</a>
+                </div>
+            </div>
+
+        </nav>
+        <div id="enterprise-solution" class="container" style="height: 800px">
+            <div id="danchu1" style="top: 20%;position: relative">
+                <div class=" ani bounceOut animated"  style=" margin-top:20px;position: relative;width: 100%;text-align: center;-webkit-animation-delay:2.5s;" >
+                    <span  class=" ani  bounceIn animated" style="visibility: visible;animation-duration:0.5s;font-size:25px;-webkit-animation-duration:0.5s;animation-delay:0.5s;-webkit-animation-delay:0.5s;" >免费送货，免费安装</span>
+                </div>
+                <div  class=" ani   animated" style="position: relative;margin-top:20px; width: 100%;text-align: center;-webkit-animation-delay:2.5s;" >
+                    <span  class="img_y11 ani  bounceIn animated"    style="visibility: visible;animation-duration:0.5s;-webkit-animation-duration:0.5s;animation-delay:0.5s;-webkit-animation-delay:0.5s;"></span>
+                </div>
+            </div>
+            <div class=" section-title ani  animated" style=" -webkit-animation-delay:0.5s;" >
+                <span class=" ani  bounceIn animated" style="visibility: visible;animation-duration:0.5s;-webkit-animation-duration:0.5s;animation-delay:0.5s;-webkit-animation-delay:2.7s;color: #777" >胖哼智能化锁具实践</span>
+            </div>
+            <div class=" ani  animated" style=" -webkit-animation-delay:0.5s;position: relative;top:10%;width: 20%;float:left;text-align: center" >
+                <a href="javascript:;"  >
+                    <span  class="img_y1 ani  bounceIn animated" style="visibility: visible;animation-duration:0.5s;-webkit-animation-duration:0.5s;animation-delay:0.5s;-webkit-animation-delay:2.7s;"></span>
+                </a>
+            </div>
+            <div class=" ani  animated" style=" -webkit-animation-delay:0.5s;position: relative;top:10%;width: 20%;float:left;text-align: center" >
+                <a href="javascript:;" >
+                    <span  class="img_y2 ani  bounceIn animated" style="visibility: visible;animation-duration:0.5s;-webkit-animation-duration:0.5s;animation-delay:0.5s;-webkit-animation-delay:2.7s;"></span>
+                </a>
+            </div>
+            <div class=" ani  animated" style=" -webkit-animation-delay:0.5s;position: relative;top:10%;width: 20%;float:left;text-align: center" >
+                <a href="javascript:;" >
+                    <span  class="img_y3 ani  bounceIn animated" style="visibility: visible;animation-duration:0.5s;-webkit-animation-duration:0.5s;animation-delay:0.5s;-webkit-animation-delay:2.7s;"></span>
+                </a>
+            </div>
+            <div class=" ani  animated" style=" -webkit-animation-delay:0.5s;position: relative;top:10%;width: 20%;float:left;text-align: center" >
+                <a href="javascript:;" >
+                    <span  class="img_y4 ani  bounceIn animated" style="visibility: visible;animation-duration:0.5s;-webkit-animation-duration:0.5s;animation-delay:0.5s;-webkit-animation-delay:2.7s;"></span>
+                </a>
+            </div>
+            <div class=" ani  animated" style=" -webkit-animation-delay:0.5s;position: relative;top:10%;width: 20%;float:left;text-align: center" >
+                <a href="javascript:;" >
+                    <span  class="img_y5 ani  bounceIn animated" style="visibility: visible;animation-duration:0.5s;-webkit-animation-duration:0.5s;animation-delay:0.5s;-webkit-animation-delay:2.7s;"></span>
+                </a>
+            </div>
+            <div class=" ani  animated" style=" -webkit-animation-delay:1s;position: relative;top:20%;width: 20%;float:left;text-align: center" >
+                <a href="javascript:;" >
+                    <span  class="img_y6 ani  bounceIn animated" style="visibility: visible;animation-duration:0.5s;-webkit-animation-duration:0.5s;animation-delay:0.5s;-webkit-animation-delay:3s;"></span>
+                </a>
+            </div>
+            <div class=" ani  animated" style=" -webkit-animation-delay:1s;position: relative;top:20%;width: 20%;float:left;text-align: center" >
+                <a href="javascript:;" >
+                    <span  class="img_y7 ani  bounceIn animated" style="visibility: visible;animation-duration:0.5s;-webkit-animation-duration:0.5s;animation-delay:0.5s;-webkit-animation-delay:3.2s;"></span>
+                </a>
+            </div>
+            <div class=" ani  animated" style=" -webkit-animation-delay:1s;position: relative;top:20%;width: 20%;float:left;text-align: center" >
+                <a href="javascript:;" >
+                    <span  class="img_y8 ani  bounceIn animated" style="visibility: visible;animation-duration:0.5s;-webkit-animation-duration:0.5s;animation-delay:0.5s;-webkit-animation-delay:3.4s;"></span>
+                </a>
+            </div>
+            <div class=" ani  animated" style=" -webkit-animation-delay:1s;position: relative;top:20%;width: 20%;float:left;text-align: center" >
+                <a href="javascript:;" >
+                    <span  class="img_y9 ani  bounceIn animated" style="visibility: visible;animation-duration:0.5s;-webkit-animation-duration:0.5s;animation-delay:0.5s;-webkit-animation-delay:3.6s;"></span>
+                </a>
+            </div>
+
+            <div class=" ani  animated" style=" -webkit-animation-delay:1s;position: relative;top:20%;width: 20%;float:left;text-align: center" >
+                <a href="javascript:;" >
+                    <img  th:src="@{/static/imgage/mkq.png}" class=" ani  bounceIn animated" style="width:80px;visibility: visible;animation-duration:0.5s;-webkit-animation-duration:0.5s;animation-delay:0.5s;-webkit-animation-delay:3.8s;">
+                </a>
+            </div>
+        </div>
+        <!-- Landing Area -->
+        <div class="footer-side-bar">
+            <a href="javascript:void(0);" class="icon-footer-operation icon-customer-service bg-sprites relative " id="customer-service" >
+                <span >联系客服</span>
+                <div id="customer-service-modal">
+                    <img src="/static/imgage/liuzhenjunQRCode.png">
+                    <div >联系客服</div>
+                </div>
+            </a>
+            <a href="javascript:void(0);" class="icon-footer-qy icon-qy-service bg-sprites relative " id="qy-service" >
+                <span >扫码安装</span>
+                <div id="customer-qy-modal">
+                    <img src="/static/imgage/qrcode_8cm.png">
+                    <div >胖哼智能企业版安装</div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<script th:src="@{/static/web/js/jquery.min.js}"  ></script>
+<script th:src="@{/static/bootstrap/js/bootstrap.min.js}" ></script>
+<script th:src="@{/static/web/js/login.js}" ></script>
+<script>
+    $('body,html').animate({
+        scrollTop:0
+    },1000);
+    $L.init();
+    $(function () {
+
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>胖哼智能</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <!--jquery-->
+    <script th:src="@{/static/js/jquery.min.js}"  ></script>
+    <link rel="stylesheet" th:href="@{/static/weui/css/weui.css}" />
+    <link rel="stylesheet" th:href="@{/static/weui/css/weuix.css}" />
+</head>
+<body>
+
+<div  style="text-align: center">
+    <div style="margin-top: 20%">
+        <img th:src="@{/static/imgage/chaoshi.png}"  >
+    </div>
+    <div th:text="${msg}"></div>
+    <a href="/wx/v1/index" class="weui-btn weui-btn_primary weui-btn_loading" style="width: 200px;margin-top: 50px;"><i class="weui-loading"></i>点击重试</a>
+</div>
+<script th:src="@{/static/weui/js/zepto.min.js}"></script>
+<script th:src="@{/static/weui/js/zepto.weui.js}"></script>
+<script th:inline="javascript">
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>胖哼智能</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>我的生活</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!--阿里巴巴前端框架 -->
+    <link rel="stylesheet" th:href="@{/static/alibb/css/sm.min.css}">
+    <link rel="stylesheet" th:href="@{/static/alibb/css/sm-extend.min.css}" >
+    <!--jquery-->
+</head>
+
+<body >
+<div class="page" id="routers-index-inner-1">
+    <header class="bar bar-nav">
+        <a class="button button-link button-nav pull-left back" href="/wx/v1/page/admin">返回上一页</a>
+    </header>
+    <div class="content">
+        <div class="list-block">
+            <ul>
+                <!-- Text inputs -->
+                <li>
+                    <div class="item-content">
+                        <div class="item-media"><i class="icon icon-form-name"></i></div>
+                        <div class="item-inner">
+                            <div class="item-title label">设备名称</div>
+                            <div class="item-input">
+                                <input type="text" id="name" th:value="${lockinfo.name}" placeholder="请输入设备名称">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="item-content">
+                        <div class="item-media"><i class="icon icon-form-email"></i></div>
+                        <div class="item-inner">
+                            <div class="item-title label">设备秘钥</div>
+                            <div class="item-input">
+                                <input type="text" id="mima" th:value="${lockinfo.rootPwd}" placeholder="请输入设备秘钥">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="content-block">
+            <div class="row">
+                <div class="col-50"><a href="/wx/v1/page/admin" class="button button-big button-fill button-danger">取消</a></div>
+                <div class="col-50"><a onclick="updatelock()" class="button button-big button-fill button-success">提交</a></div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script th:src="@{/static/alibb/js/jquery.js}" ></script>
+<script th:src="@{/static/alibb/js/sm.js}" ></script>
+<script th:src="@{/static/alibb/js/sm-extend.js}"  ></script>
+<script th:src="@{/static/weixin/js/index.js}"></script>
+<script th:inline="javascript">
+    $N.corpid=$N.getCookie("CorpId");
+    $N.userid=$N.getCookie("LoginId");
+    $(function () {
+        if($N.corpid&&$N.userid){
+
+        }
+    })
+    function updatelock() {
+        var name=$("#name").val();
+        var mima=$("#mima").val();
+        if (!mima){
+            $.toast("秘钥不能为空");
+            return false;
+        }
+        if(mima.length!=6){
+            $.toast("请输入6位字符");
+            return false;
+        }
+        if(!name){
+            name="";
+        }
+        $.post("/web/lock/updateNm", {"id":[[${lockinfo.id}]],"name":name,"pwd":mima}, function (data) {
+            if(data.code==200) {
+                $.toast(data.message);
+                location.href="/wx/v1/page/admin";
+            }else {
+                $.toast(data.message);
+            }
+        })
+    }
+
+</script>
+
+</body>
+
+
+</html>

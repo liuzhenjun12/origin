@@ -1,0 +1,153 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="huaban" content="nopin">
+    <meta name="csrf-token" content="">
+    <link rel="shortcut icon " type="images/x-icon" th:href="@{/static/image/logo.png}" >
+    <title>帮助</title>
+    <link th:href="@{/static/bootstrap/css/bootstrap-min.css}"  rel="stylesheet">
+    <link th:href="@{/static/common/common.css}"  rel="stylesheet">
+    <link th:href="@{/static/admin/admin.css}"  rel="stylesheet">
+    <link th:href="@{/static/common/animate.min.css}"  rel="stylesheet">
+</head>
+<body id="app-layout">
+<div class="spark-screen relative">
+    <div class="min-height-sm">
+        <div  class="setting-header">
+            <div  class="setting-container clearfix">
+                <div  style="float: left;margin-top: 10px;margin-left: 40px;cursor: pointer;font-weight: 700;" >胖哼智能</div>
+                <span  class="page-tag" style="margin-top: 10px;" >帮助中心</span>
+                <div  lxref="header-mini" class=" nav-personal right" style="margin-right: 70px">
+                    <a href="/web/v1/test" ><span  class="page-tag"  >登录</span></a>
+                </div>
+                <div  lxref="header-mini" class=" nav-personal right">
+                    <a href="/web/v1/auth" ><span  class="page-tag" >注册</span></a>
+                </div>
+                <div  lxref="header-mini" class=" nav-personal right">
+                    <a href="/web/v1/login" style="font-weight: 100" >首页</span></a>
+                </div>
+            </div>
+        </div>
+        <div class="setting-container clearfix">
+            <div class="block-container sidebar">
+                <ul  class="menu">
+                    <li >
+                        <a   th:href="@{/web/v1/pang}"   class="router-link-exact-active router-link-active primary-item ">
+                            <span >
+                                <span  class="bg-sprites menu-icon home">
+                                </span ><span >产品介绍</span></span>
+                        </a>
+                    </li>
+                    <li >
+                        <a  th:href="@{/web/v1/mai}"  class="router-link-exact-active router-link-active primary-item active">
+                            <span >
+                                <span  class="bg-sprites menu-icon operate">
+                                </span><span ></span>如何购买</span>
+                        </a>
+                    </li>
+                    <li >
+                        <a  th:href="@{/web/v1/new}" class="router-link-exact-active router-link-active primary-item ">
+                            <span >
+                                <span  class="bg-sprites menu-icon apps">
+                                </span><span >新人必读</span></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="block-container main">
+                <div style="height: 100%">
+                    <div  class="section" style="height: 60%">
+                        <div   class="carousels-wrapper" style="width: 100%;height: 100%;background-color: #f2f4f9;border-color: #f2f4f9;">
+                            <div style="float: left;width: 33.333333333%;text-align: center;">
+                                <div  style="margin-top:5%;">
+                                    <span  class="ani  fadeIn animated"  style="font-size:20px;color:#b0becb;visibility: visible;animation-duration:0.5s;-webkit-animation-duration:0.5s;animation-delay:0.5s;-webkit-animation-delay:0.5s;" >淘宝下单
+                                    </span>
+                                </div>
+                                <div  style="margin-top:100px;">
+                                    <span  class="ani img_y15 fadeIn animated"  style="visibility: visible;animation-duration:0.5s;-webkit-animation-duration:0.5s;animation-delay:0.5s;-webkit-animation-delay:0.8s;" ></span>
+                                </div>
+                                <div class=" ani  animated"   style="margin-top:-250px;text-align:left;visibility: visible;animation-duration:0.5s;-webkit-animation-duration:0.5s;animation-delay:4s;-webkit-animation-delay:4s;">
+                                    <span class="ani  img_y16 fadeInUp animated" style="visibility: visible;animation-duration:0.5s;-webkit-animation-duration:0.5s;animation-delay:0.8s;-webkit-animation-delay:1s;"></span>
+                                </div>
+                                <div class=" ani  animated"   style="margin-top:-170px;text-align:right;visibility: visible;animation-duration:0.5s;-webkit-animation-duration:0.5s;animation-delay:4s;-webkit-animation-delay:4s;">
+                                    <span class="ani  img_y17 fadeInUp animated" style="visibility: visible;animation-duration:0.5s;-webkit-animation-duration:0.5s;animation-delay:0.8s;-webkit-animation-delay:1.2s;"></span>
+                                </div>
+                            </div>
+                            <div style="float: left;width: 33.333333333%;text-align: center;">
+                                <div  style="margin-top:5%;">
+                                    <span  class="ani  fadeIn animated"  style="font-size:20px;color:#b0becb;visibility: visible;animation-duration:0.5s;-webkit-animation-duration:0.5s;animation-delay:0.5s;-webkit-animation-delay:1.4s;" >等待安装
+                                    </span>
+                                </div>
+                                <div  style="margin-top:120px;">
+                                    <span  class="ani img_y18 fadeIn animated"  style="visibility: visible;animation-duration:0.5s;-webkit-animation-duration:0.5s;animation-delay:0.5s;-webkit-animation-delay:1.6s;"></span>
+                                </div>
+                                <div class=" ani  animated"   style="margin-top:-250px;text-align:left;margin-left:5%;visibility: visible;animation-duration:0.5s;-webkit-animation-duration:0.5s;animation-delay:4s;-webkit-animation-delay:4s;">
+                                    <span class="ani  img_y19 fadeInUp animated" style="visibility: visible;animation-duration:0.5s;-webkit-animation-duration:0.5s;animation-delay:0.8s;-webkit-animation-delay:1.8s;"></span>
+                                </div>
+                                <div class=" ani  animated"   style="margin-top:-150px;text-align:right;margin-right:10%;visibility: visible;animation-duration:0.5s;-webkit-animation-duration:0.5s;animation-delay:4s;-webkit-animation-delay:4s;">
+                                    <span class="ani  img_y20 fadeInUp animated" style="visibility: visible;animation-duration:0.5s;-webkit-animation-duration:0.5s;animation-delay:0.8s;-webkit-animation-delay:2s;"></span>
+                                </div>
+                            </div>
+                            <div style="float: left;width: 33.333333333%;text-align: center;">
+                                <div  style="margin-top:5%;">
+                                    <span  class="ani  fadeIn animated"  style="font-size:20px;color:#b0becb;visibility: visible;animation-duration:0.5s;-webkit-animation-duration:0.5s;animation-delay:0.5s;-webkit-animation-delay:2.2s;" >投诉点赞
+                                    </span>
+                                </div>
+                                <div  style="text-align:left;margin-left: 10%;">
+                                    <span  class="ani img_y21 fadeIn animated"  style="visibility: visible;animation-duration:0.5s;-webkit-animation-duration:0.5s;animation-delay:0.5s;-webkit-animation-delay:2.4s;"></span>
+                                </div>
+                                <div class=" ani  animated"   style="margin-top:-150px;margin-right:10%;text-align:right;visibility: visible;animation-duration:0.5s;-webkit-animation-duration:0.5s;animation-delay:4s;-webkit-animation-delay:4s;">
+                                    <span class="ani  img_y23 rotateInUpLeft animated" style="visibility: visible;animation-duration:0.5s;-webkit-animation-duration:0.5s;animation-delay:0.8s;-webkit-animation-delay:2.8s;"></span>
+                                </div>
+                                <div class=" ani  animated"   style="margin-top:-150px;text-align:right;margin-right:10%;visibility: visible;animation-duration:0.5s;-webkit-animation-duration:0.5s;animation-delay:4s;-webkit-animation-delay:4s;">
+                                    <span class="ani  img_y22 rotateInUpLeft animated" style="visibility: visible;animation-duration:0.5s;-webkit-animation-duration:0.5s;animation-delay:0.8s;-webkit-animation-delay:3.2s;"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div  class="section">
+                        <div  class="title" ></div>
+                        <ul  class="outline-data-container clearfix">
+                            <li  class="outline-data no-margin">
+                                <a  target="_blank" href="https://shop560878391.taobao.com/"   class="data-item">
+                                    <span class="img_y10 "></span>
+                                    <div >淘宝商城</div>
+                                </a>
+                            </li>
+                            <li  class="outline-data no-margin">
+                                <a  target="_blank" href="https://www.jinchu.com.cn/"   class="data-item">
+                                    <span class="img_y10 "></span>
+                                    <div >金储官网</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script>
+    function  openfenxi(id,obj) {
+        if($("#"+id+"").css("display")=="none"){
+            $("#"+id+"").show();
+            $("#"+obj+"").removeClass().addClass("bg-sprites toggle-icon up");
+        }else {
+            $("#"+id+"").hide();
+            $("#"+obj+"").removeClass().addClass("bg-sprites toggle-icon down");
+        }
+    }
+</script>
+<script th:src="@{/static/web/js/jquery.min.js}"  ></script>
+<script th:src="@{/static/bootstrap/js/bootstrap.min.js}" ></script>
+<script>
+    var height=document.body.clientHeight;
+    $(".setting-container .block-container ").css("min-height",height-240);
+    $(".spark-screen ").css("min-height",height-240);
+    $(".main").css("height",height-240);
+</script>
+</body>
+</html>

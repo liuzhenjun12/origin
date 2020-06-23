@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>金储智能</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <!--WEUI-->
+    <link rel="stylesheet" th:href="@{../weui/css/weui.css}" />
+    <link rel="stylesheet" th:href="@{../weui/css/weuix.css}" />
+</head>
+<body  ontouchstart>
+
+<div class="weui-panel" >
+    <div class="weui-panel__hd" style="text-align: center">
+        <a th:href="@{/wx/v1/index}">
+        <span class="icon icon-109 " style="font-size: 18px"></span>设备列表</a>
+    </div>
+    <div class="weui-panel__bd">
+        <div class="weui-media-box weui-media-box_small-appmsg">
+            <div class="weui-cells" th:if="${locks.size()>0}" th:each="lock:${locks}">
+                <a class="weui-cell weui-cell_access " th:href="@{/wx/v1/shebeiinfo(corpid=${lock.users},sn=${lock.sn})}" >
+                    <div class="weui-cell__hd">
+                        <span class="icon icon-31 " style="font-size: 15px"></span>
+                    </div>
+                    <div class="weui-cell__bd weui-cell_primary">
+                        <p th:text="${lock.snName}"></p>
+                    </div>
+                    <span class="weui-cell__ft"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+<!--jquery-->
+
+<script th:inline="javascript">
+
+</script>
+</html>

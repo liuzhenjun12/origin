@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>金储智能</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <!--WEUI-->
+    <link rel="stylesheet" th:href="@{../weui/css/weui.css}" />
+    <link rel="stylesheet" th:href="@{../weui/css/weuix.css}" />
+    <script th:src="@{../weui/js/zepto.min.js}"></script>
+    <script th:src="@{../weui/js/zepto.weui.js}"></script>
+</head>
+<body  ontouchstart>
+
+<div class="weui-panel" >
+    <div class="weui-panel__hd" style="text-align: center">
+        <a th:href="@{/wx/v1/shebei(corpid=${corpid})}">
+            <span class="icon icon-109 " style="font-size: 18px"></span>设备信息</a>
+    </div>
+    <div class="weui-panel__bd">
+        <div class="weui-media-box weui-media-box_small-appmsg">
+            <div class="weui-cells">
+                <div class="weui-cell">
+                    <div class="weui-cell__bd">
+                        <p>设备名称</p>
+                    </div>
+                    <div class="weui-cell__ft" th:text="${plock.name}"></div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__bd">
+                        <p>设备编号</p>
+                    </div>
+                    <div class="weui-cell__ft" th:text="${plock.sn}"></div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__bd">
+                        <p>蓝牙地址</p>
+                    </div>
+                    <div class="weui-cell__ft" th:text="${plock.macUrl}"></div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__bd">
+                        <p>设备功能</p>
+                    </div>
+                    <div class="weui-cell__ft" th:text="${plock.funText}"></div>
+                </div>
+
+                <a href="javascript:void(0);" class="weui-cell weui-cell_link">
+                    <div class="weui-cell__bd">设备使用人员</div>
+                </a>
+                <div class="weui-cells weui-cells_form" th:each="user:${selectList}">
+                    <div class="weui-cell " th:if="${user.description==1}">
+                        <div class="weui-cell__bd" th:text="${user.title}"></div>
+                        <div class="weui-cell__ft" >
+                            <label th:for="${user.value}" class="weui-switch-cp">
+                                <input th:id="${user.value}" class="weui-switch-cp__input" th:name="${user.value}" onclick="$SB.setLockUser(this)"  type="checkbox">
+                                <div class="weui-switch-cp__box" ></div>
+                            </label>
+                        </div>
+                    </div>
+                    <a class="weui-cell weui-cell_access" th:href="@{/wx/v1/shebeiGd(corpid=${corpid},sn=${plock.sn},userid=${user.value})}" th:if="${user.description==0}">
+                        <div class="weui-cell__bd">
+                            <p th:text="${user.title}"></p>
+                        </div>
+                        <span style="color: #b8b8b8;margin-right: 5px;font-size: 14px">更多设置</span>
+                        <div class="weui-cell__ft">
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+<!--jquery-->
+<script th:src="@{../js/shebei.js}" ></script>
+<script th:inline="javascript">
+    $SB.corpid=[[${corpid}]];
+    $SB.sn=[[${sn}]];
+    $SB.master=[[${corpid}]];
+</script>
+</html>

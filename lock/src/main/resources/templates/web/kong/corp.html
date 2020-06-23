@@ -1,0 +1,411 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="huaban" content="nopin">
+    <meta name="csrf-token" content="">
+    <meta http-equiv="Content-Type" content="multipart/form-data; charset=utf-8" />
+    <link rel="shortcut icon " type="images/x-icon"  th:href="@{/static/image/logo.png}" >
+    <title>控制中心</title>
+    <link th:href="@{/static/bootstrap/css/bootstrap-min.css}"  rel="stylesheet">
+    <link th:href="@{/static/bootstrap/css/bootstrap-select.min.css}"  rel="stylesheet">
+    <link th:href="@{/static/bootstrap/css/bootstrap-table.min.css}" rel="stylesheet" />
+    <link th:href="@{/static/cdn/datetimepicker.css}" rel="stylesheet" />
+    <link th:href="@{/static/web/css/console.css}"  rel="stylesheet">
+</head>
+<body id="app-layout">
+<div class="spark-screen relative">
+    <div class="">
+        <div  class="setting-header">
+            <div  class="setting-container clearfix">
+                <div  style="float: left;margin-top: 10px;margin-left: 40px;cursor: pointer;font-weight: 700;">胖哼智能</div>
+                <span  class="page-tag" style="margin-top: 10px;">控制中心</span>
+
+                <div  lxref="header-mini" style="cursor:pointer" class=" nav-personal right ">
+                    <a   th:href="@{/web/v1/index}" >
+                        <span  class="page-tag" >返回</span>
+                    </a>
+                </div>
+                <div  lxref="header-mini"  style="float: right;margin-right: 5px;margin-top: 11px;font-weight: 100;">
+                    <span  th:text="${session.sessionInfo.loginId}" ></span>
+                </div>
+            </div>
+        </div>
+        <div class="setting-container clearfix">
+            <div class="block-container sidebar">
+                <ul  class="menu">
+                    <li >
+                        <a  th:href="@{/web/kong/console_home}" class="router-link-exact-active  primary-item ">
+                            <span >
+                                <span  class="bg-sprites menu-icon home">
+                                </span>首页</span>
+                        </a>
+                    </li>
+                    <li >
+                        <div  class="primary-item" ONCLICK="openfenxi('shebei','fen')">
+                            <span  id="fen" class="bg-sprites toggle-icon down"></span>
+                            <span ><span  class="bg-sprites menu-icon analyse">
+                            </span>设备管理
+                            </span>
+                        </div>
+                        <ul  id="shebei" class="secondary-list" style="display: none">
+                            <li >
+                                <a  th:href="@{/web/kong/lockXl}" class="secondary-item">
+                                    <span >设备系列设置</span>
+                                </a>
+                            </li>
+                            <li >
+                                <a th:href="@{/web/kong/lockType}" class="secondary-item ">
+                                    <span >设备类型设置</span>
+                                </a>
+                            </li>
+                            <li >
+                                <a  th:href="@{/web/kong/lockNum}" class="secondary-item ">
+                                    <span >设备编号统筹</span>
+                                </a>
+                            </li>
+                            <li >
+                                <a  th:href="@{/web/kong/yesAvtion}" class="secondary-item">
+                                    <span >已激活设备</span>
+                                </a>
+                            </li>
+                            <li >
+                                <a  th:href="@{/web/kong/notAvtion}" class="secondary-item">
+                                    <span >未激活设备</span>
+                                </a>
+                            </li>
+                        </ul>
+
+                    </li>
+                    <li >
+                        <div  class="primary-item active" ONCLICK="openfenxi('jichu','fen')">
+                            <span  id="fen1" class="bg-sprites toggle-icon down"></span>
+                            <span ><span  class="bg-sprites menu-icon security">
+                            </span>企业管理
+                            </span>
+                        </div>
+                        <ul  id="jichu" class="secondary-list">
+                            <li >
+                                <a  th:href="@{/web/kong/corp}" class="secondary-item active">
+                                    <span >企业信息</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li >
+                        <div  class="primary-item" ONCLICK="openfenxi('userfe','fen')">
+                            <span  id="usergl" class="bg-sprites toggle-icon down"></span>
+                            <span ><span  class="bg-sprites menu-icon contacts">
+                            </span>用户管理
+                            </span>
+                        </div>
+                        <ul  id="userfe" class="secondary-list" style="display: none">
+                            <li >
+                                <a  th:href="@{/web/kong/user}" class="secondary-item ">
+                                    <span >用户信息</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li >
+                        <div  class="primary-item" ONCLICK="openfenxi('yichang','fen')">
+                            <span  id="fen3" class="bg-sprites toggle-icon down"></span>
+                            <span ><span  class="bg-sprites menu-icon teams">
+                            </span>日志管理
+                            </span>
+                        </div>
+                        <ul  id="yichang" class="secondary-list" style="display: none">
+                            <li >
+                                <a  th:href="@{/web/kong/log}" class="secondary-item ">
+                                    <span >操作日志</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li >
+                        <div  class="primary-item" ONCLICK="openfenxi('jiankong','fen')">
+                            <span  id="fen4" class="bg-sprites toggle-icon down"></span>
+                            <span ><span  class="bg-sprites menu-icon operate">
+                            </span>监控管理
+                            </span>
+                        </div>
+                        <ul  id="jiankong" class="secondary-list" style="display: none">
+                            <li >
+                                <a  th:href="@{/web/kong/jiankong}" class="secondary-item">
+                                    <span >设备监控</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class=" block-container main" style="min-height: 0px">
+                <div >
+                    <div >
+                        <div></div>
+                        <div class="input-group" style="width: 300px;float: right;">
+                            <input id="name" type="text" placeholder="模糊搜索企业名称" class="form-control">
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-primary " onclick="sousuo()">
+                                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span> 搜索
+                                    <span class="caret"></span>
+                                </button>
+                            </div><!-- /btn-group -->
+                        </div><!-- /input-group -->
+                    </div>
+                </div>
+                <div style="margin-top: 50px">
+                    <table id="table" ></table>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="typeXq" role="dialog">
+            <div class="temp-custom-modal-wrap">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content temp-custom-modal-content" >
+                        <button type="button" class="close temp-custom-close-button" data-dismiss="modal">&times;</button>
+                        <div class="modal-body temp-custom-modal-body">
+                            <div class="temp-login-form-wrapper">
+                                <div class="row custom-row">
+                                    <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+                                        <p>企业详情</p>
+                                    </div>
+                                </div>
+                                <div  class="modal-body">
+                                    <div class="form-horizontal">
+                                        <div class="form-group">
+                                            <label for="corpSquareLogoUrl" class="col-sm-2 control-label">企业logo:</label>
+                                            <div class="col-sm-10">
+                                                <div >
+                                                    <img src=""  class=\"app_screenShot_list_img\" onerror="javascript:this.src='/static/imgage/chaoshi.png';" id="corpSquareLogoUrl">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="corpid" class="col-sm-2 control-label">企业id:</label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control"  id="corpid" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="corpName" class="col-sm-2 control-label">企业简称:</label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control"  id="corpName" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="corpFullName" class="col-sm-2 control-label">企业全称:</label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control"  id="corpFullName" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="corpIndustry" class="col-sm-2 control-label">企业行业:</label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control"  id="corpIndustry" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="corpScale" class="col-sm-2 control-label">企业规模:</label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control"  id="corpScale" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="createdate" class="col-sm-2 control-label">创建日期:</label>
+                                            <div class="col-sm-10 ">
+                                                <input class="form-control"  id="createDate" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="createBy" class="col-sm-2 control-label">负责人:</label>
+                                            <div class="col-sm-10 ">
+                                                <input class="form-control"  id="createBy" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="createBy" class="col-sm-2 control-label">企业二维码:</label>
+                                            <div class="col-sm-10 ">
+                                                <textarea class="form-control" rows="3" id="corpWxqrcode"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script th:src="@{/static/web/js/jquery.min.js}"  ></script>
+<script th:src="@{/static/bootstrap/js/bootstrap.min.js}" ></script>
+<script th:src="@{/static/bootstrap/js/bootstrap-table.min.js}" ></script>
+<script th:src="@{/static/bootstrap/js/bootstrap-table-zh-CN.min.js}" ></script>
+<script  th:inline="javascript">
+    $(function () {
+        var height=document.body.clientHeight;
+        $(".setting-container .block-container ").css("min-height",height-240);
+        $(".spark-screen ").css("min-height",height-240);
+        $(".main").css("height",height-240);
+        getLangTable();
+    })
+
+    /**
+     * 日志列表
+     */
+    function getLangTable(){
+        var table=$("#table").bootstrapTable({ // 对应table标签的id
+            url: "/web/corp/list", // 获取表格数据的url
+            cache: false, // 设置为 false 禁用 AJAX 数据缓存， 默认为true
+            striped: true,  //表格显示条纹，默认为false
+            pagination: true, // 在表格底部显示分页组件，默认false
+            pageNumber: 1, // 首页页码
+            pageSize: 100, // 页面数据条数
+            pageList: [100, 200, 300, 400,500],        //可供选择的每页的行数（*）
+            smartDisplay:false,
+            sidePagination: 'server', // 设置为服务器端分页server,client
+            sortName: 'createdate', // 要排序的字段
+            sortOrder: 'desc', // 排序规则
+            idField: "id",
+            cardView: false, //是否显示详细视图
+            queryParams: function (params) { // 请求服务器数据时发送的参数，可以在这里添加额外的查询参数，返回false则终止请求
+                return {
+                    rows: params.limit,                         //页面大小
+                    page: (params.offset / params.limit) + 1,   //页码
+                    sort: params.sort,      //排序列名
+                    order: params.order, //排位命令（desc，asc）
+                    name:$("#name").val()
+                }
+            },
+            columns: [
+                {title : 'No',
+                    align: "center",
+                    width: 60,
+                    formatter: function (value, row, index) {
+                        //获取每页显示的数量
+                        var pageSize=$('#table').bootstrapTable('getOptions').pageSize;
+                        //获取当前是第几页
+                        var pageNumber=$('#table').bootstrapTable('getOptions').pageNumber;
+                        //返回序号，注意index是从0开始的，所以要加上1
+                        return pageSize * (pageNumber - 1) + index + 1;
+                    }
+                },
+                {
+                    field: 'corpid',
+                    title: '企业id',
+                    align: 'center',
+                    valign: 'middle',
+                }, {
+                    field: 'corpName',
+                    title: '企业简称',
+                    align: 'center',
+                    valign: 'middle'
+                }, {
+                    field: 'corpIndustry',
+                    title: '行业',
+                    align: 'center',
+                    valign: 'middle'
+                },  {
+                    field: 'corpScale',
+                    title: '规模',
+                    align: 'center',
+                    valign: 'middle'
+                }, {
+                    field: 'createBy',
+                    title: '负责人',
+                    align: 'center',
+                    valign: 'middle'
+                },
+                {
+                    field : 'action',
+                    title : '操作',
+                    align: 'center',
+                    valign: 'middle',
+                    formatter : function(value, row, index) {
+                        var str="";
+                        str += formatString('<a href="javascript:void(0)"  onclick="openXq(\'{0}\');" > <span class=\"blue ml-m pointer\">详情</span></a>', row.id);
+                        return str;
+                    }
+                }
+            ],
+            onLoadSuccess: function(){  //加载成功时执行
+                console.info("加载成功");
+            },
+            onLoadError: function(){  //加载失败时执行
+                console.info("加载数据失败");
+            },
+            onClickRow:function (row,$element) {
+            }
+
+        });
+    }
+
+    /**
+     * 查看详情
+     */
+    function openXq(id) {
+        $.post('/web/corp/get', {
+            id:id
+        },function(result) {
+            if (result.code==200) {
+                $("#typeXq").modal();
+                $("#corpSquareLogoUrl").attr("src",result.data.corpSquareLogoUrl);
+                $("#corpid").val(result.data.corpid);
+                $("#corpName").val(result.data.corpName);
+                $("#corpFullName").val(result.data.corpFullName);
+                $("#corpWxqrcode").val(result.data.corpWxqrcode);
+                $("#corpScale").val(result.data.corpScale);
+                $("#corpIndustry").val(result.data.corpIndustry);
+                $("#createDate").val(result.data.createDate);
+                $("#createBy").val(result.data.createBy);
+            }else{
+                alert(result.message);
+            }
+        }, 'JSON');
+    }
+
+    /**
+     * 格式化字符串
+     */
+    function formatString(str){
+        for ( var i = 0; i < arguments.length - 1; i++) {
+            str = str.replace("{" + i + "}", arguments[i + 1]);
+        }
+        return str;
+    }
+
+    /**
+     * 点击导航
+     */
+    function openfenxi(id,obj){
+        if($("#"+id+"").css("display")=="none"){
+            $("#"+id+"").show();
+            $("#"+obj+"").removeClass().addClass("bg-sprites toggle-icon up");
+        }else {
+            $("#"+id+"").hide();
+            $("#"+obj+"").removeClass().addClass("bg-sprites toggle-icon down");
+        }
+    }
+
+    /**
+     * 搜索
+     */
+    function sousuo(){
+        var name=$("#name").val();
+        if(name){
+            $('#table').bootstrapTable('refreshOptions',{pageNumber:1});
+            $("#table").bootstrapTable("refresh");
+        }else{
+            $("#table").bootstrapTable("refresh");
+        }
+    }
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="huaban" content="nopin">
+    <meta name="csrf-token" content="">
+    <link rel="shortcut icon " type="images/x-icon"  th:href="@{/static/image/logo.png}" >
+    <title >帮助</title>
+    <link th:href="@{/static/bootstrap/css/bootstrap-min.css}"  rel="stylesheet">
+    <link th:href="@{/static/common/common.css}"  rel="stylesheet">
+    <link th:href="@{/static/admin/admin.css}"  rel="stylesheet">
+</head>
+<body id="app-layout">
+<div class="spark-screen relative">
+    <div class="js-vars hide" data-confirm_type data-confirm_route data-confirm_code data-confirm_action></div>
+    <div class="min-height-sm">
+        <div  class="setting-header">
+            <div  class="setting-container clearfix">
+                <div  style="float: left;margin-top: 10px;margin-left: 40px;cursor: pointer;font-weight: 700;" >胖哼智能</div>
+                <span  class="page-tag" style="margin-top: 10px;"  >帮助中心</span>
+                <div  lxref="header-mini" class=" nav-personal right" style="margin-right: 70px">
+                    <a href="/web/v1/test" ><span  class="page-tag"  >登录</span></a>
+                </div>
+                <div  lxref="header-mini" class=" nav-personal right">
+                    <a href="/web/v1/auth" ><span  class="page-tag" >注册</span></a>
+                </div>
+                <div  lxref="header-mini" class=" nav-personal right">
+                    <a href="/web/v1/login" style="font-weight: 100" >首页</span></a>
+                </div>
+            </div>
+        </div>
+        <div class="setting-container clearfix">
+            <div class="block-container sidebar">
+                <ul  class="menu">
+                    <li >
+                        <a   th:href="@{/web/v1/pang}" class="router-link-exact-active router-link-active primary-item active">
+                            <span >
+                                <span  class="bg-sprites menu-icon home">
+                                </span ><span >产品介绍</span></span>
+                        </a>
+                    </li>
+                    <li >
+                        <a   th:href="@{/web/v1/mai}"  class="router-link-exact-active router-link-active primary-item ">
+                            <span >
+                                <span  class="bg-sprites menu-icon operate">
+                                </span><span ></span>如何购买</span>
+                        </a>
+                    </li>
+                    <li >
+                        <a  th:href="@{/web/v1/new}" class="router-link-exact-active router-link-active primary-item ">
+                            <span >
+                                <span  class="bg-sprites menu-icon apps">
+                                </span><span >新人必读</span></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="block-container main">
+                <div >
+
+
+                    <div  class="section">
+                        <div  class="title" >产品介绍</div>
+                        <ul  class="outline-data-container clearfix">
+                            <li  class="outline-data">
+                                <a   style="height: 200px" class="data-item">
+                                    <span class="img_y1 "></span>
+                                    <div >智能防盗锁Y1</div>
+                                </a>
+                            </li>
+                            <li  class="outline-data">
+                                <a    style="height: 200px"  class="data-item">
+                                    <span class="img_y2 "></span>
+                                    <div >智能防盗锁Y6</div>
+                                </a>
+                            </li>
+                            <li  class="outline-data">
+                                <a   style="height: 200px"  class="data-item">
+                                    <span class="img_y3 "></span>
+                                    <div >智能防盗锁Y7</div>
+                                </a>
+                            </li>
+                            <li  class="outline-data">
+                                <a   style="height: 200px"  class="data-item">
+                                    <span class="img_y4 "></span>
+                                    <div >保险柜动态密码锁</div>
+                                </a>
+                            </li>
+                            <li  class="outline-data no-margin">
+                                <a  style="height: 200px"  class="data-item">
+                                    <span class="img_y5 "></span>
+                                    <div >离线动态密码锁</div>
+                                </a>
+                            </li>
+                        </ul>
+                        <br/>
+                        <ul  class="outline-data-container clearfix">
+                            <li  class="outline-data no-margin">
+                                <a   style="height: 200px"  class="data-item">
+                                    <span class="img_y6 "></span>
+                                    <div >联机动态密码锁</div>
+                                </a>
+                            </li>
+                            <li  class="outline-data no-margin">
+                                <a   style="height: 200px"  class="data-item">
+                                    <span class="img_y7 "></span>
+                                    <div >文件柜动态密码锁</div>
+                                </a>
+                            </li>
+                            <li  class="outline-data no-margin">
+                                <a  style="height: 200px"  class="data-item">
+                                    <span class="img_y8 "></span>
+                                    <div >调拨箱动态密码锁</div>
+                                </a>
+                            </li>
+                            <li  class="outline-data no-margin">
+                                <a   style="height: 200px"  class="data-item">
+                                    <span class="img_y9 "></span>
+                                    <div >门夹锁</div>
+                                </a>
+                            </li>
+                            <li  class="outline-data no-margin">
+                                <a  target="_blank" href="https://www.jinchu.com.cn/"  style="height: 200px" class="data-item">
+                                    <span class="img_y10 "></span>
+                                    <div>金储官网查看更多</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script th:inline="javascript">
+
+    function  openfenxi(id,obj) {
+        if($("#"+id+"").css("display")=="none"){
+            $("#"+id+"").show();
+            $("#"+obj+"").removeClass().addClass("bg-sprites toggle-icon up");
+        }else {
+            $("#"+id+"").hide();
+            $("#"+obj+"").removeClass().addClass("bg-sprites toggle-icon down");
+        }
+    }
+</script>
+
+<script th:src="@{/static/web/js/jquery.min.js}"  ></script>
+<script th:src="@{/static/bootstrap/js/bootstrap.min.js}" ></script>
+<script>
+    var height=document.body.clientHeight;
+    $(".setting-container .block-container ").css("min-height",height-240);
+    $(".spark-screen ").css("min-height",height-240);
+    $(".main").css("height",height-240);
+</script>
+</body>
+</html>

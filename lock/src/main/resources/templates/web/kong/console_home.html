@@ -1,0 +1,259 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="huaban" content="nopin">
+    <meta name="csrf-token" content="">
+    <link rel="shortcut icon " type="images/x-icon"  th:href="@{/static/image/logo.png}" >
+    <title>控制中心</title>
+    <link th:href="@{/static/bootstrap/css/bootstrap-min.css}"  rel="stylesheet">
+    <link th:href="@{/static/web/css/console.css}"  rel="stylesheet">
+</head>
+<body id="app-layout">
+<div class="spark-screen relative">
+    <div class="min-height-sm">
+        <div  class="setting-header">
+            <div  class="setting-container clearfix">
+                <div  style="float: left;margin-top: 10px;margin-left: 40px;cursor: pointer;font-weight: 700;">胖哼智能</div>
+                <span  class="page-tag" style="margin-top: 10px;">控制中心</span>
+
+                <div  lxref="header-mini" style="cursor:pointer" class=" nav-personal right ">
+                    <a   th:href="@{/web/v1/index}" >
+                        <span  class="page-tag" >返回</span>
+                    </a>
+                </div>
+                <div  lxref="header-mini"  style="float: right;margin-right: 5px;margin-top: 11px;font-weight: 100;">
+                    <span  th:text="${session.sessionInfo.loginId}" ></span>
+                </div>
+            </div>
+        </div>
+        <div class="setting-container clearfix">
+            <div class="block-container sidebar">
+                <ul  class="menu">
+                    <li >
+                        <a  th:href="@{/web/kong/console_home}" class="router-link-exact-active  primary-item active">
+                            <span >
+                                <span  class="bg-sprites menu-icon home">
+                                </span>首页</span>
+                        </a>
+                    </li>
+                    <li >
+                        <div  class="primary-item" ONCLICK="openfenxi('shebei','fen')">
+                            <span  id="fen" class="bg-sprites toggle-icon down"></span>
+                            <span ><span  class="bg-sprites menu-icon analyse">
+                            </span>设备管理
+                            </span>
+                        </div>
+                        <ul  id="shebei" class="secondary-list" style="display: none">
+                            <li >
+                                <a  th:href="@{/web/kong/lockXl}" class="secondary-item">
+                                    <span >设备系列设置</span>
+                                </a>
+                            </li>
+                            <li >
+                                <a  th:href="@{/web/kong/lockType}" class="secondary-item ">
+                                    <span >设备类型设置</span>
+                                </a>
+                            </li>
+                            <li >
+                                <a  th:href="@{/web/kong/lockNum}" class="secondary-item ">
+                                    <span >设备编号统筹</span>
+                                </a>
+                            </li>
+                            <li >
+                                <a  th:href="@{/web/kong/yesAvtion}" class="secondary-item">
+                                    <span >已激活设备</span>
+                                </a>
+                            </li>
+                            <li >
+                                <a  th:href="@{/web/kong/notAvtion}" class="secondary-item">
+                                    <span >未激活设备</span>
+                                </a>
+                            </li>
+                        </ul>
+
+                    </li>
+
+                    <li >
+                        <div  class="primary-item" ONCLICK="openfenxi('jichu','fen')">
+                            <span  id="fen1" class="bg-sprites toggle-icon down"></span>
+                            <span ><span  class="bg-sprites menu-icon  security">
+                            </span>企业管理
+                            </span>
+                        </div>
+                        <ul  id="jichu" class="secondary-list" style="display: none">
+                            <li >
+                                <a  th:href="@{/web/kong/corp}" class="secondary-item ">
+                                    <span >企业信息</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li >
+                        <div  class="primary-item" ONCLICK="openfenxi('userfe','fen')">
+                            <span  id="usergl" class="bg-sprites toggle-icon down"></span>
+                            <span ><span  class="bg-sprites menu-icon contacts">
+                            </span>用户管理
+                            </span>
+                        </div>
+                        <ul  id="userfe" class="secondary-list" style="display: none">
+                            <li >
+                                <a  th:href="@{/web/kong/user}" class="secondary-item ">
+                                    <span >用户信息</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li >
+                        <div  class="primary-item" ONCLICK="openfenxi('yichang','fen')">
+                            <span  id="fen3" class="bg-sprites toggle-icon down"></span>
+                            <span ><span  class="bg-sprites menu-icon teams">
+                            </span>日志管理
+                            </span>
+                        </div>
+                        <ul  id="yichang" class="secondary-list" style="display: none">
+                            <li >
+                                <a  th:href="@{/web/kong/log}" class="secondary-item">
+                                    <span >操作日志</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li >
+                        <div  class="primary-item" ONCLICK="openfenxi('jiankong','fen')">
+                            <span  id="fen4" class="bg-sprites toggle-icon down"></span>
+                            <span ><span  class="bg-sprites menu-icon operate">
+                            </span>监控管理
+                            </span>
+                        </div>
+                        <ul  id="jiankong" class="secondary-list" style="display: none">
+                            <li >
+                                <a  th:href="@{/web/kong/jiankong}" class="secondary-item">
+                                    <span >设备监控</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="block-container main">
+                <div style="height: 100%">
+                    <div  class="section " style="height: 60%;background-color: #F2F4F6">
+                        <div   class="carousels-wrapper " style="width: 100%;height: 100%;border-color: #f2f4f9;">
+                            <div style="float: left;width: 33.333333333%;text-align: center;">
+                                <div  style="margin-top:5%;">
+                                    <span  class="ani  fadeIn animated"  style="font-size:20px;color:#6a6c75;visibility: visible;animation-duration:0.5s;-webkit-animation-duration:0.5s;animation-delay:0.5s;-webkit-animation-delay:0.5s;">
+                                        设备功能模块
+                                    </span>
+                                </div>
+                                 <div style="text-align: center;margin-top: 5%">
+                                         <span   class="ani img_s1 bounceIn animated"  style="visibility: visible;animation-duration:0.5s;-webkit-animation-duration:0.5s;animation-delay:0.5s;-webkit-animation-delay:0.5s;"></span>
+                                 </div>
+                                <div style="display: flex;width: 100%">
+                                    <div  style="width:50%;">
+                                        <span   class="ani img_s2 bounceIn animated"  style="visibility: visible;animation-duration:0.5s;-webkit-animation-duration:0.5s;animation-delay:0.5s;-webkit-animation-delay:0.5s;"></span>
+                                    </div>
+                                    <div  style="width:50%;">
+                                        <span   class="ani img_s3 bounceIn animated"  style="visibility: visible;animation-duration:0.5s;-webkit-animation-duration:0.5s;animation-delay:0.5s;-webkit-animation-delay:0.5s;"></span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div style="float: left;width: 33.333333333%;text-align: center;">
+                                <div  style="margin-top:5%;">
+                                    <span  class="ani  fadeIn animated"  style="font-size:20px;color:#6a6c75;visibility: visible;animation-duration:0.5s;-webkit-animation-duration:0.5s;animation-delay:0.5s;-webkit-animation-delay:1.4s;">
+                                        基础设置模块
+                                    </span>
+                                </div>
+
+                                <div style="text-align: center;margin-top: 5%">
+                                    <span   class="ani img_s4 bounceIn animated"  style="visibility: visible;animation-duration:0.5s;-webkit-animation-duration:0.5s;animation-delay:0.5s;-webkit-animation-delay:0.5s;"></span>
+                                </div>
+                                <div style="display: flex;width: 100%">
+                                    <div  style="width:50%;">
+                                        <span   class="ani img_s5 bounceIn animated"  style="visibility: visible;animation-duration:0.5s;-webkit-animation-duration:0.5s;animation-delay:0.5s;-webkit-animation-delay:0.5s;"></span>
+                                    </div>
+                                    <div  style="width:50%;">
+                                        <span   class="ani img_s6 bounceIn animated"  style="visibility: visible;animation-duration:0.5s;-webkit-animation-duration:0.5s;animation-delay:0.5s;-webkit-animation-delay:0.5s;"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="float: left;width: 33.333333333%;text-align: center;">
+                                <div  style="margin-top:5%;">
+                                    <span  class="ani  fadeIn animated"  style="font-size:20px;color:#6a6c75;visibility: visible;animation-duration:0.5s;-webkit-animation-duration:0.5s;animation-delay:0.5s;-webkit-animation-delay:2.2s;">
+                                        数据分析监控
+                                    </span>
+                                </div>
+
+                                <div style="text-align: center;margin-top: 5%">
+                                    <span   class="ani img_s7 bounceIn animated"  style="visibility: visible;animation-duration:0.5s;-webkit-animation-duration:0.5s;animation-delay:0.5s;-webkit-animation-delay:0.5s;"></span>
+                                </div>
+                                <div style="display: flex;width: 100%">
+                                    <div  style="width:50%;">
+                                        <span   class="ani img_s8 bounceIn animated"  style="visibility: visible;animation-duration:0.5s;-webkit-animation-duration:0.5s;animation-delay:0.5s;-webkit-animation-delay:0.5s;"></span>
+                                    </div>
+                                    <div  style="width:50%;">
+                                        <span   class="ani img_s9 bounceIn animated"  style="visibility: visible;animation-duration:0.5s;-webkit-animation-duration:0.5s;animation-delay:0.5s;-webkit-animation-delay:0.5s;"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div  class="section">
+                        <div  class="title">使用情况</div>
+                        <div class="log_summary util_mt_large" style="width: 100%;">
+                            <div class="log_summary_card"><div class="log_summary_card_item" style="border-right: 1px solid #E4E6E9;">
+                                <span class="log_summary_card_item_name">服务企业</span>
+                                <span class="log_summary_card_item_num" th:text="${count.corpcount}"></span>
+                            </div>
+                                <div class="log_summary_card_item" style="border-right: 1px solid #E4E6E9;">
+                                    <span class="log_summary_card_item_name">激活用户</span>
+                                    <span class="log_summary_card_item_num" th:text="${count.usercount}"></span>
+                                </div>
+                                <div class="log_summary_card_item" style="border-right: 1px solid #E4E6E9;">
+                                    <span class="log_summary_card_item_name">已激活设备</span>
+                                    <span class="log_summary_card_item_num" th:text="${count.yeslockcount}"></span>
+                                </div>
+                                <div class="log_summary_card_item" style="border-right: 1px solid #E4E6E9;">
+                                    <span class="log_summary_card_item_name">未激活设备</span>
+                                    <span class="log_summary_card_item_num" th:text="${count.notlockcount}"></span>
+                                </div>
+                                <div class="log_summary_card_item" style="border-right: 1px solid #E4E6E9;">
+                                    <span class="log_summary_card_item_name">已联网企业微信设备</span>
+                                    <span class="log_summary_card_item_num" th:text="${count.connectwx}"></span>
+                                </div>
+                                <div class="log_summary_card_item" >
+                                    <span class="log_summary_card_item_name">已联网服务器后台设备</span>
+                                    <span class="log_summary_card_item_num" th:text="${count.connectht}"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script th:src="@{/static/web/js/jquery.min.js}"  ></script>
+<script th:src="@{/static/bootstrap/js/bootstrap.min.js}" ></script>
+<script>
+    var height=document.body.clientHeight;
+    $(".setting-container .block-container ").css("min-height",height-240);
+    $(".spark-screen ").css("min-height",height-240);
+    $(".main").css("height",height-240);
+    function  openfenxi(id,obj) {
+        if($("#"+id+"").css("display")=="none"){
+            $("#"+id+"").show();
+            $("#"+obj+"").removeClass().addClass("bg-sprites toggle-icon up");
+        }else {
+            $("#"+id+"").hide();
+            $("#"+obj+"").removeClass().addClass("bg-sprites toggle-icon down");
+        }
+    }
+</script>
+</body>
+</html>

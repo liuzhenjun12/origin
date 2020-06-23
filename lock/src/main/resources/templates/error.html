@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>胖哼智能</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <!--jquery-->
+    <script th:src="@{/static/js/jquery.min.js}"  ></script>
+    <link rel="stylesheet" th:href="@{/static/weui/css/weui.css}" />
+    <link rel="stylesheet" th:href="@{/static/weui/css/weuix.css}" />
+</head>
+<body>
+
+<div  style="text-align: center">
+    <div style="margin-top: 20%">
+        <img th:src="@{/static/imgage/chaoshi.png}"  >
+    </div>
+</div>
+<script th:src="@{/static/weui/js/zepto.min.js}"></script>
+<script th:src="@{/static/weui/js/zepto.weui.js}"></script>
+<script th:inline="javascript">
+    $.toptip("未知的请求地址，请到首页重新登录",'error');
+    setTimeout(function(){ location.href="/web/v1/login"; }, 2000);
+</script>
+
+</body>
+</html>

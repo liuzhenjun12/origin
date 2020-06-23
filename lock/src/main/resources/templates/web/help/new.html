@@ -1,0 +1,129 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="huaban" content="nopin">
+    <meta name="csrf-token" content="">
+    <link rel="shortcut icon " type="images/x-icon"  th:href="@{../img/logo.png}" >
+    <title >帮助中心</title>
+    <link th:href="@{/static/bootstrap/css/bootstrap-min.css}"  rel="stylesheet">
+    <link th:href="@{/static/common/common.css}"  rel="stylesheet">
+    <link th:href="@{/static/admin/admin.css}"  rel="stylesheet">
+    <link th:href="@{/static/common/animate.min.css}"  rel="stylesheet">
+    <link th:href="@{/static/common/guide.css}"  rel="stylesheet">
+</head>
+<body id="app-layout">
+<div class="spark-screen relative">
+    <div class="js-vars hide" data-confirm_type data-confirm_route data-confirm_code data-confirm_action></div>
+    <div class="min-height-sm">
+        <div  class="setting-header">
+            <div  class="setting-container clearfix">
+            <div  style="float: left;margin-top: 10px;margin-left: 40px;cursor: pointer;font-weight: 700;" >胖哼智能</div>
+            <span  class="page-tag" style="margin-top: 10px;" >帮助中心</span>
+                <div  lxref="header-mini" class=" nav-personal right" style="margin-right: 70px">
+                    <a href="/web/v1/test" ><span  class="page-tag"  >登录</span></a>
+                </div>
+                <div  lxref="header-mini" class=" nav-personal right">
+                    <a href="/web/v1/auth" ><span  class="page-tag" >注册</span></a>
+                </div>
+                <div  lxref="header-mini" class=" nav-personal right">
+                    <a href="/web/v1/login" style="font-weight: 100" >首页</span></a>
+                </div>
+            </div>
+        </div>
+        <div class="setting-container clearfix">
+            <div class="block-container sidebar">
+                <ul  class="menu">
+                    <li >
+                        <a   th:href="@{/web/v1/pang}"   class="router-link-exact-active router-link-active primary-item ">
+                            <span >
+                                <span  class="bg-sprites menu-icon home">
+                                </span ><span >产品介绍</span></span>
+                        </a>
+                    </li>
+                    <li >
+                        <a  th:href="@{/web/v1/mai}"  class="router-link-exact-active router-link-active primary-item ">
+                            <span >
+                                <span  class="bg-sprites menu-icon operate">
+                                </span><span ></span>如何购买</span>
+                        </a>
+                    </li>
+                    <li >
+                        <a  th:href="@{/web/v1/new}" class="router-link-exact-active router-link-active primary-item active">
+                            <span >
+                                <span  class="bg-sprites menu-icon apps">
+                                </span><span >新人必读</span></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="block-container main">
+                <div >
+                    <div  class="section">
+                            <div class="faq-detail"><div class="faq-title">什么是胖哼智能？</div>
+                                <div class="faq-content"><p style="margin: 0 0 0px;" >胖哼智能是基于金储10余年知识管理实践经验打造的一站式企业社区，为企业提供设备安装、智能化启动、无缝对接考勤等组件化应用工具，助力企业实现更加数字化的知识管理、文化建设、内部沟通。</p>
+                                    <div style="font-size: 14px;color: #b4bacf;">
+                                        <span class="bg-sprites icon-tips"></span>
+                                        <span >以上信息没有帮助？点击页面右下角图标联系客服</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="faq-detail"><div class="faq-title" >胖哼智能如何保证数据安全？</div>
+                                <div class="faq-content"><p style="margin: 0 0 0px;" >胖哼智能全面接入腾讯云安全服务，防止各种网络黑客攻击；对于敏感信息使用安全的加密协议，保证网络传输的安全。各公司数据物理隔离，保证公司间数据互不影响。严格的用户鉴权，保证只有本公司成员才可访问公司数据。</p>
+                                    <div style="font-size: 14px;color: #b4bacf;">
+                                        <span class="bg-sprites icon-tips"></span>
+                                        <span >以上信息没有帮助？点击页面右下角图标联系客服</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="faq-detail"><div class="faq-title" >已扫描到设备但添加失败，如何处理？</div>
+                                <div class="faq-content"><p style="margin: 0 0 0px;" >
+                                    <span >可能原因如下:</span><br/>
+                                    <span > 1、手机当前连接的无线网络密码错误。</span><br/>
+                                     <span > 2、路由器开启了网络隐藏、MAC地址过滤、IP地址过滤、域名过滤等防蹭网功能。</span><br/>
+                                     <span >3、手机连接的是无线网络是公共网络，公共网络下不支持添加设备。</span><br/>
+                                </p>
+                                    <div style="font-size: 14px;color: #b4bacf;">
+                                        <span class="bg-sprites icon-tips"></span>
+                                        <span >以上信息没有帮助？点击页面右下角图标联系客服</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="faq-detail"><div class="faq-title" >成员搜索不到设备，如何处理？</div>
+                                <div class="faq-content">
+                                    <p style="margin: 0 0 0px;">
+                                        <span > 1、手机当前连接的无线网络密码错误。</span><br/>
+                                        <span >2、请打开无线局域网并连接WiFi,否则仅支持蓝牙。</span><br/>
+                                        <span >3、确保智能设备已连接电源，且在手机附近。</span><br/>
+                                        <span >4、询问管理员是否已卸载设备。</span><br/>
+                                </p>
+                                    <div style="font-size: 14px;color: #b4bacf;">
+                                        <span class="bg-sprites icon-tips"></span>
+                                        <span >以上信息没有帮助？点击页面右下角图标联系客服</span>
+                                    </div>
+                                </div>
+                            </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+<script>
+    function  openfenxi(id,obj) {
+        if($("#"+id+"").css("display")=="none"){
+            $("#"+id+"").show();
+            $("#"+obj+"").removeClass().addClass("bg-sprites toggle-icon up");
+        }else {
+            $("#"+id+"").hide();
+            $("#"+obj+"").removeClass().addClass("bg-sprites toggle-icon down");
+        }
+    }
+</script>
+<script th:src="@{/static/web/js/jquery.min.js}"  ></script>
+<script th:src="@{/static/bootstrap/js/bootstrap.min.js}" ></script>
+</body>
+</html>

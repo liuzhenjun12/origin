@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css?family=Allerta+Stencil');
+.lockqu{  display:flex;  align-items:center;  justify-content:center;  flex-direction:column;}
+.lock{  width:130px;  height:200px;  display:flex;  flex-direction:column;  align-items:center;}
+/**:before,*:after{  content:"";  position:absolute;  display:block;}*/
+@-webkit-keyframes lock{  80%{
+    transform:translatey(30px);
+}  100%{    transform:translatey(25px);
+                     }}
+.head{  width:55px;  height:65px;  border-radius:50% 50% 4px 4px;  background:radial-gradient(#00faed,blueviolet,#000);
+    position:absolute;  z-index:1;  animation:lock 1s forwards;}
+.head:before{  width:35px;  height:60px;  border-radius:50% 50% 10% 10%;  background:black;  margin:10px 10px;
+    box-shadow:-2px -8px 8px 2px #ccc;content:"";  position:absolute;  display:block;}
+.head:after{  width:12px;  height:14px;  background:black;  margin:46px 43px;content:"";  position:absolute;  display:block;}
+.notch{  position:absolute;  width:8px;
+    height:10px;  background:black;  margin:34px 45px;  border-radius:0 30% 30% 0;  box-shadow:inset -4px 2px 2px 0px #bbb;}
+.body{  width:80px;  height:50px;  background:linear-gradient(to right,#00a4ff,#00faed,white,#00faed,#00a4ff);
+    position:absolute;  z-index:3;  margin-top:60px;  border-radius:10px;
+    box-shadow:inset 0px 5px 10px 1px blueviolet,inset 0px -5px 10px 1px #222;}
+@-webkit-keyframes locked{  50%{    opacity:0;  }
+    60%{    opacity:0;    content:"闭锁";  }
+    100%{    opacity:1;    content:"闭锁";    margin:16% 30%;  }}
+/*.body:before{  content:"闭锁";    margin:16% 30%;  position:absolute;  display:block;*/
+/*    font-family: 'Allerta Stencil', sans-serif;  color:darkblue; font-weight: bold; animation:locked 1s forwards;}*/
+.bisuo{margin:15% 30%;  position:absolute;  display:block;font-family: 'Allerta Stencil', sans-serif;  color:darkblue; font-weight: bold;}
+#toggle{  width:130px;  height:180px;  cursor:pointer;  position:absolute;  z-index:10;  opacity:0;}
+
+@-webkit-keyframes unlock{
+    100%{    transform:translatey(0px);  }}
+#toggle:checked~.lock .head{  animation:unlock 1s forwards;}
+.kaikai{animation:unlock 1s forwards;}
+.guan{animation:lock 1s forwards;}
+@-webkit-keyframes unlocked{  0%{    content:"闭锁";  }
+    50%{        opacity:0;    content:"闭锁";    margin:16% 30%;  }
+    60%{    opacity:0;    content:"开锁";    margin:16% 30%;  }
+    100%{    opacity:1;    content:"开锁";    margin:16% 30%;  }}
+.body.zhuyao:before{animation:unlocked 1s forwards;}
+#toggle:checked~.lock .body:before{  animation:unlocked 1s forwards;}
+@-webkit-keyframes dengdai{  0%{    content:"稍等";  }
+    60%{    opacity:0;    content:"稍等";    margin:16% 30%;  }
+    100%{    opacity:1;    content:"稍等";    margin:16% 30%;  }}
+.bisuo.dengd:before{-webkit-animation:dengdai 1s linear 0s infinite;}
+
+.lock1{  width:130px;  height:200px;  display:flex;  flex-direction:column;  align-items:center;}
+/**:before,*:after{  content:"";  position:absolute;  display:block;}*/
+@-webkit-keyframes lock1{  80%{
+    transform:translatey(10px);
+}  100%{    transform:translatey(5px);
+   }}
+.head1{  width:55px;  height:65px;  border-radius:50% 50% 4px 4px;  background:radial-gradient(#00faed,blueviolet,#000);
+    position:absolute;  z-index:1;  animation:lock1 1s forwards;}
+.head1:before{  width:35px;  height:60px;  border-radius:50% 50% 10% 10%;  background:black;  margin:10px 10px;
+    box-shadow:-2px -8px 8px 2px #ccc;content:"";  position:absolute;  display:block;}
+.head1:after{  width:12px;  height:14px;  background:black;  margin:46px 43px;content:"";  position:absolute;  display:block;}
+.body1{  width:80px;  height:50px;  background:linear-gradient(to right,#00a4ff,#00faed,white,#00faed,#00a4ff);
+    position:absolute;  z-index:3;  margin-top:37px;  border-radius:10px;
+    box-shadow:inset 0px 5px 10px 1px blueviolet,inset 0px -5px 10px 1px #222;}
+@-webkit-keyframes locked1{  50%{    opacity:0;  }
+    60%{    opacity:0;    content:"稍等";  }
+    100%{    opacity:1;    content:"无锁";    margin:16% 30%;  }}
+.body1:before{  content:"稍等";    margin:16% 30%;  position:absolute;  display:block;
+    font-family: 'Allerta Stencil', sans-serif;  color:darkblue; font-weight: bold; animation:locked1 1s forwards;}
