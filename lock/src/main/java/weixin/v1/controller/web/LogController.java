@@ -53,6 +53,7 @@ public class LogController {
         }else if(StringUtils.isEmpty(datetimepicker1)&&!StringUtils.isEmpty(datetimepicker2)){
             tiao.andCreatedateLessThanOrEqualTo(sdf.parse(datetimepicker2));
         }
+        example.setOrderByClause("id DESC");
         RowBounds rowBounds = new RowBounds(ph.getPage()-1,ph.getRows());
         List<SysLog> ls = logMapper.selectByExampleAndRowBounds(example,rowBounds);
         grid.setRows(ls);

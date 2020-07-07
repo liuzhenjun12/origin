@@ -21,10 +21,10 @@ public class MyApplicationListener implements ApplicationListener<ContextRefresh
         BaseConfig base=new BaseConfig();
         base.setSToken("nkY9OLaKm2CWC5xV");
         base.setSCorpID("wwabb136cec3204033");
-        base.setSuiteID("ww120bb8bfb3277e5c");
-        base.setSuiteSecret("Vqeo3zA_1-lSqukesxxLe93CtudwRNAwmAp80kEPEzs");
+        base.setSuiteID("wwb526f40753f8d692");
+        base.setSuiteSecret("G37Up3BBRCjAtENbU35JTxcSnUBeByy21gI9K-gM6PU");
         base.setSEncodingAESKey("IWuYHINjV9RRXQSjmF2TusYo0AGPm4SwCrgLPgi5AQx");
-        base.setSecret("5P_zRG4iBY0K_4l03yLccXMzhLzeESiVdjom6bYiW1I");
+        base.setSecret("vp-GtVh7qW5PycZwug0V8RpBb-A8hFq03znwyvzEGdY");
         log.info("初始化时缓存基本凭证配置==>{}",base.toString());
         BaseConfigService baseConfigService = SpringUtil.getBean("baseConfigService");
         baseConfigService.set_base_config(base);

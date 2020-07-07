@@ -79,13 +79,13 @@
             <div class="left-section latest-thread">
                 <div class="block-header">
                     <div class="title">最新动态</div>
-                    <a th:href="@{/web/v1/userInfo(user_from=${session.sessionInfo.loginId})}" target="_blank" class="more">更多</a>
+                    <a th:href="@{/web/customer/log}" class="more">更多</a>
                 </div>
                 <div class="content">
                     <ul th:each="log:${logList}" class="bulleted-list">
                         <li  class="gallery-list clearfix js-comment-data">
                             <a  class="left mr-m" style="padding: 0px 10px 0px 0px;">
-                                <img th:src="@{/static/imgage/logo.png}"  class="avatar-md">
+                                <img th:src="${log.img}"  class="avatar-md">
                             </a>
                             <div class="overflow-hidden" style="line-height:25px">
                                 <div class="mt-s" >
@@ -95,10 +95,10 @@
                                 <div class="long-break mt-s"></div>
                                 <div>
                                     <div class="action" style="float:left;">
-                                        <span th:text="${log.createdate}"></span>
+                                        <span th:text="${log.ip}"></span>
                                     </div>
                                     <div style="float: right;font-size: 12px;">
-                                        <a href="javascript:void(0);" th:onclick="'javascript:$I.delmsgById(\''+${log.id}+'\');'"  class="more">
+                                        <a href="javascript:void(0);" th:onclick="'javascript:$I.delmsgById('+${log.id}+');'"  class="more">
                                             <span>删除</span>
                                         </a>
                                     </div>

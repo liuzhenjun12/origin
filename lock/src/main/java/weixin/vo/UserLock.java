@@ -7,4 +7,5 @@ import java.io.Serializable;
 public class UserLock implements Serializable {
     private String userid;
     private Boolean has;
+    private String avatar;
 }

@@ -27,6 +27,8 @@ import weixin.vo.admin.Admin;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -82,10 +84,23 @@ public class LoginConstroller {
             if(redisOpsUtil.hasKey(RedisKeyPrefixConst.USER_INFO+sessionInfo.getCorpids()+":"+sessionInfo.getLoginId())) {
                 SysUser user = redisOpsUtil.get(RedisKeyPrefixConst.USER_INFO + sessionInfo.getCorpids() + ":" + sessionInfo.getLoginId(), SysUser.class);
                 model.addAttribute("userInfo", user);
+                //TODO 记录日志
+                SysLog sysLog = new SysLog(user.getLoginId(), user.getCorpids(), "LOGIN",
+                        "LoginConstroller.index", "后台扫码登录", true, "扫码登录成功",
+                        new Date(),RedisKeyPrefixConst.JINCHU_IMG,RedisKeyPrefixConst.JIN_CHU);
+                logMapper.insert(sysLog);
                 SysLogExample example = new SysLogExample();
                 example.createCriteria().andLoginidEqualTo(user.getLoginId()).andCorpidEqualTo(user.getCorpids());
+                example.setOrderByClause("id DESC");
                 RowBounds rowBounds = new RowBounds(0, 10);
                 List<SysLog> logList = logMapper.selectByExampleAndRowBounds(example, rowBounds);
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
+                for(SysLog l:logList){
+                    l.setIp(dateFormat.format(l.getCreatedate()));
+                    if(l.getImg().indexOf("images/")>-1){
+                        l.setImg("/static"+l.getImg());
+                    }
+                }
                 model.addAttribute("logList", logList);
                 return "web/index/home";
             }else {
@@ -94,10 +109,20 @@ public class LoginConstroller {
                 SysUser user=sysUserMapper.selectOneByExample(example);
                 if(user!=null) {
                     model.addAttribute("userInfo", user);
+                    //TODO 记录日志
+                    SysLog sysLog = new SysLog(user.getLoginId(), user.getCorpids(), "LOGIN",
+                            "LoginConstroller.index", "后台扫码登录", true, "扫码登录成功",
+                            new Date(),RedisKeyPrefixConst.JINCHU_IMG,RedisKeyPrefixConst.JIN_CHU);
+                    logMapper.insert(sysLog);
                     SysLogExample examp = new SysLogExample();
                     examp.createCriteria().andLoginidEqualTo(user.getLoginId()).andCorpidEqualTo(user.getCorpids());
+                    example.setOrderByClause("id DESC");
                     RowBounds rowBounds = new RowBounds(0, 10);
                     List<SysLog> logList = logMapper.selectByExampleAndRowBounds(examp, rowBounds);
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
+                    for(SysLog l:logList){
+                        l.setIp(dateFormat.format(l.getCreatedate()));
+                    }
                     model.addAttribute("logList", logList);
                     return "web/index/home";
                 }else {

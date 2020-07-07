@@ -75,6 +75,8 @@ public class LogAspect {
             sysLog.setMethodname(jp.getSignature().toShortString());
             sysLog.setMethodtype(type.toString());
             sysLog.setMethodjc(desc);
+            sysLog.setImg(RedisKeyPrefixConst.JINCHU_IMG);
+            sysLog.setAttr1(RedisKeyPrefixConst.JIN_CHU);
             sysLog.setCreatedate(new Date());
             if(rvt instanceof String) {
                 sysLog.setResult(rvt.toString());

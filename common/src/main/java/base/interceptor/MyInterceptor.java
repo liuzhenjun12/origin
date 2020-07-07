@@ -32,7 +32,7 @@ public class MyInterceptor  implements HandlerInterceptor {
 		String requestUri = request.getRequestURI();
 		String contextPath = request.getContextPath();
 		String url = requestUri.substring(contextPath.length());
-		if (url.indexOf("/v1")>-1||url.indexOf("/wx")>-1) {// 如果要访问的资源是不需要验证的
+		if (url.indexOf("/v1")>-1||url.indexOf("/wx")>-1||url.indexOf("/upload")>-1) {// 如果要访问的资源是不需要验证的
 			return true;
 		}
 		SessionInfo sessionInfo = (SessionInfo) request.getSession().getAttribute(RedisKeyPrefixConst.SESSION_INFO);

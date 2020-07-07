@@ -12,11 +12,33 @@
     <result column="result" jdbcType="VARCHAR" property="result" />
     <result column="ip" jdbcType="VARCHAR" property="ip" />
     <result column="createdate" jdbcType="TIMESTAMP" property="createdate" />
+    <result column="img" jdbcType="VARCHAR" property="img" />
+    <result column="attr1" jdbcType="VARCHAR" property="attr1" />
+    <result column="attr2" jdbcType="VARCHAR" property="attr2" />
+    <result column="attr3" jdbcType="INTEGER" property="attr3" />
+    <result column="attr4" jdbcType="INTEGER" property="attr4" />
+    <result column="attr5" jdbcType="BIT" property="attr5" />
+    <result column="attr6" jdbcType="BIT" property="attr6" />
   </resultMap>
-
   <select id="getLogsByuserid"  resultMap="BaseResultMap">
     SELECT *
     from sys_log
     where corpid=#{corpid} and loginid=#{userid} and methodtype=#{methodtype} and SUBSTRING(createdate,1,10) =#{date}
   </select>
+
+  <select id="getLogsByuseridCount" resultType="java.lang.Integer">
+     SELECT count(1)
+    from sys_log
+    where corpid=#{corpid} and loginid=#{userid} and methodtype=#{methodtype} and SUBSTRING(createdate,1,10) =#{date}
+  </select>
+
+  <select id="getPageLogsByuserid"  resultMap="BaseResultMap">
+    SELECT *
+    from sys_log
+    where corpid=#{corpid}
+    and loginid=#{userid}
+    order by createdate desc
+    LIMIT #{page},#{rows}
+  </select>
+
 </mapper>

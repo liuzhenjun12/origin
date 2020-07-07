@@ -7,12 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.util.StringUtils;
 import weixin.mapper.*;
 import weixin.model.*;
 import weixin.vo.Count;
 
 import java.text.ParseException;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Slf4j
@@ -34,8 +36,44 @@ public class Task {
 
     @Scheduled(cron = "0 */1 * * * ?")
     private void configureTasks() throws ParseException {
+        //TODO 统计企业、用户、设备激活、联网数量情况
         getCount();
+        //TODO 统计用户设备数量，开锁次数
         countUserLockAndLog();
+        //TODO 删除过期任务
+        deleteTodo();
+    }
+
+    /**
+     * 删除过期任务
+     */
+    private void deleteTodo() {
+    SysTodoExample todoExample=new SysTodoExample();
+    todoExample.createCriteria().andTodoTypeEqualTo(2);
+    List<SysTodo> todos=todoMapper.selectByExample(todoExample);
+    if(!todos.isEmpty()){
+        Long now=(new Date()).getTime();
+        for(SysTodo t:todos){
+            if(t.getStartDate()!=null&&t.getEndDate()!=null){
+                log.info("now:{},end:{}",now,t.getEndDate().getTime());
+                if(now>t.getEndDate().getTime()){
+                    //TODO 从缓存中获取操作人头像
+                    SysUser u1=redisOpsUtil.get(RedisKeyPrefixConst.USER_INFO+ t.getCorpId()+":"+t.getCreateby(),SysUser.class);
+                    String img="";
+                    if(u1!=null&&!StringUtils.isEmpty(u1.getImg())){
+                        img=u1.getImg();
+                    }else {
+                        img=RedisKeyPrefixConst.USER_IMG;
+                    }
+                    SysLog sysLog=new SysLog(t.getCreateby(),t.getCorpId(),"DEL","deleteTodo","删除任务",true,t.getUserId()+"使用设备"+t.getDeviceSn()+"已过期，任务已删除",new Date(),RedisKeyPrefixConst.JINCHU_IMG,RedisKeyPrefixConst.JIN_CHU);
+                    logMapper.insert(sysLog);
+                    SysLog sysLog1=new SysLog(t.getUserId(),t.getCorpId(),"DEL","deleteTodo","删除任务",true,"你使用的设备"+t.getDeviceSn()+"权限已过期，任务已删除",new Date(),img,t.getCreateby());
+                    logMapper.insert(sysLog1);
+                    todoMapper.deleteByPrimaryKey(t.getId());
+                }
+            }
+        }
+    }
     }
 
     /**
@@ -113,4 +151,6 @@ public class Task {
         redisOpsUtil.set(RedisKeyPrefixConst.INFO_COUNT,count);
         count=null;
     }
+
+
 }

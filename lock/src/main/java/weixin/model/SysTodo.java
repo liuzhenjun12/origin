@@ -15,7 +15,7 @@ public class SysTodo implements Serializable {
     @ApiModelProperty(value = "设备编号")
     private String deviceSn;
 
-    @ApiModelProperty(value = "设备负责人")
+    @ApiModelProperty(value = "任务创建人")
     private String createby;
 
     @ApiModelProperty(value = "设备图片")

@@ -37,6 +37,17 @@ index.fn=index.prototype= {
         })
         return false;
     },
+    delmsgById:function(id){
+        $.post('/web/log/delete', {
+            id:id
+        },function(result) {
+            if (result.code==200) {
+                location.reload();
+            }else{
+                alert(result.message);
+            }
+        }, 'JSON');
+    },
     toggleIframe:function(){
         $("#show-feedback-submit, #show-feedback-result").toggleClass("secondary");
     },

@@ -1,5 +1,5 @@
 server:
-  port: 8887
+  port: 8040
   servlet:
     session:
       timeout: 3600s

@@ -4,6 +4,8 @@ import base.api.CommonResult;
 import base.exception.BusinessException;
 import weixin.model.SysLock;
 
+import javax.servlet.http.HttpServletRequest;
+
 public interface LockService {
     /**
      * 从企业微信后台获取设备列表

@@ -2,13 +2,18 @@ package weixin.impl;
 
 import base.aop.Log;
 import base.api.CommonResult;
+import base.api.SocketCode;
 import base.constant.RedisKeyPrefixConst;
 import base.exception.BusinessException;
 import base.mybatis.BaseMapper;
 import base.mybatis.BaseServiceImpl;
+import base.util.JSON_Util;
+import base.util.MinaClient;
 import base.util.RedisOpsUtil;
+import base.vo.ReturnJson;
 import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.http.HttpRequest;
 import org.apache.http.client.fluent.Request;
 import org.apache.http.entity.ContentType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +33,11 @@ import weixin.vo.device.Device;
 import weixin.vo.device.DeviceInfo;
 import weixin.vo.permanentCode.DealerCorpInfo;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.net.InetSocketAddress;
 import java.nio.charset.Charset;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -242,15 +250,9 @@ public class LockServiceImpl  extends BaseServiceImpl<SysLock, Integer> implemen
         todo.setStatus(true);
         todoMapper.insert(todo);
         //TODO 记录日志
-        SysLog sysLog=new SysLog();
-        sysLog.setMethodjc("初始化设备");
-        sysLog.setCorpid(corpid);
-        sysLog.setCreatedate(new Date());
-        sysLog.setMethodtype("ADD");
-        sysLog.setMethodname("LockServiceImpl.init");
-        sysLog.setLoginid(dealerCorpInfo.getAuth_user_info().getUserid());
-        sysLog.setSccess(true);
-        sysLog.setResult("初始化设备【"+init.getDeviceSn()+"】成功");
+        SysLog sysLog = new SysLog(dealerCorpInfo.getAuth_user_info().getUserid(), corpid, "ADD",
+                "LockServiceImpl.init", "初始化设备", true, "初始化设备【"+init.getDeviceSn()+"】成功",
+                new Date(),RedisKeyPrefixConst.JINCHU_IMG,RedisKeyPrefixConst.JIN_CHU);
         logMapper.insert(sysLog);
         return CommonResult.success(null,"初始化设备【"+init.getDeviceSn()+"】成功");
     }
@@ -272,6 +274,7 @@ public class LockServiceImpl  extends BaseServiceImpl<SysLock, Integer> implemen
         if(lock==null){
             return CommonResult.failed("设备不存在");
         }
+        //TODO 记录日志
         SysLog sysLog=new SysLog();
         sysLog.setMethodjc("卸载设备");
         sysLog.setCorpid(lock.getCorpid());
@@ -282,7 +285,9 @@ public class LockServiceImpl  extends BaseServiceImpl<SysLock, Integer> implemen
         lock.setCorpid(null);
         lock.setName(null);
         lock.setLoginid(null);
+        lock.setAttr4(0);
         lock.setLastupdatetime(new Date());
+        //TODO 修改设备为未激活状态
         lockMapper.updateByPrimaryKey(lock);
 
         sysLog.setCreatedate(new Date());
@@ -290,6 +295,8 @@ public class LockServiceImpl  extends BaseServiceImpl<SysLock, Integer> implemen
         sysLog.setMethodname("LockServiceImpl.unlock");
         sysLog.setSccess(true);
         sysLog.setResult("卸载设备【"+sn+"】成功");
+        sysLog.setImg(RedisKeyPrefixConst.JINCHU_IMG);
+        sysLog.setAttr1(RedisKeyPrefixConst.JIN_CHU);
         logMapper.insert(sysLog);
         return CommonResult.success(null,"卸载设备【"+sn+"】成功");
     }
@@ -309,15 +316,10 @@ public class LockServiceImpl  extends BaseServiceImpl<SysLock, Integer> implemen
         }
         lock.setName(name);
         lockMapper.updateByPrimaryKey(lock);
-        SysLog sysLog=new SysLog();
-        sysLog.setMethodjc("修改设备名称");
-        sysLog.setCorpid(lock.getCorpid());
-        sysLog.setCreatedate(new Date());
-        sysLog.setMethodtype("UPDATE");
-        sysLog.setMethodname("LockServiceImpl.uplock");
-        sysLog.setLoginid(lock.getLoginid());
-        sysLog.setSccess(true);
-        sysLog.setResult("修改设备名称【"+sn+"】成功");
+        //TODO 记录日志
+        SysLog sysLog = new SysLog(lock.getLoginid(), lock.getCorpid(), "UPDATE",
+                "LockServiceImpl.uplock", "修改设备名称", true, "修改设备名称【"+sn+"】成功",
+                new Date(),RedisKeyPrefixConst.JINCHU_IMG,RedisKeyPrefixConst.JIN_CHU);
         logMapper.insert(sysLog);
         return CommonResult.success(null,"修改设备名称【"+sn+"】成功");
     }
@@ -337,15 +339,10 @@ public class LockServiceImpl  extends BaseServiceImpl<SysLock, Integer> implemen
         }
         lock.setConnectWx(true);
         lockMapper.updateByPrimaryKey(lock);
-        SysLog sysLog=new SysLog();
-        sysLog.setMethodjc("设备网络连接成功");
-        sysLog.setCorpid(lock.getCorpid());
-        sysLog.setCreatedate(new Date());
-        sysLog.setMethodtype("CONNECT");
-        sysLog.setMethodname("LockServiceImpl.connect");
-        sysLog.setLoginid(lock.getLoginid());
-        sysLog.setSccess(true);
-        sysLog.setResult("设备网络连接【"+sn+"】成功");
+        //TODO 记录日志
+        SysLog sysLog = new SysLog(lock.getLoginid(), lock.getCorpid(), "CONNECT",
+                "LockServiceImpl.connect", "设备网络连接成功", true, "设备网络连接【"+sn+"】成功",
+                new Date(),RedisKeyPrefixConst.JINCHU_IMG,RedisKeyPrefixConst.JIN_CHU);
         logMapper.insert(sysLog);
         return CommonResult.success(null,"设备网络连接【"+sn+"】成功");
     }
@@ -365,15 +362,10 @@ public class LockServiceImpl  extends BaseServiceImpl<SysLock, Integer> implemen
         }
         lock.setConnectWx(false);
         lockMapper.updateByPrimaryKey(lock);
-        SysLog sysLog=new SysLog();
-        sysLog.setMethodjc("设备网络连接断开");
-        sysLog.setCorpid(lock.getCorpid());
-        sysLog.setCreatedate(new Date());
-        sysLog.setMethodtype("CONNECT");
-        sysLog.setMethodname("LockServiceImpl.disconnect");
-        sysLog.setLoginid(lock.getLoginid());
-        sysLog.setSccess(true);
-        sysLog.setResult("设备网络断开连接【"+sn+"】");
+        //TODO 记录日志
+        SysLog sysLog = new SysLog(lock.getLoginid(), lock.getCorpid(), "CONNECT",
+                "LockServiceImpl.disconnect", "设备网络连接断开", true, "设备网络断开连接【"+sn+"】",
+                new Date(),RedisKeyPrefixConst.JINCHU_IMG,RedisKeyPrefixConst.JIN_CHU);
         logMapper.insert(sysLog);
         return CommonResult.success(null,"设备网络断开连接【"+sn+"】");
     }

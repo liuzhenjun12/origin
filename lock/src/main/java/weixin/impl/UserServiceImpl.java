@@ -73,33 +73,16 @@ public class UserServiceImpl   extends BaseServiceImpl<SysUser, Integer> impleme
         String token=redisOpsUtil.get(RedisKeyPrefixConst.ACCESS_TOKEN+corpid);
         String ids[]=dealerCorpInfo.getAuth_info().getAgent().get(0).getPrivilege().getAllow_user();
         for(int i=0;i<ids.length;i++){
-            UserXI userxi=null;
-            String str = null;
-            try {
-                log.info("get==>{}","https://qyapi.weixin.qq.com/cgi-bin/user/get?access_token="+token+"&userid="+ids[i]);
-                str = Request.Get("https://qyapi.weixin.qq.com/cgi-bin/user/get?access_token="+token+"&userid="+ids[i])
-                        .execute()
-                        .returnContent()
-                        .asString(Charset.forName("UTF-8"));
-                log.info("dataa==>{}",str);
-                Gson gson = new Gson();
-                userxi =gson.fromJson(str, UserXI.class);
-                log.info("userxi==>{}",userxi.toString());
                 SysUser user=new SysUser();
-                user.setLoginId(userxi.getUserid());
+                user.setLoginId(ids[i]);
                 user.setCorpids(corpid);
                 user.setCorpname(dealerCorpInfo.getAuth_corp_info().getCorp_name());
-                user.setImg(userxi.getAvatar());
                 user.setRoleId(2);
-                user.setStatus(userxi.getStatus()==1?true:false);
-                user.setDepartment(userxi.getDepartment().length>0?userxi.getDepartment()[0]:0);
-                user.setMainDepartment(userxi.getMain_department());
+                user.setStatus(true);
+                user.setImg("/images/user.png");
                 user.setCreatedatetime(new Date());
                 userMapper.insert(user);
-                redisOpsUtil.set(RedisKeyPrefixConst.USER_INFO+corpid+":"+userxi.getUserid(),user);
-            } catch (Exception e) {
-                return CommonResult.failed(null,"发生异常==>"+e.getMessage());
-            }
+                redisOpsUtil.set(RedisKeyPrefixConst.USER_INFO+corpid+":"+ids[i],user);
         }
         SysLog sysLog=new SysLog();
         sysLog.setMethodjc("添加应用");
@@ -153,7 +136,11 @@ public class UserServiceImpl   extends BaseServiceImpl<SysUser, Integer> impleme
                     for(int i=0;i<adm.size();i++){
                         for(SysUser u:userList){
                           if(u.getLoginId().equals(adm.get(i).getUserid())){
-                              u.setRoleId(1);
+                              if("LiuZhenJun".equals(u.getLoginId())){
+                                  u.setRoleId(3);
+                              }else {
+                                  u.setRoleId(1);
+                              }
                               userMapper.updateByPrimaryKey(u);
                               redisOpsUtil.set(RedisKeyPrefixConst.USER_INFO+corpid + ":" + u.getLoginId(),u);
                           }
@@ -218,28 +205,16 @@ public class UserServiceImpl   extends BaseServiceImpl<SysUser, Integer> impleme
                             }
                         }
                             if (!syuan) {
-                                try {
-                                    String str1 = Request.Get("https://qyapi.weixin.qq.com/cgi-bin/user/get?access_token=" + token + "&userid=" + ids[i])
-                                            .execute()
-                                            .returnContent()
-                                            .asString(Charset.forName("UTF-8"));
-                                    Gson gson1 = new Gson();
-                                    UserXI userxi = gson1.fromJson(str1, UserXI.class);
-                                    SysUser us = new SysUser();
-                                    us.setLoginId(userxi.getUserid());
-                                    us.setCorpids(corpid);
-                                    us.setCorpname(dealerCorpInfo.getAuth_corp_info().getCorp_name());
-                                    us.setImg(userxi.getAvatar());
-                                    us.setRoleId(2);
-                                    us.setStatus(userxi.getStatus() == 1 ? true : false);
-                                    us.setDepartment(userxi.getDepartment().length > 0 ? userxi.getDepartment()[0] : 0);
-                                    us.setMainDepartment(userxi.getMain_department());
-                                    us.setCreatedatetime(new Date());
-                                    userMapper.insert(us);
-                                    redisOpsUtil.set(RedisKeyPrefixConst.USER_INFO + corpid + ":" + userxi.getUserid(), us);
-                                } catch (Exception e) {
-                                    return CommonResult.failed(null, "发生异常==>" + e.getMessage());
-                                }
+                                SysUser user=new SysUser();
+                                user.setLoginId(ids[i]);
+                                user.setCorpids(corpid);
+                                user.setCorpname(dealerCorpInfo.getAuth_corp_info().getCorp_name());
+                                user.setRoleId(2);
+                                user.setStatus(true);
+                                user.setImg("/images/user.png");
+                                user.setCreatedatetime(new Date());
+                                userMapper.insert(user);
+                                redisOpsUtil.set(RedisKeyPrefixConst.USER_INFO+corpid+":"+ids[i],user);
                             }
                         }
                     if(yuan.size()>0){

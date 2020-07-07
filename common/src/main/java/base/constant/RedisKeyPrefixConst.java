@@ -1,7 +1,26 @@
 package base.constant;
 
 public interface RedisKeyPrefixConst {
-
+    /**
+     * 闭锁默认图片地址
+     */
+    String BI_LOCK_IMG = "/images/bilock.png";
+    /**
+     * 开锁默认图片地址
+     */
+    String OPEN_LOCK_IMG = "/images/openlock.png";
+    /**
+     * 金储默认头像地址
+     */
+    String JINCHU_IMG = "/images/logo.png";
+    /**
+     * 用户默认头像地址
+     */
+    String USER_IMG = "/images/user.png";
+    /**
+     * 金储智能
+     */
+    String JIN_CHU = "金储智能";
     /**
      * 企业微信基本配置
      */

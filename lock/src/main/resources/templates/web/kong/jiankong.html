@@ -141,23 +141,24 @@
             <div class="block-container main">
                 <div >
                     <div   class="setting-breadcrumb">
-                        <div  class="title"><span >设备监控</span></div>
+                        <div  class="title">
+                            <span >设备监控</span>
+                            <span style="font-size: 18px;"> 当前连接数量：</span>
+                            <span style="font-size: 18px;color: blueviolet" id="shul">0</span>
+                        </div>
                     </div>
                     <div class="bulletins-container">
                         <div class="row custom-row">
-                            <div class="col-sm-4">
+                            <div class="col-sm-3">
                                 <table  class="list">
                                     <thead  class="">
                                     <tr >
                                         <th  style="width: inherit;text-align: center">
-                                            <span  >设备id</span>
+                                            <span  >连接设备id</span>
                                         </th>
 
                                         <th  style="width: inherit;text-align: center">
-                                            <span  >设备ip</span>
-                                        </th>
-                                        <th  style="width: inherit;text-align: center">
-                                            <span  >操作</span>
+                                            <span  >连接设备ip</span>
                                         </th>
                                     </tr>
                                     </thead>
@@ -172,9 +173,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-1">
-                            </div>
-                            <div class="col-sm-7" id="xiaoxi" style="overflow-y: auto;overflow-x: hidden">
+
+                            <div class="col-sm-9" id="xiaoxi" style="overflow-y: auto;overflow-x: hidden">
                                 <table  class="list">
                                     <thead  class="">
                                     <tr >
@@ -248,11 +248,9 @@
 
     </div>
 </div>
-<script th:src="@{/static/alibb/js/jquery.js}" ></script>
+<script th:src="@{/static/web/js/jquery.min.js}"  ></script>
 <script th:src="@{/static/bootstrap/js/bootstrap.min.js}" ></script>
 <script th:src="@{/static/web/js/socket.js}" ></script>
-<script th:src="@{/static/weui/js/zepto.min.js}" ></script>
-<script th:src="@{/static/weui/js/zepto.weui.js}" ></script>
 <script  th:inline="javascript">
     window.onbeforeunload = function() {
         $SO.ws.onclose = function () {}; // disable onclose handler first

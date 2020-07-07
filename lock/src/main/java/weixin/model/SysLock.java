@@ -80,7 +80,7 @@ public class SysLock implements Serializable {
     @ApiModelProperty(value = "备用字段")
     private String attr3;
 
-    @ApiModelProperty(value = "备用字段")
+    @ApiModelProperty(value = "绑定使用人数")
     private Integer attr4;
 
     @ApiModelProperty(value = "备用字段")
