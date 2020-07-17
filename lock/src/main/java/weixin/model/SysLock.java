@@ -86,7 +86,7 @@ public class SysLock implements Serializable {
     @ApiModelProperty(value = "备用字段")
     private Integer attr5;
 
-    @ApiModelProperty(value = "备用字段")
+    @ApiModelProperty(value = "操作模式，true:wifi,false:mac")
     private Boolean attr6;
 
     @ApiModelProperty(value = "备用字段")

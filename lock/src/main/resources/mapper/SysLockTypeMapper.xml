@@ -12,6 +12,10 @@
     <result column="createby" jdbcType="VARCHAR" property="createby" />
     <result column="updateby" jdbcType="VARCHAR" property="updateby" />
     <result column="img" jdbcType="VARCHAR" property="img" />
+    <result column="wifi" jdbcType="BIT" property="wifi" />
+    <result column="attr1" jdbcType="VARCHAR" property="attr1" />
+    <result column="attr2" jdbcType="INTEGER" property="attr2" />
+    <result column="attr3" jdbcType="BIT" property="attr3" />
   </resultMap>
 
 </mapper>

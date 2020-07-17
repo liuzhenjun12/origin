@@ -56,7 +56,7 @@ public class TypeController {
     @Log(desc = "添加设备类型",type = Log.LOG_TYPE.ADD)
     @RequestMapping("/add")
     public CommonResult add(HttpServletRequest request, @RequestParam("imgpath") MultipartFile imgpath, SysLockType lockType) throws BusinessException {
-
+       log.info("lock:{}",lockType.toString());
         if(lockType==null){
             return CommonResult.failed("参数错误");
         }

@@ -75,6 +75,10 @@ public class CommonResult<T> {
         return new CommonResult<T>(ResultCode.FAILED.getCode(), message, data);
     }
 
+    public static <T> CommonResult<T> filed(long code,T data,String message){
+        return new CommonResult<T>(code,message,data);
+    }
+
     /**
      * 失败返回结果
      */

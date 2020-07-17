@@ -96,51 +96,57 @@ public class LockServiceImpl  extends BaseServiceImpl<SysLock, Integer> implemen
         if(sysLockType==null){
             return CommonResult.failed("设备类型不存在!");
         }
-        String provider_token=baseConfigService.get_provider_token();
-        StringBuffer strb = new StringBuffer();
-        strb.append(" { ");
-        strb.append("\"model_id\": \""+lock.getModelId()+"\",");
-        strb.append("\"device_sn\": \""+lock.getDeviceSn()+"\"");
-        strb.append(" } ");
-        log.info("发送给企业微信服务器json数据包:"+strb.toString());
-        try {
-            String   str = Request.Post("https://qyapi.weixin.qq.com/cgi-bin/service/add_device?provider_access_token="+provider_token)
-                    .bodyString(strb.toString(), ContentType.APPLICATION_JSON)
-                    .execute()
-                    .returnContent()
-                    .asString(Charset.forName("UTF-8"));
-            log.info("str==>{}",str);
-            if(StringUtils.isEmpty(str)){
-                return CommonResult.failed("网络异常，请刷新后重试");
+        lock.setCreatedatetime(new Date());
+        lock.setIcon(sysLockType.getImg());
+        lock.setStatus(false);
+        lock.setBattery("100");
+        lock.setAttr4(0);
+        lock.setAttr5(0);
+        lock.setRootPwd("12345678");
+        lock.setAttr6(sysLockType.getWifi());
+        if(sysLockType.getWifi()) {
+            String provider_token = baseConfigService.get_provider_token();
+            StringBuffer strb = new StringBuffer();
+            strb.append(" { ");
+            strb.append("\"model_id\": \"" + lock.getModelId() + "\",");
+            strb.append("\"device_sn\": \"" + lock.getDeviceSn() + "\"");
+            strb.append(" } ");
+            log.info("发送给企业微信服务器json数据包:" + strb.toString());
+            try {
+                String str = Request.Post("https://qyapi.weixin.qq.com/cgi-bin/service/add_device?provider_access_token=" + provider_token)
+                        .bodyString(strb.toString(), ContentType.APPLICATION_JSON)
+                        .execute()
+                        .returnContent()
+                        .asString(Charset.forName("UTF-8"));
+                log.info("str==>{}", str);
+                if (StringUtils.isEmpty(str)) {
+                    return CommonResult.failed("网络异常，请刷新后重试");
+                }
+                if (str.indexOf("600021") != -1) {
+                    return CommonResult.failed("设备编号已存在");
+                }
+                if (str.indexOf("600020") != -1) {
+                    return CommonResult.failed("请求域名错误");
+                }
+                Gson gson = new Gson();
+                Device device = gson.fromJson(str, Device.class);
+                if (device == null) {
+                    return CommonResult.failed("解析异常!");
+                }
+                DeviceInfo info = device.getDevice_info();
+                lock.setDeviceId(info.getDevice_id());
+                lock.setSecretNo(info.getSecret_no());
+                lock.setQrCode(info.getQr_code());
+                lock.setConnectWx(false);
+                lock.setConnectHt(false);
+                lockMapper.insert(lock);
+                return CommonResult.success(null, "添加设备成功");
+            } catch (IOException e) {
+                return CommonResult.success(e.getCause(), e.getMessage());
             }
-            if(str.indexOf("600021")!=-1){
-                return CommonResult.failed("设备编号已存在");
-            }
-            if(str.indexOf("600020")!=-1){
-                return CommonResult.failed("请求域名错误");
-            }
-            Gson gson = new Gson();
-            Device device =gson.fromJson(str, Device.class);
-            if(device==null){
-                return CommonResult.failed("解析异常!");
-            }
-            DeviceInfo info=device.getDevice_info();
-            lock.setDeviceId(info.getDevice_id());
-            lock.setCreatedatetime(new Date());
-            lock.setSecretNo(info.getSecret_no());
-            lock.setQrCode(info.getQr_code());
-            lock.setIcon(sysLockType.getImg());
-            lock.setStatus(false);
-            lock.setBattery("100");
-            lock.setAttr4(0);
-            lock.setAttr5(0);
-            lock.setRootPwd("123456");
-            lock.setConnectWx(false);
-            lock.setConnectHt(false);
+        }else {
             lockMapper.insert(lock);
-            return CommonResult.success(null,"添加设备成功");
-        } catch (IOException e) {
-            return CommonResult.success(e.getCause(),e.getMessage());
+            return CommonResult.success(null, "添加设备成功");
         }
     }
 
@@ -159,33 +165,40 @@ public class LockServiceImpl  extends BaseServiceImpl<SysLock, Integer> implemen
         if(sysLock.getStatus()){
             return CommonResult.failed(null,"设备已经激活不能删除!");
         }
-        String provider_token=baseConfigService.get_provider_token();
-        StringBuffer strb = new StringBuffer();
-        strb.append(" { ");
-        strb.append("\"device_sn\": \""+sysLock.getDeviceSn()+"\"");
-        strb.append(" } ");
-        try {
-            String   str = Request.Post("https://qyapi.weixin.qq.com/cgi-bin/service/del_device?provider_access_token="+provider_token)
-                    .bodyString(strb.toString(), ContentType.APPLICATION_JSON)
-                    .execute()
-                    .returnContent()
-                    .asString(Charset.forName("UTF-8"));
-            log.info("str==>{}",str);
-            if(StringUtils.isEmpty(str)){
-                return CommonResult.failed(null,"网络异常，请刷新后重试");
+        //TODO 如果WIFI模式设备
+        if(sysLock.getAttr6()) {
+            String provider_token = baseConfigService.get_provider_token();
+            StringBuffer strb = new StringBuffer();
+            strb.append(" { ");
+            strb.append("\"device_sn\": \"" + sysLock.getDeviceSn() + "\"");
+            strb.append(" } ");
+            try {
+                String str = Request.Post("https://qyapi.weixin.qq.com/cgi-bin/service/del_device?provider_access_token=" + provider_token)
+                        .bodyString(strb.toString(), ContentType.APPLICATION_JSON)
+                        .execute()
+                        .returnContent()
+                        .asString(Charset.forName("UTF-8"));
+                log.info("str==>{}", str);
+                if (StringUtils.isEmpty(str)) {
+                    return CommonResult.failed(null, "网络异常，请刷新后重试");
+                }
+                Gson gson = new Gson();
+                SupperBean device = gson.fromJson(str, SupperBean.class);
+                if (device == null) {
+                    return CommonResult.failed("解析异常!");
+                }
+                if (!"ok".equals(device.getErrmsg())) {
+                    return CommonResult.failed(null, "设备已激活，不能删除");
+                }
+                lockMapper.deleteByPrimaryKey(id);
+                return CommonResult.success(null, "删除设备成功");
+            } catch (IOException e) {
+                return CommonResult.success(e.getCause(), e.getMessage());
             }
-            Gson gson = new Gson();
-            SupperBean device =gson.fromJson(str, SupperBean.class);
-            if(device==null){
-                return CommonResult.failed("解析异常!");
-            }
-            if(!"ok".equals(device.getErrmsg())){
-                return CommonResult.failed(null,"设备已激活，不能删除");
-            }
+        }else {
+            //TODO 如果是蓝牙模式
             lockMapper.deleteByPrimaryKey(id);
-            return CommonResult.success(null,"删除设备成功");
-        } catch (IOException e) {
-            return CommonResult.success(e.getCause(),e.getMessage());
+            return CommonResult.success(null, "删除设备成功");
         }
     }
 
@@ -243,6 +256,7 @@ public class LockServiceImpl  extends BaseServiceImpl<SysLock, Integer> implemen
         todo.setCreateDate(new Date());
         todo.setUserId(dealerCorpInfo.getAuth_user_info().getUserid());
         todo.setCorpId(corpid);
+        todo.setAttr1(lock.getModelId());//TODO 设备类型
         todo.setOpenType(1);//TODO 开锁类型，1、远程开锁。2、蓝牙开锁
         todo.setTodoType(1);//TODO 任务类型，1、长期。2、短期
         todo.setIcon(lock.getIcon());
@@ -286,9 +300,14 @@ public class LockServiceImpl  extends BaseServiceImpl<SysLock, Integer> implemen
         lock.setName(null);
         lock.setLoginid(null);
         lock.setAttr4(0);
+        lock.setRootPwd("123456");
         lock.setLastupdatetime(new Date());
         //TODO 修改设备为未激活状态
         lockMapper.updateByPrimaryKey(lock);
+        //TODO 删除任务表
+        SysTodoExample todoExample=new SysTodoExample();
+        todoExample.createCriteria().andDeviceSnEqualTo(sn);
+        todoMapper.deleteByExample(todoExample);
 
         sysLog.setCreatedate(new Date());
         sysLog.setMethodtype("DEL");

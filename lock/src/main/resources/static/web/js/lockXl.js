@@ -29,7 +29,6 @@ lockLx.fn=lockLx.prototype= {
             $XL.formValidator1();
         }
     },
-
     getLockNumTable:function(){
         $.post($XL.getRootPath()+"/xl/list",function(data){
             if(data.code==200) {

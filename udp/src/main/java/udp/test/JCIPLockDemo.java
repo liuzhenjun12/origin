@@ -22,7 +22,7 @@ public class JCIPLockDemo {
 	private OutputStream os;
 	private PrintWriter pw;
 	private final String ip="localhost";
-	private final int port=8030;
+	private final int port=8040;
 
 	/**
 	 * Launch the application.

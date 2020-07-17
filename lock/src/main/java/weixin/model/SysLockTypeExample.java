@@ -764,6 +764,256 @@ public class SysLockTypeExample {
             addCriterion("img not between", value1, value2, "img");
             return (Criteria) this;
         }
+
+        public Criteria andWifiIsNull() {
+            addCriterion("wifi is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andWifiIsNotNull() {
+            addCriterion("wifi is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andWifiEqualTo(Boolean value) {
+            addCriterion("wifi =", value, "wifi");
+            return (Criteria) this;
+        }
+
+        public Criteria andWifiNotEqualTo(Boolean value) {
+            addCriterion("wifi <>", value, "wifi");
+            return (Criteria) this;
+        }
+
+        public Criteria andWifiGreaterThan(Boolean value) {
+            addCriterion("wifi >", value, "wifi");
+            return (Criteria) this;
+        }
+
+        public Criteria andWifiGreaterThanOrEqualTo(Boolean value) {
+            addCriterion("wifi >=", value, "wifi");
+            return (Criteria) this;
+        }
+
+        public Criteria andWifiLessThan(Boolean value) {
+            addCriterion("wifi <", value, "wifi");
+            return (Criteria) this;
+        }
+
+        public Criteria andWifiLessThanOrEqualTo(Boolean value) {
+            addCriterion("wifi <=", value, "wifi");
+            return (Criteria) this;
+        }
+
+        public Criteria andWifiIn(List<Boolean> values) {
+            addCriterion("wifi in", values, "wifi");
+            return (Criteria) this;
+        }
+
+        public Criteria andWifiNotIn(List<Boolean> values) {
+            addCriterion("wifi not in", values, "wifi");
+            return (Criteria) this;
+        }
+
+        public Criteria andWifiBetween(Boolean value1, Boolean value2) {
+            addCriterion("wifi between", value1, value2, "wifi");
+            return (Criteria) this;
+        }
+
+        public Criteria andWifiNotBetween(Boolean value1, Boolean value2) {
+            addCriterion("wifi not between", value1, value2, "wifi");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttr1IsNull() {
+            addCriterion("attr1 is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttr1IsNotNull() {
+            addCriterion("attr1 is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttr1EqualTo(String value) {
+            addCriterion("attr1 =", value, "attr1");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttr1NotEqualTo(String value) {
+            addCriterion("attr1 <>", value, "attr1");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttr1GreaterThan(String value) {
+            addCriterion("attr1 >", value, "attr1");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttr1GreaterThanOrEqualTo(String value) {
+            addCriterion("attr1 >=", value, "attr1");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttr1LessThan(String value) {
+            addCriterion("attr1 <", value, "attr1");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttr1LessThanOrEqualTo(String value) {
+            addCriterion("attr1 <=", value, "attr1");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttr1Like(String value) {
+            addCriterion("attr1 like", value, "attr1");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttr1NotLike(String value) {
+            addCriterion("attr1 not like", value, "attr1");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttr1In(List<String> values) {
+            addCriterion("attr1 in", values, "attr1");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttr1NotIn(List<String> values) {
+            addCriterion("attr1 not in", values, "attr1");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttr1Between(String value1, String value2) {
+            addCriterion("attr1 between", value1, value2, "attr1");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttr1NotBetween(String value1, String value2) {
+            addCriterion("attr1 not between", value1, value2, "attr1");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttr2IsNull() {
+            addCriterion("attr2 is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttr2IsNotNull() {
+            addCriterion("attr2 is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttr2EqualTo(Integer value) {
+            addCriterion("attr2 =", value, "attr2");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttr2NotEqualTo(Integer value) {
+            addCriterion("attr2 <>", value, "attr2");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttr2GreaterThan(Integer value) {
+            addCriterion("attr2 >", value, "attr2");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttr2GreaterThanOrEqualTo(Integer value) {
+            addCriterion("attr2 >=", value, "attr2");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttr2LessThan(Integer value) {
+            addCriterion("attr2 <", value, "attr2");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttr2LessThanOrEqualTo(Integer value) {
+            addCriterion("attr2 <=", value, "attr2");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttr2In(List<Integer> values) {
+            addCriterion("attr2 in", values, "attr2");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttr2NotIn(List<Integer> values) {
+            addCriterion("attr2 not in", values, "attr2");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttr2Between(Integer value1, Integer value2) {
+            addCriterion("attr2 between", value1, value2, "attr2");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttr2NotBetween(Integer value1, Integer value2) {
+            addCriterion("attr2 not between", value1, value2, "attr2");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttr3IsNull() {
+            addCriterion("attr3 is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttr3IsNotNull() {
+            addCriterion("attr3 is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttr3EqualTo(Boolean value) {
+            addCriterion("attr3 =", value, "attr3");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttr3NotEqualTo(Boolean value) {
+            addCriterion("attr3 <>", value, "attr3");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttr3GreaterThan(Boolean value) {
+            addCriterion("attr3 >", value, "attr3");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttr3GreaterThanOrEqualTo(Boolean value) {
+            addCriterion("attr3 >=", value, "attr3");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttr3LessThan(Boolean value) {
+            addCriterion("attr3 <", value, "attr3");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttr3LessThanOrEqualTo(Boolean value) {
+            addCriterion("attr3 <=", value, "attr3");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttr3In(List<Boolean> values) {
+            addCriterion("attr3 in", values, "attr3");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttr3NotIn(List<Boolean> values) {
+            addCriterion("attr3 not in", values, "attr3");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttr3Between(Boolean value1, Boolean value2) {
+            addCriterion("attr3 between", value1, value2, "attr3");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttr3NotBetween(Boolean value1, Boolean value2) {
+            addCriterion("attr3 not between", value1, value2, "attr3");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

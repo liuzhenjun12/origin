@@ -37,6 +37,7 @@
     from sys_log
     where corpid=#{corpid}
     and loginid=#{userid}
+    and methodtype!='OPEN'
     order by createdate desc
     LIMIT #{page},#{rows}
   </select>

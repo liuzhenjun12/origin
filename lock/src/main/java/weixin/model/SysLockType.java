@@ -40,6 +40,18 @@ public class SysLockType implements Serializable {
     @ApiModelProperty(value = "图片样例")
     private String img;
 
+    @ApiModelProperty(value = "wifi功能")
+    private Boolean wifi;
+
+    @ApiModelProperty(value = "备用字段1")
+    private String attr1;
+
+    @ApiModelProperty(value = "备用字段2")
+    private Integer attr2;
+
+    @ApiModelProperty(value = "备用字段3")
+    private Boolean attr3;
+
     private static final long serialVersionUID = 1L;
 
     public Integer getId() {
@@ -122,6 +134,38 @@ public class SysLockType implements Serializable {
         this.img = img;
     }
 
+    public Boolean getWifi() {
+        return wifi;
+    }
+
+    public void setWifi(Boolean wifi) {
+        this.wifi = wifi;
+    }
+
+    public String getAttr1() {
+        return attr1;
+    }
+
+    public void setAttr1(String attr1) {
+        this.attr1 = attr1;
+    }
+
+    public Integer getAttr2() {
+        return attr2;
+    }
+
+    public void setAttr2(Integer attr2) {
+        this.attr2 = attr2;
+    }
+
+    public Boolean getAttr3() {
+        return attr3;
+    }
+
+    public void setAttr3(Boolean attr3) {
+        this.attr3 = attr3;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -138,6 +182,10 @@ public class SysLockType implements Serializable {
         sb.append(", createby=").append(createby);
         sb.append(", updateby=").append(updateby);
         sb.append(", img=").append(img);
+        sb.append(", wifi=").append(wifi);
+        sb.append(", attr1=").append(attr1);
+        sb.append(", attr2=").append(attr2);
+        sb.append(", attr3=").append(attr3);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

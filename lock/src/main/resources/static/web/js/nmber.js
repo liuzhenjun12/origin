@@ -173,6 +173,7 @@ Number.fn=Number.prototype= {
                 $("#name").val(result.data.name);
                 $("#mac1").val(result.data.mac);
                 $("#secretNo").val(result.data.secretNo);
+                $("#wifi").val(result.data.wifi==true?'WIFI':'蓝牙')
 
                 $("#deviceId").val(result.data.deviceId);
                 $("#qrCode").val(result.data.qrCode);

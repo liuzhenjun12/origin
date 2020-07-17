@@ -35,7 +35,8 @@ public class MyApplicationListener implements ApplicationListener<ContextRefresh
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
         frame = new JCIPLockServer();
-        frame.setPort(8030);
+        frame.setPort(8040);
+        log.info("创建socket服务端8040");
         frame.setOnServerlistener(new ServerListener() {
             @Override
             public void receivedata(final long id,String address,String info) throws IOException {

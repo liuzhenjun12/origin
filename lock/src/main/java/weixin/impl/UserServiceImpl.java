@@ -93,6 +93,8 @@ public class UserServiceImpl   extends BaseServiceImpl<SysUser, Integer> impleme
         sysLog.setLoginid(dealerCorpInfo.getAuth_user_info().getUserid());
         sysLog.setSccess(true);
         sysLog.setResult("成功应用成功并授权"+ids.length+"个成员使用");
+        sysLog.setImg(RedisKeyPrefixConst.JINCHU_IMG);
+        sysLog.setAttr1(RedisKeyPrefixConst.JIN_CHU);
         logMapper.insert(sysLog);
         return CommonResult.success(null,"添加用户成功");
     }
@@ -248,6 +250,8 @@ public class UserServiceImpl   extends BaseServiceImpl<SysUser, Integer> impleme
         sysLog.setLoginid(dealerCorpInfo.getAuth_user_info().getUserid());
         sysLog.setSccess(true);
         sysLog.setResult("修改成功");
+        sysLog.setImg(RedisKeyPrefixConst.JINCHU_IMG);
+        sysLog.setAttr1(RedisKeyPrefixConst.JIN_CHU);
         logMapper.insert(sysLog);
         return  CommonResult.success(null,"修改成功");
     }

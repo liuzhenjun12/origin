@@ -80,6 +80,7 @@ public class LoginConstroller {
     @RequestMapping("/index")
     public String  index(Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
         SessionInfo sessionInfo= (SessionInfo) session.getAttribute(RedisKeyPrefixConst.SESSION_INFO);
+        log.info("index===>index");
         if(sessionInfo!=null&&sessionInfo.getLoginId()!=null){
             if(redisOpsUtil.hasKey(RedisKeyPrefixConst.USER_INFO+sessionInfo.getCorpids()+":"+sessionInfo.getLoginId())) {
                 SysUser user = redisOpsUtil.get(RedisKeyPrefixConst.USER_INFO + sessionInfo.getCorpids() + ":" + sessionInfo.getLoginId(), SysUser.class);
@@ -89,18 +90,21 @@ public class LoginConstroller {
                         "LoginConstroller.index", "后台扫码登录", true, "扫码登录成功",
                         new Date(),RedisKeyPrefixConst.JINCHU_IMG,RedisKeyPrefixConst.JIN_CHU);
                 logMapper.insert(sysLog);
+                log.info("index===>sysLog");
                 SysLogExample example = new SysLogExample();
                 example.createCriteria().andLoginidEqualTo(user.getLoginId()).andCorpidEqualTo(user.getCorpids());
                 example.setOrderByClause("id DESC");
                 RowBounds rowBounds = new RowBounds(0, 10);
                 List<SysLog> logList = logMapper.selectByExampleAndRowBounds(example, rowBounds);
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
+                log.info("index===>logMapper");
                 for(SysLog l:logList){
                     l.setIp(dateFormat.format(l.getCreatedate()));
                     if(l.getImg().indexOf("images/")>-1){
                         l.setImg("/static"+l.getImg());
                     }
                 }
+                log.info("index===>redis");
                 model.addAttribute("logList", logList);
                 return "web/index/home";
             }else {
@@ -124,6 +128,7 @@ public class LoginConstroller {
                         l.setIp(dateFormat.format(l.getCreatedate()));
                     }
                     model.addAttribute("logList", logList);
+                    log.info("index===>mysql");
                     return "web/index/home";
                 }else {
                     model.addAttribute("msg","无权访问，请注册后再登录！");

@@ -110,4 +110,22 @@ public class WxlogController {
             return CommonResult.success(count);
         }
     }
+
+    /**
+     * 通过用户id删除所有消息
+     * @param corpid
+     * @param userid
+     * @return
+     */
+    @RequestMapping("/deleteAllLog")
+    public CommonResult deleteAllLog(@RequestParam String corpid, @RequestParam String userid){
+        try {
+            SysLogExample example = new SysLogExample();
+            example.createCriteria().andLoginidEqualTo(userid).andCorpidEqualTo(corpid);
+            logMapper.deleteByExample(example);
+            return CommonResult.success(null);
+        }catch (Exception e){
+            return CommonResult.failed();
+        }
+    }
 }

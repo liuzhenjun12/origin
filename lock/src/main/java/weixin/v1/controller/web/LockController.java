@@ -126,59 +126,6 @@ public class LockController {
         }
     }
 
-    /**
-     * 通过企业id获取设备列表
-     * @param corpid
-     * @return
-     */
-    @RequestMapping("/getByCorp")
-    public CommonResult getByCorp(String corpid){
-        SysLockExample lockExample=new SysLockExample();
-        lockExample.createCriteria().andCorpidEqualTo(corpid);
-        List<SysLock> locks=sysLockMapper.selectByExample(lockExample);
-        if(locks.isEmpty()){
-            return CommonResult.failed("未找到设备");
-        }else {
-            return CommonResult.success(locks);
-        }
-    }
-
-    /**
-     * 通过企业id、用户id、设备编号开启设备
-     * @param corpid
-     * @param userid
-     * @param deviceSn
-     * @return
-     */
-    @RequestMapping("/openLock")
-    @Log(desc = "开锁",type = Log.LOG_TYPE.OPEN)
-    public CommonResult openLock(String corpid,String userid,String deviceSn){
-        log.info("corpid:{},userid:{},deviceSn:{}",corpid,userid,deviceSn);
-        return CommonResult.success(null,"开锁成功");
-//        return CommonResult.failed("开锁失败");
-    }
-
-    /**
-     * 修改设备名称、秘钥
-     * @param id
-     * @param name
-     * @param pwd
-     * @return
-     */
-    @RequestMapping("/updateNm")
-    @Log(desc = "修改设备名称、秘钥",type = Log.LOG_TYPE.UPDATE)
-    public CommonResult updateNm(Integer id,String name,String pwd){
-        SysLock lock=sysLockMapper.selectByPrimaryKey(id);
-        if(lock!=null){
-            lock.setRootPwd(pwd);
-            lock.setName(name);
-            sysLockMapper.updateByPrimaryKey(lock);
-            return CommonResult.success("修改成功");
-        }else {
-            return CommonResult.failed();
-        }
-    }
-
     public CommonResult fenpeisn(String corpid,String userid,String lockid){
         return null;
     }

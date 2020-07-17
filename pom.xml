@@ -7,7 +7,6 @@
         <module>common</module>
         <module>lock</module>
         <module>mbg</module>
-        <module>socket</module>
         <module>udp</module>
     </modules>
     <parent>

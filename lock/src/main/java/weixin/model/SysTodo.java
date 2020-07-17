@@ -45,7 +45,7 @@ public class SysTodo implements Serializable {
     @ApiModelProperty(value = "任务结束日期")
     private Date endDate;
 
-    @ApiModelProperty(value = "备用字段")
+    @ApiModelProperty(value = "设备类型")
     private String attr1;
 
     @ApiModelProperty(value = "备用字段")

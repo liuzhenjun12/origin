@@ -148,6 +148,7 @@ public class WxTodoController {
             todo.setCreateDate(new Date());
             todo.setStatus(true);
             todo.setIcon(lock.getIcon());
+            todo.setAttr1(lock.getModelId());
             //TODO 添加任务
             todoMapper.insert(todo);
             lock.setAttr4(lock.getAttr4()+1);

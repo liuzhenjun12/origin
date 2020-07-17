@@ -52,6 +52,6 @@ public class MinaClient {
 	}
 
 	public static void main(String[] args) {
-		System.out.println(new MinaClient().startClient(new InetSocketAddress("127.0.0.1", 8087), 5000, "{\"date\":\"20200706225706\",\"code\":\"1004\",\"openCode\":\"no\",\"psk\":\"123456\",\"sn\":\"515068000044\",\"content\":\"请求初始化设备\"}", "hello"));
+		System.out.println(new MinaClient().startClient(new InetSocketAddress("188.131.169.117", 8030), 5000, "{\"date\":\"\",\"code\":\"1000\",\"openCode\":\"no\",\"psk\":\"no\",\"sn\":\"515068000044\",\"content\":\"请求建立连接\"}", "hello"));
 	}
 }

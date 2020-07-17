@@ -55,6 +55,7 @@ console.fn=console.prototype= {
                     str+= "<td  class=\"middle\">"+ items.sbtype+"</td>";
                     str+= "<td  class=\"middle\">"+ items.sbjc+"</td>";
                     str+= "<td  class=\"middle\">"+ items.sbxlname+"</td>";
+                    str+= "<td  class=\"middle\">"+ (items.wifi==false?'蓝牙':'WIFI')+"</td>";
                     str += "<td  class=\"middle\"><div style=\"color: rgb(102, 102, 102);\"><a onclick=\"$C.openXq(" + info + ")\" > <span class=\"blue ml-m pointer\">详情</span></a> <a onclick=\"$C.editXq(" + info + ")\" ><span class=\"blue ml-m pointer\">编辑</span></a><a onclick=\"$C.delete(" + items.id + ")\"><span class=\"blue ml-m pointer\">删除</span></a></td>";
                     str+="</tr>";
                 });
@@ -88,6 +89,7 @@ console.fn=console.prototype= {
         $("#xgr").val(obj.updateby);
         $("#xgrq").val(obj.updatedate);
         $("#xstp").attr("src",obj.img);
+        $('#wifi1').val(obj.wifi==false?'蓝牙':'WIFI');
     },
     editXq:function(obj){
             $("#edittype").modal();
@@ -111,7 +113,7 @@ console.fn=console.prototype= {
     addLockType:function(){
         var result = $('#defaultForm').data('bootstrapValidator').validate().isValid();
         if(result){
-            var regEn = /[`~!@#$%^&*()_+<>?:"{},.\/;'[\]]/im,
+            var regEn = /[`~!@#$%^&*()+<>?:"{},.\/;'[\]]/im,
                 regCn = /[·！#￥（——）：；“”‘、，|《。》？、【】[\]]/im;
             var sbtype=$('#sbtype').val();
             if(regEn.test(sbtype) || regCn.test(sbtype)) {
